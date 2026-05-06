@@ -23,8 +23,19 @@ export default defineConfig({
     },
   },
   build: {
-    chunkSizeWarningLimit: 5000,
+    chunkSizeWarningLimit: 6000,
     sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react":   ["react", "react-dom", "react-router-dom"],
+          "vendor-motion":  ["framer-motion"],
+          "vendor-three":   ["three", "@react-three/fiber", "@react-three/drei"],
+          "vendor-gsap":    ["gsap"],
+          "vendor-ui":      ["lucide-react"],
+        },
+      },
+    },
   },
   resolve: {
     dedupe: [

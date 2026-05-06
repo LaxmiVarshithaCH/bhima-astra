@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 logger = logging.getLogger("bhima.startup")
 
+
 # ============================================================================
 # LIFESPAN CONTEXT MANAGER - Load ML Models on Startup
 # ============================================================================

@@ -3,6 +3,7 @@ set -e
 
 echo "=== BHIMA ASTRA API START ==="
 
+
 # Skip migrations on Render (NeonDB tables already exist)
 # If you want to run them: uncomment the line below
 # alembic upgrade head

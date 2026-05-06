@@ -9,21 +9,66 @@
       "buildCommand": "pip install -r requirements.txt",
       "startCommand": "bash start.sh",
       "envVars": [
-        { "key": "PYTHON_VERSION",              "value": "3.11.9" },
-        { "key": "DATABASE_URL",                "sync": false },
-        { "key": "REDIS_URL",                   "sync": false },
-        { "key": "SECRET_KEY",                  "sync": false },
-        { "key": "ALGORITHM",                   "value": "HS256" },
-        { "key": "ACCESS_TOKEN_EXPIRE_MINUTES", "value": "10080" },
-        { "key": "RAZORPAY_KEY_ID",             "sync": false },
-        { "key": "RAZORPAY_KEY_SECRET",         "sync": false },
-        { "key": "WEATHER_API_KEY",             "sync": false },
-        { "key": "OPENWEATHER_API_KEY",         "sync": false },
-        { "key": "WAQI_TOKEN",                  "sync": false },
-        { "key": "GOOGLE_MAPS_API_KEY",         "sync": false },
-        { "key": "ANTHROPIC_API_KEY",           "sync": false },
-        { "key": "MODEL_DIR",                   "value": "/opt/render/project/src/bhima_astra_ml/models" },
-        { "key": "ENVIRONMENT",                 "value": "production" }
+        {
+          "key": "PYTHON_VERSION",
+          "value": "3.11.9"
+        },
+        {
+          "key": "DATABASE_URL",
+          "sync": false
+        },
+        {
+          "key": "REDIS_URL",
+          "sync": false
+        },
+        {
+          "key": "SECRET_KEY",
+          "sync": false
+        },
+        {
+          "key": "ALGORITHM",
+          "value": "HS256"
+        },
+        {
+          "key": "ACCESS_TOKEN_EXPIRE_MINUTES",
+          "value": "10080"
+        },
+        {
+          "key": "RAZORPAY_KEY_ID",
+          "sync": false
+        },
+        {
+          "key": "RAZORPAY_KEY_SECRET",
+          "sync": false
+        },
+        {
+          "key": "WEATHER_API_KEY",
+          "sync": false
+        },
+        {
+          "key": "OPENWEATHER_API_KEY",
+          "sync": false
+        },
+        {
+          "key": "WAQI_TOKEN",
+          "sync": false
+        },
+        {
+          "key": "GOOGLE_MAPS_API_KEY",
+          "sync": false
+        },
+        {
+          "key": "ANTHROPIC_API_KEY",
+          "sync": false
+        },
+        {
+          "key": "MODEL_DIR",
+          "value": "/opt/render/project/src/bhima_astra_ml/models"
+        },
+        {
+          "key": "ENVIRONMENT",
+          "value": "production"
+        }
       ]
     },
     {
@@ -35,13 +80,34 @@
       "buildCommand": "pip install -r requirements.txt",
       "startCommand": "celery -A app.tasks.celery_app.celery worker --loglevel=info --concurrency=2",
       "envVars": [
-        { "key": "PYTHON_VERSION",    "value": "3.11.9" },
-        { "key": "DATABASE_URL",      "sync": false },
-        { "key": "REDIS_URL",         "sync": false },
-        { "key": "SECRET_KEY",        "sync": false },
-        { "key": "ANTHROPIC_API_KEY", "sync": false },
-        { "key": "MODEL_DIR",         "value": "/opt/render/project/src/bhima_astra_ml/models" },
-        { "key": "ENVIRONMENT",       "value": "production" }
+        {
+          "key": "PYTHON_VERSION",
+          "value": "3.11.9"
+        },
+        {
+          "key": "DATABASE_URL",
+          "sync": false
+        },
+        {
+          "key": "REDIS_URL",
+          "sync": false
+        },
+        {
+          "key": "SECRET_KEY",
+          "sync": false
+        },
+        {
+          "key": "ANTHROPIC_API_KEY",
+          "sync": false
+        },
+        {
+          "key": "MODEL_DIR",
+          "value": "/opt/render/project/src/bhima_astra_ml/models"
+        },
+        {
+          "key": "ENVIRONMENT",
+          "value": "production"
+        }
       ]
     },
     {

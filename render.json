@@ -2,33 +2,52 @@
   "services": [
     {
       "type": "web",
-      "name": "bhima-astra-backend",
-      "runtime": "python310",
+      "name": "bhima-astra-api",
+      "runtime": "python311",
       "plan": "free",
-      "buildCommand": "pip install -r bhima_astra_backend/requirements.txt",
-      "startCommand": "cd bhima_astra_backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT",
+      "rootDir": "bhima_astra_backend",
+      "buildCommand": "pip install -r requirements.txt",
+      "startCommand": "bash start.sh",
       "envVars": [
-        {
-          "key": "DATABASE_URL",
-          "scope": "build"
-        },
-        {
-          "key": "REDIS_URL",
-          "scope": "build"
-        },
-        {
-          "key": "ENVIRONMENT",
-          "value": "production"
-        },
-        {
-          "key": "ANTHROPIC_API_KEY",
-          "scope": "build"
-        },
-        {
-          "key": "SECRET_KEY",
-          "scope": "build"
-        }
+        { "key": "DATABASE_URL",           "sync": false },
+        { "key": "REDIS_URL",              "sync": false },
+        { "key": "SECRET_KEY",             "sync": false },
+        { "key": "ALGORITHM",             "value": "HS256" },
+        { "key": "ACCESS_TOKEN_EXPIRE_MINUTES", "value": "10080" },
+        { "key": "RAZORPAY_KEY_ID",        "sync": false },
+        { "key": "RAZORPAY_KEY_SECRET",    "sync": false },
+        { "key": "WEATHER_API_KEY",        "sync": false },
+        { "key": "OPENWEATHER_API_KEY",    "sync": false },
+        { "key": "WAQI_TOKEN",             "sync": false },
+        { "key": "GOOGLE_MAPS_API_KEY",    "sync": false },
+        { "key": "ANTHROPIC_API_KEY",      "sync": false },
+        { "key": "MODEL_DIR",             "value": "/opt/render/project/src/bhima_astra_backend/../bhima_astra_ml/models" },
+        { "key": "ENVIRONMENT",           "value": "production" },
+        { "key": "PYTHON_VERSION",        "value": "3.11.9" }
       ]
+    },
+    {
+      "type": "worker",
+      "name": "bhima-astra-celery",
+      "runtime": "python311",
+      "plan": "free",
+      "rootDir": "bhima_astra_backend",
+      "buildCommand": "pip install -r requirements.txt",
+      "startCommand": "celery -A app.tasks.celery_app.celery worker --loglevel=info --concurrency=2",
+      "envVars": [
+        { "key": "DATABASE_URL",      "sync": false },
+        { "key": "REDIS_URL",         "sync": false },
+        { "key": "SECRET_KEY",        "sync": false },
+        { "key": "ANTHROPIC_API_KEY", "sync": false },
+        { "key": "MODEL_DIR",        "value": "/opt/render/project/src/bhima_astra_backend/../bhima_astra_ml/models" },
+        { "key": "ENVIRONMENT",      "value": "production" }
+      ]
+    },
+    {
+      "type": "redis",
+      "name": "bhima-astra-redis",
+      "plan": "free",
+      "maxmemoryPolicy": "noeviction"
     }
   ]
 }

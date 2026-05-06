@@ -1,0 +1,401 @@
+worker_id,worker_name,platform,city,geo_zone_id,vehicle_type,shift_hours,experience_level,employment_type,upi_id,bank_ifsc,device_id,kyc_verified,bank_verified,fraud_risk_score,payment_verified_status
+1,Ajay Mishra,Swiggy Instamart,Delhi,Vasant Kunj,bike,8.1,9.0,Full-time,ajaymis240@oksbi,KKBK385696,DEV445983788,0,1,0.3451,pending
+2,Pooja Sharma,Zepto,Jaipur,Sanganer,bike,7.8,10.7,Full-time,poojash178@okaxis,ICIC390047,DEV910221542,1,0,0.6571,flagged
+3,Sarla Tripathi,Amazon Now,Hyderabad,Mehdipatnam,bike,10.3,3.8,Full-time,sarlatr470@ibl,BARB488652,DEV870349486,1,1,0.2202,verified
+4,Srikanth Sharma,Swiggy Instamart,Hyderabad,Banjara Hills,bike,6.1,6.1,Full-time,srikant816@apl,UTIB521475,DEV373940341,1,1,0.2578,verified
+5,Amit Sen,Swiggy Instamart,Mumbai,Dadar,scooter,3.0,1.8,Part-time,amitsen203@ibl,KKBK947730,DEV521480523,1,1,0.6679,flagged
+6,Kavitha Hegde,Amazon Now,Pune,Wakad,scooter,3.5,9.7,Part-time,kavitha773@okicici,UTIB389973,DEV063318916,1,1,0.0382,verified
+7,Ajay Anand,Swiggy Instamart,Jaipur,Tonk Rd,bike,8.2,4.2,Full-time,ajayana386@ibl,BARB204858,DEV687668134,0,0,0.5732,pending
+8,Gaurav Kohli,Zepto,Chennai,Mylapore,scooter,11.7,0.2,Full-time,gauravk176@apl,AXIS392825,DEV050638651,1,0,0.5262,pending
+9,Divya Hegde,Swiggy Instamart,Mumbai,Kurla,scooter,7.3,0.1,Part-time,divyahe941@okicici,KKBK330217,DEV867350382,1,0,0.746,flagged
+10,Prashanth Joshi,Swiggy Instamart,Bengaluru,Electronic City,scooter,4.6,0.2,Part-time,prashan784@apl,RATN927265,DEV638561299,1,1,0.2111,verified
+11,Kavitha Dubey,Blinkit,Jaipur,Vaishali Nagar,scooter,8.2,4.4,Full-time,kavitha646@upi,ICIC124400,DEV902961267,1,1,0.094,verified
+12,Bhavana Pillai,BigBasket Now,Chennai,Sholinganallur,scooter,5.1,9.2,Part-time,bhavana476@jupiteraxis,UBIN540566,DEV827471548,1,1,0.2146,verified
+13,Amit Iyer,Flipkart Minutes,Bengaluru,Marathahalli,bike,9.7,1.9,Full-time,amitiye608@paytm,AXIS580532,DEV889996245,1,1,0.178,verified
+14,Ajay Singh,Flipkart Minutes,Chennai,Sholinganallur,bike,5.5,2.6,Part-time,ajaysin784@apl,SBIN686389,DEV273140953,1,0,0.6462,flagged
+15,Lakshmi Venkataraman,Blinkit,Mumbai,Mulund,scooter,10.1,8.9,Full-time,lakshmi579@paytm,UTIB398906,DEV594810106,1,1,0.2616,verified
+16,Girish Subramaniam,Amazon Now,Jaipur,C Scheme,bike,10.4,5.4,Full-time,girishs528@paytm,ICIC106872,DEV889996245,1,1,0.2507,verified
+17,Rakesh Kulkarni,Swiggy Instamart,Mumbai,Bandra-E,bike,9.8,0.2,Full-time,rakeshk399@ibl,UBIN501191,DEV911225713,1,1,0.0365,verified
+18,Rajan Natarajan,BigBasket Now,Mumbai,Borivali-N,bike,11.4,1.5,Full-time,rajanna555@upi,UBIN174715,DEV191390031,1,1,0.041,verified
+19,Yogesh Tiwari,BigBasket Now,Chennai,Velachery,scooter,5.0,0.9,Part-time,yogesht821@ptyes,BARB282964,DEV289254925,1,1,0.0271,verified
+20,Tara Shukla,Swiggy Instamart,Pune,Shivajinagar,scooter,3.4,2.4,Part-time,tarashu841@okhdfcbank,UTIB146984,DEV989975555,1,1,0.2147,verified
+21,Rupa Kohli,Swiggy Instamart,Mumbai,Mulund,scooter,7.6,5.4,Part-time,rupakoh627@ibl,AXIS955202,DEV848370266,1,1,0.278,verified
+22,Shweta Rao,Swiggy Instamart,Hyderabad,LB Nagar,bike,8.1,0.7,Full-time,shwetar934@oksbi,SBIN626480,DEV968760359,1,0,0.0642,pending
+23,Sarla Shukla,Blinkit,Pune,Pimpri,scooter,9.8,4.2,Full-time,sarlash139@okaxis,UBIN807361,DEV027178253,1,1,0.2303,verified
+24,Srikanth Sundaram,Blinkit,Delhi,Mayur Vihar,bike,10.0,6.9,Full-time,srikant802@oksbi,UBIN691866,DEV924575114,0,0,0.0963,pending
+25,Shweta Yadav,Blinkit,Bengaluru,HSR Layout,bike,6.7,0.8,Part-time,shwetay969@okhdfcbank,UTIB389973,DEV387434497,1,0,0.2769,pending
+26,Hemant Mishra,Zepto,Bengaluru,Hebbal,scooter,8.1,6.2,Part-time,hemantm171@okicici,ICIC857441,DEV560497882,0,0,0.26,pending
+27,Suganya Prasad,Blinkit,Mumbai,Goregaon,scooter,3.5,9.5,Part-time,suganya77@okicici,ICIC994531,DEV700385402,1,1,0.4567,pending
+28,Pooja Subramaniam,Zepto,Bengaluru,Electronic City,bike,8.7,4.6,Full-time,rashmiv997@upi,UBIN261633,DEV731587902,1,1,0.2254,verified
+29,Murugan Bhatia,BigBasket Now,Jaipur,Jagatpura,bike,8.2,0.4,Part-time,murugan988@okicici,YESB185600,DEV277422154,1,0,0.1897,pending
+30,Manoj Das,BigBasket Now,Jaipur,Vaishali Nagar,bike,11.1,4.8,Full-time,manojda456@ybl,UTIB381426,DEV437588206,1,0,0.479,pending
+31,Kiran Pandey,Flipkart Minutes,Jaipur,Sanganer,scooter,6.8,0.4,Full-time,kiranpa935@paytm,ICIC641384,DEV129199194,1,1,0.3398,pending
+32,Sarika Mishra,Flipkart Minutes,Hyderabad,Gachibowli,bike,12.4,11.5,Full-time,sarikam845@okaxis,RATN606878,DEV523710504,1,1,0.2696,verified
+33,Lakshmi Sen,Blinkit,Mumbai,Powai,scooter,9.4,3.7,Full-time,lakshmi81@paytm,CITI155446,DEV812385877,0,0,0.7681,flagged
+34,Ravi Prasad,Amazon Now,Pune,Viman Nagar,bike,5.6,6.4,Part-time,ravipra557@okicici,HDFC547794,DEV105015119,1,1,0.1709,verified
+35,Jyoti Arora,Blinkit,Jaipur,Tonk Rd,scooter,10.5,0.5,Full-time,jyotiar793@apl,UTIB296229,DEV813344870,0,1,0.2817,pending
+36,Selvam Gopalakrishnan,Swiggy Instamart,Hyderabad,Uppal,scooter,6.7,8.0,Full-time,selvamg406@paytm,HDFC306776,DEV548858896,1,1,0.2614,verified
+37,Harish Chopra,Blinkit,Chennai,Anna Nagar,scooter,13.5,7.2,Full-time,harishc648@paytm,HDFC937179,DEV529710502,1,0,0.2729,pending
+38,Nisha Pandey,Blinkit,Delhi,Saket,scooter,10.9,2.5,Full-time,nishapa347@upi,SBIN536104,DEV222860891,1,0,0.9191,flagged
+39,Rohan Mukherjee,Blinkit,Delhi,Rohini-Sec3,scooter,5.6,11.4,Part-time,rohanmu376@apl,CITI427175,DEV613902967,1,1,0.0841,verified
+40,Rupa Bose,FreshToHome Express,Hyderabad,Uppal,scooter,10.4,2.5,Full-time,rupabos283@jupiteraxis,BARB929310,DEV032281247,1,1,0.0829,verified
+41,Mohan Mandal,Zepto,Jaipur,Sodala,scooter,7.8,2.4,Full-time,mohanma479@paytm,HDFC617171,DEV803871711,1,1,0.0761,verified
+42,Manoj Verma,Swiggy Instamart,Pune,Viman Nagar,scooter,13.8,3.9,Full-time,manojve949@okhdfcbank,UBIN259797,DEV783298039,1,0,0.4932,pending
+43,Ramesh Tripathi,Amazon Now,Delhi,CP,scooter,6.9,5.1,Full-time,ramesht217@okaxis,KKBK439455,DEV034440527,1,1,0.2584,verified
+44,Prashanth Ghosh,Swiggy Instamart,Jaipur,Sanganer,scooter,13.5,3.0,Full-time,prashan457@oksbi,RATN753764,DEV656745963,1,1,0.047,verified
+45,Nirmala Murugesan,Swiggy Instamart,Bengaluru,Indiranagar,bike,9.2,0.6,Full-time,nirmala290@okaxis,IOBA811904,DEV160059038,1,1,0.5369,pending
+46,Nikhil Reddy,Swiggy Instamart,Bengaluru,Marathahalli,scooter,8.6,11.3,Part-time,nikhilr874@okicici,YESB458807,DEV698204229,0,0,0.2761,pending
+47,Dinesh Menon,Zepto,Delhi,Pitampura,scooter,13.6,9.4,Full-time,dineshm853@okicici,HDFC117839,DEV915969987,1,0,0.4086,pending
+48,Asha Murugesan,Blinkit,Chennai,Adyar,scooter,10.8,0.8,Full-time,ashamur394@okaxis,ICIC642097,DEV110742772,1,1,0.2764,verified
+49,Sneha Yadav,FreshToHome Express,Chennai,Perambur,scooter,8.7,6.8,Full-time,snehaya945@jupiteraxis,HDFC219707,DEV002325880,1,0,0.324,pending
+50,Swati Ghosh,Blinkit,Jaipur,Vaishali Nagar,bike,4.4,5.8,Part-time,swatigh191@paytm,UTIB922853,DEV039444617,1,1,0.0254,verified
+51,Rohit Gopalakrishnan,Zepto,Jaipur,Tonk Rd,bike,8.0,5.4,Part-time,rohitgo868@upi,BARB516940,DEV371847207,1,1,0.1492,verified
+52,Deepak Prasad,Flipkart Minutes,Bengaluru,HSR Layout,bike,6.1,6.8,Full-time,deepakp118@ibl,IOBA849681,DEV965533192,1,1,0.0115,verified
+53,Ganesh Venkataraman,Blinkit,Chennai,Velachery,scooter,3.6,11.4,Part-time,ganeshv360@paytm,RATN677221,DEV367893647,1,1,0.1729,verified
+54,Meera Khanna,BigBasket Now,Hyderabad,Kondapur,bike,12.4,5.1,Full-time,meerakh363@jupiteraxis,RATN741374,DEV356696962,1,1,0.0337,verified
+55,Murugan Thakur,FreshToHome Express,Bengaluru,Hebbal,scooter,12.3,0.3,Full-time,murugan697@ptyes,CITI569822,DEV085036117,1,1,0.1896,verified
+56,Naresh Sundaram,Zepto,Hyderabad,Ameerpet,bike,8.5,8.8,Part-time,nareshs827@apl,CITI226862,DEV242432092,1,0,0.8126,flagged
+57,Usha Hegde,Amazon Now,Delhi,CP,scooter,7.3,10.0,Full-time,ushaheg905@okaxis,HDFC117839,DEV017957746,0,0,0.4522,pending
+58,Manish Dwivedi,Amazon Now,Hyderabad,LB Nagar,bike,8.2,2.1,Full-time,manishd681@oksbi,UTIB389973,DEV160059038,1,1,0.1037,verified
+59,Seema Singh,BigBasket Now,Bengaluru,Hebbal,scooter,8.0,9.1,Full-time,seemasi490@jupiteraxis,HDFC117839,DEV336694973,0,1,0.6232,flagged
+60,Omkar Sharma,Flipkart Minutes,Delhi,Vasant Kunj,bike,6.9,3.4,Part-time,omkarsh938@oksbi,RATN899055,DEV079659826,1,0,0.679,flagged
+61,Yogesh Raghavan,Zepto,Mumbai,Kurla,scooter,7.2,3.9,Part-time,yogeshr417@apl,UTIB414815,DEV549861873,0,1,0.065,pending
+62,Yogesh Prasad,Flipkart Minutes,Bengaluru,Marathahalli,scooter,6.2,3.7,Part-time,yogeshp420@okaxis,SBIN678865,DEV719662992,1,0,0.4291,pending
+63,Priyadarshini Anand,Blinkit,Chennai,Avadi,bike,12.6,1.0,Full-time,priyada370@apl,AXIS741873,DEV943475121,1,1,0.0491,verified
+64,Savitha Shukla,Blinkit,Pune,Chinchwad,scooter,11.9,10.3,Full-time,savitha904@upi,SBIN347697,DEV933402361,0,1,0.2659,pending
+65,Mohan Pillai,Swiggy Instamart,Bengaluru,Indiranagar,scooter,5.3,3.7,Part-time,mohanpi397@apl,YESB533104,DEV485987033,1,1,0.0905,verified
+66,Kiran Mandal,FreshToHome Express,Mumbai,Goregaon,bike,5.6,7.4,Part-time,kiranma16@apl,KKBK801034,DEV504761682,1,1,0.2332,verified
+67,Vinod Subramaniam,Amazon Now,Jaipur,Jagatpura,bike,10.7,0.8,Full-time,vinodsu515@ybl,BARB210835,DEV230982781,0,0,0.2346,pending
+68,Anuradha Hegde,Blinkit,Bengaluru,BTM,scooter,10.7,10.0,Full-time,anuradh416@oksbi,UTIB762634,DEV374600281,1,1,0.9537,flagged
+69,Tara Subramaniam,Swiggy Instamart,Pune,Kondhwa,bike,7.0,8.3,Full-time,tarasub721@okaxis,CNRB686363,DEV511330578,0,0,0.3519,pending
+70,Selvam Pandey,BigBasket Now,Hyderabad,Begumpet,bike,7.0,4.7,Part-time,selvamp497@okhdfcbank,HDFC398042,DEV757461427,1,1,0.1534,verified
+71,Prashanth Saxena,Blinkit,Pune,Wanowrie,bike,8.6,0.5,Part-time,prashan102@okicici,YESB219783,DEV672964219,1,1,0.1619,verified
+72,Rajan Sinha,BigBasket Now,Mumbai,Borivali-N,bike,8.6,4.1,Full-time,rajansi432@paytm,CITI155446,DEV061730241,0,0,0.5292,pending
+73,Divya Kumar,Zepto,Chennai,Mylapore,bike,7.7,3.8,Full-time,divyaku536@jupiteraxis,KKBK811421,DEV995376038,1,1,0.0309,verified
+74,Girish Kulkarni,Zepto,Bengaluru,Marathahalli,scooter,5.5,4.3,Part-time,girishk783@okhdfcbank,SBIN762018,DEV563109976,1,1,0.2468,verified
+75,Varsha Subramaniam,Blinkit,Delhi,Janakpuri,bike,13.8,0.9,Full-time,varshas716@ybl,IOBA475767,DEV850453711,1,1,0.214,verified
+76,Praveen Bose,Swiggy Instamart,Pune,Baner,bike,6.0,4.2,Part-time,praveen483@upi,HDFC629284,DEV497971518,1,1,0.2192,verified
+77,Nita Rao,Blinkit,Bengaluru,Yelahanka,bike,3.1,3.5,Part-time,nitarao540@okicici,HDFC638714,DEV561380498,1,1,0.442,pending
+78,Sachin Reddy,Flipkart Minutes,Chennai,Tambaram,scooter,11.7,4.0,Full-time,sachinr348@oksbi,AXIS445421,DEV634470993,1,1,0.1159,verified
+79,Kavitha Mishra,Swiggy Instamart,Delhi,Lajpat Nagar,bike,12.0,5.0,Full-time,kavitha631@okaxis,CITI155446,DEV278761431,0,0,0.2996,pending
+80,Sridhar Saxena,Swiggy Instamart,Hyderabad,Mehdipatnam,bike,7.1,6.2,Part-time,sridhar419@paytm,KKBK844617,DEV733605955,1,1,0.0851,verified
+81,Gaurav Tiwari,FreshToHome Express,Bengaluru,Hebbal,bike,3.1,0.2,Part-time,gauravt437@ybl,CITI155446,DEV884558004,1,1,0.2437,verified
+82,Sanjay Patil,Swiggy Instamart,Mumbai,Borivali-N,bike,12.4,5.4,Full-time,sanjayp677@oksbi,SBIN762018,DEV044986049,1,1,0.2566,verified
+83,Srikanth Ahuja,Flipkart Minutes,Hyderabad,Kukatpally,scooter,7.2,1.0,Full-time,srikant489@okhdfcbank,SBIN310844,DEV004903205,1,0,0.3767,pending
+84,Priyadarshini Bajaj,Flipkart Minutes,Jaipur,Murlipura,scooter,9.4,7.4,Full-time,priyada970@ptyes,IOBA843361,DEV202710292,1,1,0.1878,verified
+85,Ganesh Patil,FreshToHome Express,Bengaluru,Hebbal,bike,5.0,8.3,Part-time,ganeshp296@paytm,ICIC813850,DEV862827207,1,0,0.7083,flagged
+86,Anita Desai,BigBasket Now,Hyderabad,Dilsukhnagar,scooter,8.2,0.4,Part-time,anitade88@ybl,IOBA203859,DEV538955482,0,0,0.4373,pending
+87,Rashmi Hegde,Swiggy Instamart,Delhi,Janakpuri,scooter,8.8,0.2,Part-time,rashmih510@ibl,ICIC588831,DEV281915482,1,1,0.1043,verified
+88,Rajesh Menon,Swiggy Instamart,Delhi,Lajpat Nagar,bike,5.3,3.7,Part-time,rajeshm892@okhdfcbank,IOBA572504,DEV053742402,1,1,0.8147,flagged
+89,Jyoti Dubey,Swiggy Instamart,Jaipur,Jhotawara,bike,11.7,0.1,Full-time,jyotidu430@okaxis,ICIC877141,DEV718032635,1,1,0.1763,verified
+90,Akash Dey,FreshToHome Express,Jaipur,Mansarovar,scooter,11.0,4.6,Full-time,akashde476@apl,AXIS292637,DEV469824064,1,1,0.1513,verified
+91,Nalini Venkatesan,Swiggy Instamart,Delhi,Preet Vihar,scooter,13.1,0.8,Full-time,naliniv73@upi,ICIC796415,DEV497228835,0,0,0.9677,flagged
+92,Rashmi Venkatesan,Amazon Now,Chennai,Mylapore,scooter,8.8,3.4,Full-time,rashmiv997@upi,RATN835165,DEV246858289,1,1,0.0523,verified
+93,Sunita Natarajan,Blinkit,Delhi,Janakpuri,bike,4.7,10.0,Part-time,sunitan493@okaxis,PUNB300569,DEV422953072,1,1,0.3012,pending
+94,Nita Natarajan,Swiggy Instamart,Mumbai,Bandra-E,scooter,7.4,4.9,Full-time,nitanat960@paytm,CITI561974,DEV955589908,1,1,0.0648,verified
+95,Sunil Roy,FreshToHome Express,Mumbai,Thane-W,scooter,6.8,0.1,Part-time,sunilro770@ybl,PUNB501499,DEV974783405,0,1,0.4747,pending
+96,Shankar Murugesan,Blinkit,Pune,Baner,scooter,3.9,3.1,Part-time,shankar161@apl,RATN951757,DEV391179353,1,1,0.1759,verified
+97,Saravanan Sinha,Blinkit,Mumbai,Powai,bike,8.8,9.5,Part-time,saravan528@ptyes,RATN200998,DEV526572933,1,1,0.2169,verified
+98,Sarika Sinha,Blinkit,Pune,Kothrud,scooter,12.4,5.8,Full-time,sarikas555@okaxis,UBIN453767,DEV085276985,1,1,0.1168,verified
+99,Shanti Joshi,Amazon Now,Bengaluru,Hebbal,scooter,4.0,8.1,Part-time,shantij463@ybl,IOBA104394,DEV250400917,1,1,0.0263,verified
+100,Divya Agarwal,Amazon Now,Chennai,T Nagar,scooter,13.0,2.0,Full-time,divyaag473@okicici,PUNB166403,DEV175250603,1,1,0.6534,flagged
+101,Sarla Iyer,Blinkit,Jaipur,Nirman Nagar,scooter,3.7,2.8,Part-time,sarlaiy248@ybl,UBIN550745,DEV000822381,0,0,0.3269,pending
+102,Kavita Tiwari,Blinkit,Jaipur,Jagatpura,bike,7.9,0.2,Full-time,kavitat98@okicici,KKBK973962,DEV911225713,0,0,0.6713,flagged
+103,Harish Shukla,Flipkart Minutes,Hyderabad,Banjara Hills,scooter,5.9,10.9,Part-time,harishs517@oksbi,PUNB795447,DEV432647975,1,1,0.0623,verified
+104,Nikhil Jain,FreshToHome Express,Delhi,Preet Vihar,bike,4.7,5.8,Part-time,nikhilj23@ybl,KKBK831188,DEV911341562,1,1,0.1218,verified
+105,Priyadarshini Rao,Zepto,Pune,Pimpri,scooter,4.7,11.7,Part-time,priyada117@oksbi,UBIN464070,DEV280234128,0,1,0.3536,pending
+106,Amit Thakur,Flipkart Minutes,Mumbai,Goregaon,bike,6.4,6.1,Part-time,amittha415@oksbi,HDFC404443,DEV416707776,0,1,0.3899,pending
+107,Swapna Hegde,Swiggy Instamart,Delhi,Dwarka-Sec10,bike,10.1,4.2,Full-time,swapnah693@okhdfcbank,KKBK629047,DEV152240546,1,1,0.2513,verified
+108,Jaya Ahuja,Amazon Now,Bengaluru,Electronic City,scooter,11.7,9.2,Full-time,jayaahu972@apl,KKBK743675,DEV546407685,1,1,0.1571,verified
+109,Ganesh Pillai,BigBasket Now,Jaipur,Malviya Nagar,scooter,7.4,5.2,Part-time,ganeshp995@oksbi,HDFC117839,DEV782425082,1,0,0.4971,pending
+110,Geetha Sundaram,Amazon Now,Delhi,Preet Vihar,scooter,8.3,2.2,Part-time,geethas919@ibl,CITI113336,DEV801563636,1,1,0.2477,verified
+111,Prashanth Malhotra,Zepto,Mumbai,Vikhroli,scooter,12.0,4.4,Full-time,prashan805@upi,BARB665458,DEV234516131,1,0,0.1696,pending
+112,Nita Mandal,Blinkit,Delhi,Rohini-Sec3,bike,12.3,1.9,Full-time,nitaman745@okhdfcbank,KKBK586723,DEV061730241,1,0,0.5341,pending
+113,Nandini Krishnamurthy,FreshToHome Express,Bengaluru,HSR Layout,scooter,8.4,3.5,Part-time,nandini547@paytm,UBIN271205,DEV144390098,1,1,0.2658,verified
+114,Srikanth Shetty,BigBasket Now,Chennai,Chrompet,scooter,13.3,1.0,Full-time,srikant565@okaxis,CNRB735054,DEV176127809,1,1,0.117,verified
+115,Swati Mandal,Flipkart Minutes,Jaipur,Murlipura,scooter,14.0,2.5,Full-time,swatima60@okicici,RATN108769,DEV160059038,1,0,0.3372,pending
+116,Prabhu Nair,Zepto,Pune,Kondhwa,scooter,11.1,0.6,Full-time,prabhun229@paytm,AXIS624275,DEV129694719,1,1,0.13,verified
+117,Dinesh Raman,BigBasket Now,Mumbai,Bandra-E,scooter,12.7,0.7,Full-time,dineshr333@ibl,YESB146512,DEV207234838,0,0,0.2489,pending
+118,Aditya Patil,Swiggy Instamart,Bengaluru,Hebbal,scooter,12.0,5.4,Full-time,adityap649@apl,IOBA897240,DEV215236537,1,0,0.2588,pending
+119,Bhavana Sinha,Zepto,Pune,Chinchwad,scooter,9.5,5.4,Full-time,bhavana562@ptyes,BARB178607,DEV577644520,1,1,0.0361,verified
+120,Vijay Choudhary,Zepto,Hyderabad,Kukatpally,bike,9.5,1.8,Full-time,vijaych775@ptyes,HDFC311079,DEV889996245,0,0,0.7676,flagged
+121,Santosh Sinha,BigBasket Now,Pune,Aundh,bike,6.8,1.6,Full-time,santosh838@oksbi,YESB383388,DEV991242320,0,0,0.5403,pending
+122,Chandran Natarajan,FreshToHome Express,Hyderabad,Banjara Hills,bike,3.7,3.8,Part-time,chandra423@oksbi,PUNB237832,DEV170860149,1,1,0.2563,verified
+123,Shruti Naidu,Swiggy Instamart,Hyderabad,Ameerpet,bike,8.1,5.1,Part-time,shrutin386@ybl,PUNB386419,DEV632105316,1,1,0.0637,verified
+124,Jaya Arora,Zepto,Hyderabad,Hitech City,scooter,7.5,0.1,Full-time,jayaaro43@paytm,CNRB112706,DEV290593735,1,0,0.842,flagged
+125,Murugan Chauhan,BigBasket Now,Hyderabad,Kondapur,bike,7.2,5.9,Full-time,murugan868@paytm,AXIS402279,DEV021976393,1,1,0.8645,flagged
+126,Varun Kapoor,BigBasket Now,Hyderabad,Gachibowli,bike,7.4,11.0,Part-time,varunka245@okicici,RATN937430,DEV273212942,1,1,0.2794,verified
+127,Dinesh Pillai,Zepto,Hyderabad,Banjara Hills,scooter,11.2,4.3,Full-time,dineshp587@ptyes,BARB846437,DEV386260472,1,1,0.14,verified
+128,Sarika Venkatesan,BigBasket Now,Delhi,Noida-Sec62,bike,7.7,4.8,Full-time,sarikav551@paytm,CNRB289559,DEV669246510,1,1,0.161,verified
+129,Vinod Shukla,BigBasket Now,Hyderabad,Begumpet,scooter,7.8,5.9,Full-time,vinodsh910@ybl,BARB846437,DEV536698082,0,1,0.4016,pending
+130,Madhuri Agarwal,Blinkit,Jaipur,Malviya Nagar,bike,10.1,5.4,Full-time,madhuri596@okhdfcbank,YESB491727,DEV409603883,0,1,0.2846,pending
+131,Naveen Iyer,Zepto,Bengaluru,Electronic City,scooter,9.1,7.8,Full-time,naveeni993@okicici,BARB571252,DEV249773440,1,1,0.1647,verified
+132,Sneha Raman,Flipkart Minutes,Chennai,Avadi,scooter,8.5,0.6,Full-time,snehara64@oksbi,AXIS355555,DEV881046817,1,1,0.2768,verified
+133,Sachin Venkatesan,Amazon Now,Bengaluru,Koramangala,scooter,6.9,5.4,Part-time,sachinv666@okaxis,HDFC984063,DEV411900578,0,1,0.4902,pending
+134,Krishnan Kumar,Flipkart Minutes,Delhi,Preet Vihar,scooter,5.0,5.0,Part-time,krishna65@ibl,SBIN370810,DEV804324421,1,1,0.1481,verified
+135,Ashok Banerjee,Blinkit,Jaipur,Sanganer,bike,7.6,11.1,Part-time,ashokba39@ptyes,UBIN271205,DEV293450397,1,0,0.3553,pending
+136,Saravanan Das,FreshToHome Express,Delhi,Pitampura,scooter,8.9,5.1,Full-time,saravan191@oksbi,CITI155446,DEV798250392,0,0,0.4127,pending
+137,Sudha Selvaraj,Zepto,Hyderabad,Hitech City,bike,7.6,0.4,Full-time,sudhase102@okicici,CITI155446,DEV170597448,1,1,0.043,verified
+138,Archana Bose,FreshToHome Express,Bengaluru,Hebbal,scooter,5.6,2.5,Part-time,archana553@ibl,YESB584166,DEV539930814,1,0,0.0761,pending
+139,Srikanth Reddy,Blinkit,Delhi,Janakpuri,bike,7.7,2.7,Part-time,srikant42@okicici,YESB516246,DEV776795698,1,1,0.1042,verified
+140,Nita Pandey,Zepto,Chennai,Guindy,scooter,4.1,0.9,Part-time,nitapan452@okaxis,AXIS158962,DEV037741443,1,1,0.1,verified
+141,Karthik Chauhan,Zepto,Pune,Chinchwad,scooter,7.5,2.1,Full-time,karthik370@ybl,UTIB218550,DEV273140953,1,1,0.3347,pending
+142,Dhanraj Iyer,Zepto,Delhi,Lajpat Nagar,bike,4.4,11.0,Part-time,dhanraj644@apl,UBIN648682,DEV603784316,0,0,0.8886,flagged
+143,Shweta Das,BigBasket Now,Jaipur,C Scheme,bike,4.8,1.8,Part-time,shwetad554@okicici,RATN504987,DEV918881338,0,0,0.8864,flagged
+144,Pavan Dwivedi,Blinkit,Chennai,Avadi,bike,3.1,4.5,Part-time,pavandw828@paytm,KKBK503345,DEV958665717,0,1,0.1911,pending
+145,Seema Hegde,Zepto,Hyderabad,Kukatpally,scooter,12.4,0.1,Full-time,seemahe664@okhdfcbank,BARB877663,DEV565227280,1,1,0.7666,flagged
+146,Anuradha Anand,Swiggy Instamart,Jaipur,Vaishali Nagar,bike,9.0,8.5,Full-time,anuradh322@jupiteraxis,SBIN375036,DEV973626884,1,1,0.0429,verified
+147,Savitha Tripathi,Swiggy Instamart,Pune,Pimpri,scooter,4.3,5.7,Part-time,savitha414@apl,AXIS644251,DEV928292922,1,1,0.8624,flagged
+148,Pooja Tiwari,BigBasket Now,Jaipur,Tonk Rd,bike,13.6,0.5,Full-time,poojati818@okhdfcbank,UTIB406087,DEV351145058,1,0,0.4898,pending
+149,Shanti Selvaraj,Flipkart Minutes,Chennai,Chrompet,bike,7.4,8.3,Part-time,shantis399@apl,UTIB351592,DEV630394115,1,0,0.4085,pending
+150,Vani Khanna,Zepto,Delhi,Pitampura,scooter,13.0,0.5,Full-time,vanikha369@okicici,UTIB929729,DEV478750269,0,0,0.8998,flagged
+151,Usha Nair,Blinkit,Delhi,Mayur Vihar,scooter,11.6,11.4,Full-time,ushanai807@jupiteraxis,HDFC547794,DEV564173342,0,1,0.2329,pending
+152,Deepak Jain,Zepto,Pune,Pimpri,scooter,3.3,10.4,Part-time,deepakj429@ybl,UBIN462902,DEV196010305,1,0,0.1555,pending
+153,Hema Das,Amazon Now,Bengaluru,Electronic City,scooter,4.0,0.6,Part-time,hemadas772@okicici,UBIN684329,DEV400548155,1,1,0.0926,verified
+154,Jyoti Das,Blinkit,Delhi,Vasant Kunj,scooter,9.8,5.5,Full-time,jyotida365@okhdfcbank,BARB125590,DEV672274984,1,1,0.1096,verified
+155,Amit Bose,Amazon Now,Pune,Kothrud,scooter,13.6,3.0,Full-time,amitbos533@jupiteraxis,AXIS406555,DEV535579762,0,1,0.0729,pending
+156,Meena Walia,Zepto,Jaipur,Mansarovar,scooter,4.2,7.8,Part-time,meenawa665@okaxis,CITI629789,DEV466926670,1,1,0.1856,verified
+157,Swapna Bose,Blinkit,Chennai,Mylapore,scooter,10.9,7.7,Full-time,madhuri596@okhdfcbank,IOBA988489,DEV179932496,0,0,0.5106,pending
+158,Mohan Pandey,BigBasket Now,Pune,Aundh,scooter,6.1,4.1,Full-time,mohanpa901@ybl,KKBK629403,DEV342747945,1,0,0.0613,pending
+159,Prabhu Verma,BigBasket Now,Pune,Kondhwa,scooter,13.3,10.9,Full-time,prabhuv136@oksbi,RATN489314,DEV714470915,1,1,0.1931,verified
+160,Pallavi Rao,Flipkart Minutes,Pune,Wanowrie,bike,8.6,3.5,Part-time,pallavi336@okicici,CITI260932,DEV194947566,1,1,0.1195,verified
+161,Sneha Mehta,Zepto,Bengaluru,Rajajinagar,bike,10.5,9.8,Full-time,snehame811@okaxis,IOBA881883,DEV969939038,1,0,0.3639,pending
+162,Jyoti Joshi,Zepto,Hyderabad,Banjara Hills,scooter,5.9,1.0,Part-time,jyotijo264@oksbi,UBIN271205,DEV911006834,1,1,0.1439,verified
+163,Kavita Patil,Flipkart Minutes,Mumbai,Vikhroli,bike,10.8,3.8,Full-time,seemasi490@jupiteraxis,RATN754078,DEV782680267,0,1,0.3211,pending
+164,Jyoti Nair,Blinkit,Bengaluru,Whitefield,scooter,12.0,0.7,Full-time,jyotina950@apl,AXIS162241,DEV400445168,1,1,0.2695,verified
+165,Hema Dwivedi,Amazon Now,Jaipur,Sanganer,scooter,13.7,0.6,Full-time,hemadwi152@okaxis,UBIN992418,DEV074517827,1,1,0.1519,verified
+166,Sridhar Balakrishnan,Swiggy Instamart,Bengaluru,Marathahalli,bike,7.4,2.3,Full-time,sridhar285@apl,CNRB332672,DEV421599489,1,0,0.4964,pending
+167,Prakash Yadav,Swiggy Instamart,Pune,Shivajinagar,bike,10.2,3.2,Full-time,prakash722@upi,BARB972361,DEV261149896,0,0,0.2331,pending
+168,Murali Subramanian,Zepto,Mumbai,Vikhroli,bike,13.7,7.9,Full-time,muralis872@upi,UBIN178617,DEV045960240,1,0,0.2495,pending
+169,Varun Desai,Flipkart Minutes,Delhi,Lajpat Nagar,scooter,7.5,11.7,Part-time,varunde863@okicici,CITI394419,DEV558800593,0,1,0.9365,flagged
+170,Suresh Ghosh,Amazon Now,Pune,Wakad,bike,7.5,2.8,Part-time,sureshg597@ibl,RATN831353,DEV735216584,1,1,0.2516,verified
+171,Shweta Mehta,Amazon Now,Bengaluru,BTM,scooter,12.1,11.4,Full-time,shwetam255@oksbi,HDFC979455,DEV497754706,1,0,0.6835,flagged
+172,Meera Dey,Amazon Now,Pune,Baner,bike,9.8,4.5,Full-time,meerade915@okicici,ICIC254787,DEV996663223,1,1,0.1454,verified
+173,Rashmi Pillai,Zepto,Chennai,Guindy,scooter,8.9,1.0,Part-time,rashmip109@okhdfcbank,ICIC475100,DEV141310780,1,0,0.2213,pending
+174,Jaya Reddy,Blinkit,Delhi,CP,bike,9.2,5.0,Full-time,jayared211@oksbi,HDFC826026,DEV622768581,1,1,0.0577,verified
+175,Rajesh Jain,Zepto,Pune,Kothrud,scooter,6.6,0.2,Part-time,rajeshj605@okhdfcbank,CITI155446,DEV302257542,1,1,0.0501,verified
+176,Nirmala Walia,FreshToHome Express,Hyderabad,Gachibowli,bike,11.8,0.1,Full-time,nirmala291@apl,ICIC276183,DEV112730192,1,1,0.0484,verified
+177,Pallavi Mandal,BigBasket Now,Hyderabad,Kondapur,scooter,9.8,4.5,Full-time,pallavi641@oksbi,PUNB294181,DEV356241524,1,1,0.2615,verified
+178,Shruti Roy,FreshToHome Express,Delhi,Lajpat Nagar,bike,3.6,2.8,Part-time,shrutir872@upi,SBIN954421,DEV452519179,1,1,0.0878,verified
+179,Sowmya Thakur,Blinkit,Chennai,Velachery,bike,11.9,0.5,Full-time,sowmyat164@okicici,UTIB139322,DEV132936333,1,1,0.2244,verified
+180,Seema Desai,BigBasket Now,Chennai,Sholinganallur,bike,9.5,8.1,Full-time,seemade990@ptyes,YESB401397,DEV483852410,1,1,0.2685,verified
+181,Vinod Selvaraj,BigBasket Now,Jaipur,C Scheme,bike,12.9,0.7,Full-time,vinodse49@okhdfcbank,HDFC157517,DEV060022649,1,0,0.3418,pending
+182,Anita Anand,BigBasket Now,Chennai,Velachery,bike,6.7,0.1,Part-time,anitaan884@paytm,ICIC467901,DEV893838067,0,0,0.4189,pending
+183,Amit Chatterjee,Amazon Now,Delhi,Karol Bagh,scooter,3.1,4.8,Part-time,amitcha536@okhdfcbank,BARB677603,DEV523681212,1,1,0.4066,pending
+184,Sudha Sen,Zepto,Hyderabad,Ameerpet,scooter,4.7,10.4,Part-time,sudhase64@oksbi,RATN545121,DEV159830827,1,1,0.0729,verified
+185,Rajesh Desai,BigBasket Now,Jaipur,Tonk Rd,scooter,5.4,0.3,Part-time,rajeshd561@apl,HDFC100888,DEV286332107,0,0,0.3646,pending
+186,Padma Selvaraj,Flipkart Minutes,Bengaluru,Bellandur,bike,13.6,6.9,Full-time,padmase732@okaxis,SBIN762018,DEV871021772,1,1,0.0594,verified
+187,Manoj Mukherjee,BigBasket Now,Bengaluru,JP Nagar,bike,4.8,2.5,Part-time,manojmu875@ptyes,YESB885649,DEV173160581,1,0,0.2862,pending
+188,Balamurali Sen,Swiggy Instamart,Jaipur,Jagatpura,bike,7.7,9.1,Part-time,balamur566@apl,PUNB956212,DEV253498120,0,0,0.4053,pending
+189,Nita Kumar,Blinkit,Hyderabad,Kukatpally,scooter,8.0,6.8,Full-time,nitakum291@ybl,UBIN568184,DEV519482118,0,1,0.8783,flagged
+190,Sowmya Anand,Swiggy Instamart,Mumbai,Mulund,scooter,9.0,11.1,Full-time,sowmyaa459@ybl,HDFC456278,DEV050110218,1,1,0.1293,verified
+191,Bhavana Sen,Zepto,Bengaluru,Koramangala,scooter,10.5,2.1,Full-time,bhavana511@ptyes,SBIN405918,DEV252603653,1,1,0.2437,verified
+192,Nirmala Saxena,BigBasket Now,Hyderabad,Kukatpally,bike,8.2,5.8,Part-time,nirmala358@okaxis,BARB704803,DEV885721819,1,1,0.1669,verified
+193,Divya Ahuja,Zepto,Pune,Aundh,bike,5.0,5.2,Part-time,divyaah642@okhdfcbank,UTIB260310,DEV653759467,1,0,0.1286,pending
+194,Arjun Dey,Swiggy Instamart,Chennai,Chrompet,scooter,6.2,10.6,Full-time,arjunde449@ptyes,BARB825643,DEV705287113,1,1,0.2029,verified
+195,Hema Sharma,BigBasket Now,Hyderabad,Begumpet,bike,10.7,0.5,Full-time,hemasha729@upi,YESB735079,DEV629209709,1,1,0.1487,verified
+196,Pooja Anand,BigBasket Now,Pune,Chinchwad,scooter,8.4,2.0,Part-time,poojaan548@okhdfcbank,CITI155446,DEV490584216,0,1,0.7377,flagged
+197,Nisha Selvaraj,BigBasket Now,Mumbai,Dadar,scooter,3.0,0.9,Part-time,nishase548@okhdfcbank,BARB290294,DEV096380632,1,1,0.4015,pending
+198,Shweta Saxena,Swiggy Instamart,Delhi,Preet Vihar,bike,13.2,0.7,Full-time,shwetas516@ybl,YESB219783,DEV998545146,1,1,0.9315,flagged
+199,Rahul Kapoor,Flipkart Minutes,Pune,Shivajinagar,bike,12.5,0.5,Full-time,rahulka158@okicici,CNRB260741,DEV425480078,0,0,0.0807,pending
+200,Yogesh Rajendran,BigBasket Now,Hyderabad,Uppal,bike,5.0,11.0,Part-time,yogeshr40@upi,CITI931169,DEV894630510,1,1,0.2732,verified
+201,Sunita Ahuja,Swiggy Instamart,Delhi,CP,scooter,3.7,11.2,Part-time,rupabos283@jupiteraxis,UTIB236028,DEV827009390,1,1,0.1355,verified
+202,Chandran Subramanian,Blinkit,Chennai,Porur,bike,7.8,0.9,Part-time,chandra978@ibl,IOBA748128,DEV193185921,1,1,0.6837,flagged
+203,Rekha Gopalakrishnan,Flipkart Minutes,Chennai,T Nagar,bike,8.7,6.4,Full-time,rekhago573@upi,HDFC117839,DEV664753743,0,1,0.7784,flagged
+204,Meera Sundaram,Zepto,Delhi,Saket,scooter,6.9,11.5,Full-time,rupabos283@jupiteraxis,ICIC531266,DEV113714148,0,1,0.4875,pending
+205,Kamla Iyer,BigBasket Now,Pune,Hinjewadi,scooter,9.2,3.0,Full-time,kamlaiy66@paytm,UTIB389973,DEV598225578,1,1,0.0785,verified
+206,Girish Singh,Swiggy Instamart,Bengaluru,Electronic City,bike,8.6,4.9,Part-time,girishs825@jupiteraxis,BARB434595,DEV695005670,1,1,0.2355,verified
+207,Rahul Mehta,Blinkit,Jaipur,Mansarovar,scooter,3.9,0.2,Part-time,rahulme922@okaxis,UBIN901679,DEV985944310,0,1,0.3312,pending
+208,Swati Thakur,BigBasket Now,Chennai,Perambur,scooter,8.7,0.5,Full-time,swatith951@apl,AXIS591336,DEV328661634,1,1,0.271,verified
+209,Selvam Jain,Flipkart Minutes,Bengaluru,Rajajinagar,bike,7.5,9.1,Part-time,sachinv666@okaxis,UTIB218368,DEV047579585,1,1,0.2812,verified
+210,Nitin Hegde,Blinkit,Mumbai,Kurla,scooter,8.4,5.1,Part-time,nitinhe647@paytm,IOBA214095,DEV292498621,1,1,0.1746,verified
+211,Sanjay Khanna,Blinkit,Chennai,Porur,scooter,11.5,5.2,Full-time,sanjayk611@paytm,UBIN161485,DEV219598174,1,1,0.2275,verified
+212,Ashok Kapoor,Swiggy Instamart,Pune,Hinjewadi,bike,10.4,5.1,Full-time,ashokka884@ibl,PUNB749952,DEV659702261,1,1,0.1281,verified
+213,Shweta Nair,Amazon Now,Bengaluru,JP Nagar,scooter,7.4,10.0,Full-time,shwetan252@okicici,CNRB295103,DEV665227972,1,1,0.0369,verified
+214,Swati Subramanian,Amazon Now,Chennai,Sholinganallur,bike,4.3,8.5,Part-time,swatisu23@okicici,SBIN723885,DEV877549026,1,1,0.267,verified
+215,Tara Bose,Swiggy Instamart,Hyderabad,Hitech City,bike,9.3,0.3,Full-time,tarabos152@oksbi,PUNB679557,DEV858430663,1,0,0.5457,pending
+216,Pavan Dey,Flipkart Minutes,Bengaluru,BTM,scooter,12.7,7.1,Full-time,pavande962@okhdfcbank,ICIC478061,DEV917371901,1,1,0.0382,verified
+217,Kavita Joshi,Flipkart Minutes,Delhi,Dwarka-Sec10,bike,8.9,4.7,Full-time,kavitaj674@oksbi,YESB219783,DEV061730241,0,1,0.0846,pending
+218,Shankar Choudhary,Zepto,Delhi,Vasant Kunj,scooter,11.0,4.9,Full-time,shankar289@ybl,KKBK420325,DEV736807108,1,1,0.0118,verified
+219,Anbazhagan Bajaj,Amazon Now,Hyderabad,Begumpet,scooter,7.3,8.5,Full-time,anbazha361@okicici,KKBK282302,DEV788519400,1,1,0.277,verified
+220,Selvam Subramaniam,Swiggy Instamart,Chennai,Adyar,bike,12.6,0.7,Full-time,selvams529@paytm,HDFC117839,DEV977015701,1,1,0.2698,verified
+221,Shweta Subramanian,Amazon Now,Pune,Shivajinagar,bike,9.3,4.9,Full-time,shwetas398@ptyes,ICIC966642,DEV937686193,0,0,0.2694,pending
+222,Dinesh Gopalakrishnan,Flipkart Minutes,Delhi,Janakpuri,scooter,11.8,12.0,Full-time,dineshg44@paytm,BARB836001,DEV609491353,0,0,0.6385,flagged
+223,Anbazhagan Hegde,Blinkit,Hyderabad,Kukatpally,bike,7.4,7.2,Full-time,anbazha212@apl,BARB846437,DEV824977824,1,0,0.8,flagged
+224,Anbazhagan Subramaniam,FreshToHome Express,Jaipur,Raja Park,scooter,14.0,5.4,Full-time,anbazha521@paytm,RATN513643,DEV947359340,0,1,0.4327,pending
+225,Murali Bajaj,Flipkart Minutes,Hyderabad,Ameerpet,bike,13.1,0.5,Full-time,muralib200@ibl,RATN733199,DEV761738075,0,0,0.7953,flagged
+226,Usha Shah,Swiggy Instamart,Hyderabad,Begumpet,scooter,3.2,7.0,Part-time,ushasha432@okaxis,RATN965807,DEV309010352,1,1,0.1687,verified
+227,Hemant Kohli,Zepto,Pune,Pimpri,bike,11.3,4.9,Full-time,hemantk20@okhdfcbank,AXIS260155,DEV213598107,1,1,0.0349,verified
+228,Bhavana Chawla,BigBasket Now,Hyderabad,Hitech City,scooter,4.3,11.2,Part-time,bhavana730@ibl,CNRB446908,DEV834748488,1,0,0.2688,pending
+229,Sanjay Mishra,BigBasket Now,Hyderabad,Gachibowli,scooter,6.4,10.8,Part-time,sanjaym656@ybl,BARB230856,DEV565087053,1,1,0.0529,verified
+230,Archana Mandal,Swiggy Instamart,Pune,Baner,scooter,12.3,1.9,Full-time,archana336@paytm,CNRB616057,DEV915644020,1,1,0.2638,verified
+231,Vikram Pillai,Flipkart Minutes,Mumbai,Worli,bike,3.4,5.9,Part-time,vikramp39@oksbi,KKBK586242,DEV616555987,1,1,0.1633,verified
+232,Rajeev Ahuja,Swiggy Instamart,Jaipur,Malviya Nagar,scooter,11.1,0.3,Full-time,rajeeva187@ibl,CNRB716826,DEV767039794,0,0,0.5489,pending
+233,Archana Pillai,Swiggy Instamart,Hyderabad,Kukatpally,bike,9.0,11.3,Part-time,archana129@ybl,SBIN762018,DEV358390205,1,0,0.4375,pending
+234,Pavan Patel,Flipkart Minutes,Bengaluru,Bellandur,scooter,9.5,3.6,Full-time,pavanpa860@ibl,CNRB413060,DEV950254623,1,1,0.4373,pending
+235,Sanjay Subramanian,Blinkit,Bengaluru,HSR Layout,scooter,3.8,3.6,Part-time,sanjays274@okicici,CITI155446,DEV578244454,1,1,0.2366,verified
+236,Varsha Chawla,Zepto,Delhi,Rohini-Sec3,bike,7.4,2.4,Part-time,varshac766@jupiteraxis,PUNB633338,DEV528377426,1,0,0.0843,pending
+237,Vidya Malhotra,Zepto,Chennai,Adyar,scooter,7.4,8.5,Part-time,vidyama123@okaxis,YESB168838,DEV862168057,1,1,0.1018,verified
+238,Kavitha Subramaniam,Swiggy Instamart,Mumbai,Kurla,scooter,6.1,9.8,Full-time,kavitha350@apl,SBIN317534,DEV876395535,1,1,0.9554,flagged
+239,Nirmala Nair,BigBasket Now,Jaipur,Sanganer,bike,6.0,3.0,Full-time,nirmala482@okicici,KKBK868267,DEV068611639,1,1,0.2669,verified
+240,Tarun Shetty,Zepto,Bengaluru,Marathahalli,bike,6.6,0.5,Part-time,tarunsh107@okaxis,BARB846437,DEV850938282,1,1,0.0784,verified
+241,Anita Mandal,Blinkit,Hyderabad,Uppal,scooter,8.3,3.9,Full-time,anitama909@upi,PUNB583668,DEV669319729,1,1,0.2659,verified
+242,Naveen Balakrishnan,FreshToHome Express,Chennai,Mylapore,scooter,7.7,3.7,Part-time,naveenb890@upi,KKBK723634,DEV044844815,0,1,0.588,pending
+243,Sudhir Roy,Blinkit,Chennai,Adyar,scooter,11.2,4.9,Full-time,sudhirr357@ibl,ICIC121346,DEV289493288,1,1,0.0508,verified
+244,Deepak Walia,Zepto,Jaipur,Murlipura,bike,12.2,2.0,Full-time,deepakw113@okhdfcbank,CNRB744219,DEV935547582,1,1,0.2489,verified
+245,Prashanth Raman,Blinkit,Pune,Hinjewadi,bike,6.8,7.5,Part-time,prashan77@upi,PUNB625636,DEV937987592,0,0,0.2192,pending
+246,Usha Raghavan,Flipkart Minutes,Jaipur,Raja Park,scooter,7.1,4.5,Part-time,usharag98@ptyes,BARB783371,DEV510874287,0,0,0.6669,flagged
+247,Venkat Jain,Swiggy Instamart,Jaipur,Sodala,scooter,7.4,0.4,Full-time,venkatj417@jupiteraxis,SBIN796157,DEV276302190,1,1,0.0645,verified
+248,Anuradha Sen,BigBasket Now,Mumbai,Thane-W,bike,3.7,11.6,Part-time,anuradh130@okaxis,SBIN797800,DEV564424003,1,1,0.1166,verified
+249,Swati Malhotra,BigBasket Now,Mumbai,Vikhroli,scooter,7.4,7.5,Full-time,swatima63@ybl,HDFC990699,DEV339345867,0,0,0.2552,pending
+250,Naresh Mandal,Swiggy Instamart,Bengaluru,Hebbal,scooter,9.4,4.5,Full-time,nareshm856@oksbi,HDFC927356,DEV286425660,1,1,0.0782,verified
+251,Pavan Mandal,Amazon Now,Jaipur,Jagatpura,bike,9.7,9.1,Full-time,pavanma350@ybl,HDFC124561,DEV026239427,1,1,0.2465,verified
+252,Anuradha Mukherjee,Swiggy Instamart,Hyderabad,Hitech City,scooter,10.4,3.9,Full-time,anuradh304@okicici,BARB762421,DEV167247497,1,1,0.1349,verified
+253,Ashok Gupta,FreshToHome Express,Mumbai,Goregaon,bike,11.4,0.3,Full-time,ashokgu869@oksbi,UBIN271205,DEV344518926,0,1,0.7234,flagged
+254,Chandran Prasad,FreshToHome Express,Pune,Shivajinagar,scooter,6.9,3.0,Full-time,chandra829@oksbi,UTIB558159,DEV025044554,0,1,0.3344,pending
+255,Rekha Sinha,Swiggy Instamart,Jaipur,Mansarovar,bike,7.0,9.2,Full-time,rekhasi543@upi,PUNB663739,DEV261592452,1,1,0.2071,verified
+256,Sudha Mandal,Swiggy Instamart,Hyderabad,Dilsukhnagar,bike,13.3,7.5,Full-time,sudhama119@oksbi,CITI155446,DEV603837026,1,1,0.6439,flagged
+257,Deepak Thakur,Zepto,Pune,Kondhwa,scooter,8.8,4.6,Part-time,deepakt73@upi,RATN211788,DEV896311085,0,1,0.5009,pending
+258,Madhuri Dwivedi,Amazon Now,Delhi,Saket,bike,7.8,2.5,Part-time,madhuri893@ptyes,SBIN382580,DEV761510693,1,1,0.1699,verified
+259,Preeti Bhatia,Swiggy Instamart,Chennai,T Nagar,bike,6.3,0.9,Part-time,preetib826@okicici,CITI454213,DEV160059038,1,1,0.1922,verified
+260,Rohit Hegde,FreshToHome Express,Delhi,Rohini-Sec3,scooter,7.7,0.5,Full-time,rohithe770@ibl,IOBA204004,DEV719866593,1,0,0.4944,pending
+261,Nandini Ghosh,FreshToHome Express,Delhi,Lajpat Nagar,bike,11.5,0.9,Full-time,nandini359@okaxis,YESB219783,DEV136429872,0,0,0.0985,pending
+262,Bhavana Banerjee,BigBasket Now,Pune,Viman Nagar,bike,6.0,5.1,Part-time,bhavana959@ybl,ICIC259129,DEV415128557,1,1,0.2447,verified
+263,Yogesh Venkatesan,Zepto,Mumbai,Bandra-E,scooter,11.8,1.9,Full-time,yogeshv352@paytm,UTIB559179,DEV063698676,1,1,0.2185,verified
+264,Sunita Selvaraj,Zepto,Jaipur,Raja Park,scooter,8.5,0.7,Full-time,sunitas442@upi,CNRB675711,DEV276622286,1,1,0.0765,verified
+265,Swati Selvaraj,Zepto,Chennai,Avadi,bike,7.1,4.8,Part-time,swatise633@upi,AXIS969554,DEV497731887,1,1,0.0161,verified
+266,Girish Chawla,Zepto,Mumbai,Andheri-W,scooter,7.7,11.7,Full-time,girishc446@ybl,CITI224464,DEV173800280,1,0,0.4758,pending
+267,Geeta Banerjee,BigBasket Now,Bengaluru,Hebbal,scooter,13.1,9.2,Full-time,geetaba671@oksbi,UTIB936869,DEV867605483,1,1,0.2747,verified
+268,Ramesh Nair,FreshToHome Express,Jaipur,C Scheme,scooter,12.8,1.0,Full-time,rameshn278@ptyes,AXIS823547,DEV772001501,1,1,0.0563,verified
+269,Tara Kulkarni,Amazon Now,Jaipur,Murlipura,bike,11.2,4.8,Full-time,tarakul696@upi,PUNB908451,DEV304265302,1,1,0.1941,verified
+270,Nita Patil,Blinkit,Pune,Aundh,scooter,5.9,0.7,Part-time,nitapat384@upi,KKBK390156,DEV977936549,1,1,0.0897,verified
+271,Rohan Balakrishnan,Swiggy Instamart,Hyderabad,Hitech City,bike,10.5,10.3,Full-time,rohanba348@okaxis,HDFC117839,DEV710136543,1,1,0.1405,verified
+272,Varun Naidu,Flipkart Minutes,Delhi,Pitampura,scooter,4.8,6.8,Part-time,varunna495@oksbi,PUNB637398,DEV198074987,1,1,0.1619,verified
+273,Prakash Bhatia,Zepto,Chennai,Tambaram,scooter,3.6,3.1,Part-time,prakash867@okicici,HDFC724654,DEV289067498,1,1,0.2475,verified
+274,Sunil Natarajan,FreshToHome Express,Jaipur,Jagatpura,bike,9.8,0.4,Full-time,sunilna390@okicici,CNRB133849,DEV913583392,0,1,0.7382,flagged
+275,Ganesh Kohli,Swiggy Instamart,Bengaluru,HSR Layout,bike,10.2,1.7,Full-time,ganeshk533@upi,CITI155446,DEV832843346,1,1,0.2749,verified
+276,Bhaskar Reddy,Zepto,Chennai,Guindy,scooter,5.6,5.4,Part-time,bhaskar153@oksbi,CITI155446,DEV350749295,1,1,0.2761,verified
+277,Priya Kumar,BigBasket Now,Bengaluru,Rajajinagar,scooter,3.3,1.0,Part-time,priyaku129@okicici,UBIN702148,DEV818750293,1,1,0.059,verified
+278,Aditya Verma,Amazon Now,Jaipur,Malviya Nagar,bike,6.6,7.1,Part-time,adityav581@apl,HDFC139469,DEV593640018,1,1,0.1399,verified
+279,Seema Mandal,Zepto,Mumbai,Vikhroli,bike,4.7,0.6,Part-time,seemama601@okaxis,SBIN872075,DEV987052552,1,1,0.0342,verified
+280,Vivek Menon,Zepto,Jaipur,Murlipura,scooter,9.2,11.7,Full-time,vivekme340@oksbi,KKBK213973,DEV911225713,1,1,0.2878,verified
+281,Sudha Balakrishnan,Swiggy Instamart,Pune,Wakad,bike,8.4,5.8,Full-time,sudhaba530@apl,CNRB956981,DEV791241827,0,0,0.4277,pending
+282,Sunanda Chawla,BigBasket Now,Jaipur,Mansarovar,bike,3.3,4.3,Part-time,sunanda845@ybl,CITI127669,DEV709866804,1,1,0.8883,flagged
+283,Kavitha Sethi,Blinkit,Chennai,Avadi,scooter,9.1,9.6,Full-time,kavitha281@ybl,RATN344887,DEV579057344,1,1,0.2443,verified
+284,Sunil Rajendran,Blinkit,Hyderabad,Hitech City,bike,7.1,4.9,Part-time,sunilra847@jupiteraxis,BARB846437,DEV031443605,1,1,0.2132,verified
+285,Dinesh Kulkarni,Swiggy Instamart,Pune,Aundh,scooter,11.5,0.8,Full-time,dineshk51@ptyes,RATN551577,DEV261972796,1,1,0.161,verified
+286,Pallavi Raghavan,Swiggy Instamart,Jaipur,Nirman Nagar,scooter,13.9,0.1,Full-time,pallavi742@oksbi,YESB157677,DEV271798305,1,1,0.1921,verified
+287,Vikram Roy,Swiggy Instamart,Bengaluru,Indiranagar,bike,8.6,9.4,Part-time,vikramr748@oksbi,AXIS672059,DEV921139805,1,1,0.0128,verified
+288,Harish Venkatesan,BigBasket Now,Mumbai,Kurla,bike,7.8,11.1,Part-time,harishv458@upi,HDFC117839,DEV367893647,1,0,0.5371,pending
+289,Praveen Tandon,Flipkart Minutes,Pune,Hadapsar,bike,4.3,2.0,Part-time,praveen696@okicici,YESB269193,DEV213967040,0,1,0.1965,pending
+290,Nita Anand,Flipkart Minutes,Bengaluru,HSR Layout,bike,8.6,3.0,Full-time,nitaana452@ibl,ICIC125579,DEV990954367,0,1,0.31,pending
+291,Rashmi Roy,Amazon Now,Jaipur,Jagatpura,scooter,11.5,0.6,Full-time,rashmir494@oksbi,YESB219783,DEV142713593,1,1,0.1347,verified
+292,Nalini Patel,BigBasket Now,Delhi,Lajpat Nagar,scooter,6.6,4.3,Full-time,nalinip363@jupiteraxis,CITI383786,DEV207560271,1,1,0.0755,verified
+293,Anuradha Subramaniam,Swiggy Instamart,Chennai,Perambur,scooter,7.5,4.7,Full-time,anuradh642@jupiteraxis,SBIN445384,DEV918866313,1,0,0.5283,pending
+294,Santosh Raghavan,BigBasket Now,Pune,Shivajinagar,bike,8.5,4.7,Part-time,santosh872@oksbi,KKBK424959,DEV317452020,0,1,0.3126,pending
+295,Seema Chawla,FreshToHome Express,Mumbai,Andheri-W,scooter,9.8,0.2,Full-time,seemach853@okaxis,IOBA884014,DEV321525324,1,1,0.235,verified
+296,Ravi Shetty,Swiggy Instamart,Bengaluru,Electronic City,bike,7.1,0.9,Part-time,ravishe553@ptyes,CITI183595,DEV279809837,0,0,0.3466,pending
+297,Arjun Sinha,Swiggy Instamart,Pune,Kondhwa,bike,12.5,0.9,Full-time,arjunsi569@ybl,BARB105189,DEV405242524,1,0,0.3885,pending
+298,Nandini Venkatesan,BigBasket Now,Delhi,Lajpat Nagar,scooter,11.4,5.1,Full-time,nandini897@upi,BARB323624,DEV141495225,0,0,0.7567,flagged
+299,Shanti Anand,Zepto,Hyderabad,Mehdipatnam,scooter,6.9,0.4,Part-time,shantia516@ybl,UBIN271205,DEV775883222,1,1,0.207,verified
+300,Karthik Dwivedi,Swiggy Instamart,Jaipur,Sodala,bike,6.4,0.9,Part-time,karthik216@apl,CITI155446,DEV381292993,1,1,0.0189,verified
+301,Tara Balakrishnan,Swiggy Instamart,Chennai,Chrompet,scooter,10.6,10.6,Full-time,tarabal110@ibl,AXIS816316,DEV918677683,0,1,0.3379,pending
+302,Praveen Chauhan,Swiggy Instamart,Jaipur,Malviya Nagar,bike,3.1,0.7,Part-time,praveen769@ptyes,IOBA751272,DEV637788786,0,1,0.533,pending
+303,Madhuri Gupta,Blinkit,Bengaluru,Yelahanka,scooter,12.9,2.2,Full-time,madhuri752@ibl,BARB973088,DEV061730241,0,1,0.4059,pending
+304,Sarika Banerjee,Swiggy Instamart,Hyderabad,Secunderabad,bike,7.8,6.9,Part-time,sarikab496@jupiteraxis,RATN186553,DEV032542100,0,1,0.5878,pending
+305,Hema Ghosh,BigBasket Now,Pune,Pimpri,bike,10.7,2.7,Full-time,hemagho553@ibl,HDFC479099,DEV853286916,0,0,0.6454,flagged
+306,Vidya Roy,Flipkart Minutes,Delhi,Dwarka-Sec10,scooter,12.4,10.2,Full-time,vidyaro169@apl,UBIN271205,DEV038027526,1,0,0.3916,pending
+307,Lata Pillai,Amazon Now,Bengaluru,Electronic City,scooter,7.2,2.5,Part-time,latapil747@okhdfcbank,UBIN510666,DEV855922040,1,1,0.1677,verified
+308,Nisha Sen,Amazon Now,Mumbai,Goregaon,scooter,8.0,3.3,Part-time,nishase394@okicici,UBIN799730,DEV418875111,0,1,0.3763,pending
+309,Pavan Pandey,BigBasket Now,Mumbai,Andheri-W,scooter,8.2,11.2,Full-time,pavanpa823@okhdfcbank,ICIC902882,DEV416674550,1,1,0.1335,verified
+310,Saravanan Sen,Amazon Now,Jaipur,Nirman Nagar,scooter,6.3,1.8,Full-time,saravan539@okhdfcbank,YESB322811,DEV698021606,1,1,0.1719,verified
+311,Ramesh Gopalakrishnan,Flipkart Minutes,Jaipur,Tonk Rd,scooter,7.4,8.3,Part-time,rameshg902@upi,RATN787342,DEV193215507,1,1,0.079,verified
+312,Kavita Saxena,Swiggy Instamart,Jaipur,Sanganer,scooter,8.5,0.9,Full-time,kavitas814@ibl,BARB339266,DEV978324666,1,1,0.1451,verified
+313,Sowmya Banerjee,Swiggy Instamart,Jaipur,Tonk Rd,scooter,10.8,0.9,Full-time,sowmyab752@ybl,SBIN777010,DEV569993958,1,1,0.0751,verified
+314,Girish Patil,Zepto,Mumbai,Kurla,scooter,11.3,2.3,Full-time,girishp359@oksbi,SBIN559980,DEV705240565,1,1,0.2785,verified
+315,Vani Sundaram,Amazon Now,Pune,Aundh,scooter,8.4,5.1,Part-time,vanisun557@jupiteraxis,HDFC688042,DEV202693569,0,1,0.1031,pending
+316,Sudhir Kumar,BigBasket Now,Jaipur,Raja Park,bike,10.5,8.5,Full-time,sudhirk21@apl,SBIN295130,DEV955391721,1,0,0.1297,pending
+317,Rupa Dwivedi,BigBasket Now,Delhi,CP,scooter,9.6,2.0,Full-time,rupadwi711@ptyes,YESB177810,DEV445594572,1,1,0.0781,verified
+318,Vikram Rao,Swiggy Instamart,Jaipur,Vaishali Nagar,bike,12.4,0.9,Full-time,vikramr381@apl,AXIS822537,DEV345109587,1,0,0.3338,pending
+319,Nandini Saxena,Zepto,Jaipur,Sodala,bike,12.9,4.6,Full-time,nandini791@okaxis,IOBA110533,DEV234423383,1,0,0.2265,pending
+320,Kavitha Sen,FreshToHome Express,Delhi,CP,scooter,6.9,11.9,Part-time,kavitha347@okhdfcbank,CNRB411337,DEV559926884,1,1,0.1386,verified
+321,Priyadarshini Sen,Swiggy Instamart,Jaipur,Malviya Nagar,scooter,10.7,2.9,Full-time,priyada254@okhdfcbank,PUNB433469,DEV010840331,1,1,0.1877,verified
+322,Kamla Walia,Zepto,Jaipur,Murlipura,scooter,3.3,0.9,Part-time,kamlawa568@okicici,SBIN762018,DEV512520169,1,1,0.1522,verified
+323,Suganya Reddy,FreshToHome Express,Pune,Hinjewadi,scooter,13.3,2.8,Full-time,suganya286@oksbi,SBIN901674,DEV666870385,1,1,0.2018,verified
+324,Rajeev Yadav,BigBasket Now,Chennai,Avadi,bike,3.6,3.3,Part-time,rajeevy477@ptyes,UTIB220163,DEV411216864,1,1,0.2511,verified
+325,Swati Subramaniam,Amazon Now,Hyderabad,Dilsukhnagar,scooter,7.3,4.8,Full-time,swatisu716@jupiteraxis,UBIN721893,DEV742382910,1,1,0.2228,verified
+326,Murali Bose,Blinkit,Bengaluru,Whitefield,scooter,9.4,2.2,Full-time,muralib700@jupiteraxis,CNRB958798,DEV842131885,1,1,0.0175,verified
+327,Shanti Sundaram,Blinkit,Chennai,Tambaram,scooter,9.4,4.0,Full-time,shantis449@ptyes,AXIS125984,DEV616456400,1,1,0.1933,verified
+328,Senthil Selvaraj,Flipkart Minutes,Chennai,T Nagar,scooter,7.8,0.5,Part-time,senthil332@jupiteraxis,UTIB714268,DEV273212942,1,0,0.2565,pending
+329,Sneha Bajaj,FreshToHome Express,Mumbai,Andheri-W,scooter,5.0,7.5,Part-time,snehaba342@upi,HDFC117839,DEV038502297,1,1,0.2136,verified
+330,Karthik Pandey,Amazon Now,Bengaluru,JP Nagar,bike,11.1,0.5,Full-time,karthik601@ptyes,UBIN271205,DEV612360226,0,1,0.3585,pending
+331,Vivek Kulkarni,Swiggy Instamart,Hyderabad,Kukatpally,scooter,3.1,0.4,Part-time,vivekku439@apl,UBIN489621,DEV336668863,1,1,0.0242,verified
+332,Tara Pillai,Zepto,Jaipur,C Scheme,scooter,5.8,1.7,Part-time,tarapil209@upi,KKBK199337,DEV433070907,1,1,0.2014,verified
+333,Shankar Krishnamurthy,BigBasket Now,Mumbai,Worli,bike,13.2,0.8,Full-time,shankar918@ibl,IOBA700461,DEV273140953,0,0,0.0799,pending
+334,Jyoti Rao,Amazon Now,Bengaluru,Whitefield,scooter,11.7,4.8,Full-time,jyotira163@ptyes,SBIN376208,DEV435726133,1,1,0.2598,verified
+335,Rajan Dey,Amazon Now,Delhi,Dwarka-Sec10,bike,7.3,4.9,Full-time,rajande869@oksbi,YESB409829,DEV129758260,1,1,0.137,verified
+336,Nisha Prasad,Swiggy Instamart,Mumbai,Andheri-W,scooter,6.2,2.6,Part-time,nishapr607@oksbi,UBIN271205,DEV181747066,1,1,0.1764,verified
+337,Arun Selvaraj,Blinkit,Jaipur,Jagatpura,scooter,12.3,0.5,Full-time,arunsel627@oksbi,BARB884148,DEV945986670,0,0,0.3759,pending
+338,Swapna Tandon,Blinkit,Chennai,Porur,scooter,7.3,3.6,Full-time,swapnat960@jupiteraxis,HDFC828478,DEV585718339,0,0,0.5355,pending
+339,Bhavana Balakrishnan,Zepto,Jaipur,Mansarovar,bike,8.7,1.6,Part-time,bhavana270@okaxis,RATN104189,DEV368916630,0,0,0.2324,pending
+340,Prabhu Dey,Zepto,Mumbai,Kurla,bike,4.0,8.3,Part-time,prabhud719@ibl,IOBA514885,DEV963996777,1,1,0.1313,verified
+341,Praveen Desai,BigBasket Now,Chennai,Chrompet,bike,8.3,9.1,Full-time,praveen445@jupiteraxis,HDFC816234,DEV965311601,1,1,0.1837,verified
+342,Balamurali Chopra,BigBasket Now,Jaipur,Raja Park,scooter,7.8,0.6,Full-time,balamur892@jupiteraxis,UTIB814134,DEV396511424,1,1,0.0826,verified
+343,Senthil Dubey,Swiggy Instamart,Mumbai,Mulund,bike,12.6,2.4,Full-time,senthil560@jupiteraxis,UBIN738742,DEV726125619,1,1,0.1563,verified
+344,Harish Chawla,Zepto,Pune,Baner,bike,11.9,0.4,Full-time,harishc581@okhdfcbank,KKBK250917,DEV917162946,1,1,0.5397,pending
+345,Gaurav Reddy,BigBasket Now,Pune,Baner,bike,7.0,0.8,Full-time,gauravr938@paytm,CNRB232144,DEV707634697,0,1,0.3594,pending
+346,Ramesh Chopra,Blinkit,Mumbai,Bandra-E,bike,12.6,11.8,Full-time,rameshc377@ptyes,SBIN334635,DEV077227431,1,0,0.5495,pending
+347,Sunanda Malhotra,Zepto,Delhi,Mayur Vihar,scooter,7.3,11.5,Full-time,sunanda715@okhdfcbank,UTIB520400,DEV273140953,0,1,0.5426,pending
+348,Hemant Bajaj,Amazon Now,Chennai,Perambur,bike,8.0,5.7,Part-time,hemantb886@paytm,IOBA161161,DEV766161696,1,0,0.4377,pending
+349,Meera Anand,BigBasket Now,Mumbai,Bandra-E,bike,7.9,0.7,Full-time,nikhilr874@okicici,HDFC117839,DEV224237254,1,1,0.1591,verified
+350,Ravi Subramaniam,BigBasket Now,Mumbai,Dadar,bike,12.4,0.8,Full-time,ravisub736@upi,CITI155446,DEV344389022,0,1,0.2297,pending
+351,Sudhir Gupta,Zepto,Mumbai,Bandra-E,bike,10.6,2.2,Full-time,sudhirg487@paytm,RATN605362,DEV692452186,1,1,0.2412,verified
+352,Swapna Roy,Flipkart Minutes,Delhi,Preet Vihar,scooter,12.6,2.3,Full-time,swapnar173@okhdfcbank,AXIS655326,DEV446573859,1,1,0.055,verified
+353,Rahul Shah,Swiggy Instamart,Jaipur,Malviya Nagar,scooter,3.5,0.2,Part-time,rahulsh655@okhdfcbank,SBIN159164,DEV073269810,0,0,0.1879,pending
+354,Bhavana Khanna,Zepto,Jaipur,Tonk Rd,scooter,8.9,0.8,Part-time,bhavana383@upi,YESB541607,DEV689188110,1,1,0.1419,verified
+355,Swapna Chawla,Zepto,Jaipur,Jagatpura,scooter,10.4,2.8,Full-time,swapnac120@okhdfcbank,CNRB352214,DEV643923241,1,1,0.0163,verified
+356,Anuradha Venkataraman,Zepto,Mumbai,Borivali-N,scooter,4.4,0.3,Part-time,anuradh616@upi,PUNB712590,DEV898828987,1,0,0.4644,pending
+357,Tara Dey,Zepto,Mumbai,Borivali-N,scooter,12.8,6.7,Full-time,taradey666@ibl,KKBK228832,DEV546511184,1,1,0.248,verified
+358,Vikram Joshi,Swiggy Instamart,Jaipur,Sanganer,bike,10.8,2.4,Full-time,vikramj827@okaxis,UTIB962510,DEV993295899,1,1,0.0438,verified
+359,Suganya Sen,Blinkit,Jaipur,Malviya Nagar,scooter,7.7,3.6,Full-time,suganya11@ybl,ICIC129921,DEV436866956,1,0,0.0847,pending
+360,Bhavana Desai,Amazon Now,Bengaluru,Indiranagar,scooter,7.5,6.3,Part-time,bhavana566@ptyes,UTIB975567,DEV889996245,1,1,0.2093,verified
+361,Vani Mukherjee,FreshToHome Express,Delhi,Rohini-Sec3,bike,7.1,6.2,Part-time,vanimuk603@ybl,PUNB353803,DEV348132467,1,1,0.1802,verified
+362,Sunita Kohli,FreshToHome Express,Delhi,Preet Vihar,bike,6.7,8.2,Part-time,sunitak317@paytm,YESB689446,DEV606890980,1,1,0.0313,verified
+363,Swati Desai,Amazon Now,Delhi,Preet Vihar,bike,11.6,3.8,Full-time,madhuri596@okhdfcbank,HDFC655587,DEV314017172,1,0,0.3683,pending
+364,Vivek Kapoor,FreshToHome Express,Pune,Hadapsar,scooter,8.4,9.5,Part-time,vivekka600@okaxis,CNRB129227,DEV302347699,0,1,0.1821,pending
+365,Kavita Venkataraman,Blinkit,Hyderabad,Kukatpally,bike,8.6,10.4,Full-time,kavitav503@okaxis,RATN431365,DEV145558640,1,1,0.0664,verified
+366,Archana Mishra,Blinkit,Hyderabad,Banjara Hills,bike,11.3,0.2,Full-time,archana416@okicici,HDFC983228,DEV648644865,1,1,0.019,verified
+367,Rekha Shetty,Zepto,Mumbai,Borivali-N,scooter,10.7,3.1,Full-time,rekhash520@apl,ICIC484125,DEV367893647,0,1,0.6401,flagged
+368,Shweta Naidu,Swiggy Instamart,Bengaluru,HSR Layout,scooter,7.3,0.8,Full-time,shwetan247@ybl,BARB846437,DEV438111293,1,1,0.2249,verified
+369,Divya Dwivedi,Blinkit,Bengaluru,Whitefield,bike,8.0,11.5,Full-time,divyadw678@ptyes,CNRB830707,DEV117648241,1,1,0.1506,verified
+370,Ramesh Bhatia,Swiggy Instamart,Hyderabad,Begumpet,bike,3.9,7.0,Part-time,rameshb872@paytm,HDFC547794,DEV859830504,1,1,0.2557,verified
+371,Hemant Dwivedi,BigBasket Now,Hyderabad,Secunderabad,bike,3.1,2.2,Part-time,hemantd377@oksbi,YESB546958,DEV862861293,1,0,0.792,flagged
+372,Shalini Rajendran,Zepto,Hyderabad,Begumpet,scooter,6.1,4.6,Full-time,shalini586@oksbi,UBIN230094,DEV141343725,1,1,0.2417,verified
+373,Radha Tiwari,Swiggy Instamart,Pune,Chinchwad,bike,7.7,5.1,Part-time,radhati958@apl,RATN224108,DEV378569179,1,1,0.2424,verified
+374,Rakesh Chauhan,Blinkit,Delhi,Dwarka-Sec10,bike,8.4,0.2,Full-time,rakeshc826@oksbi,CNRB984663,DEV985686806,1,1,0.2622,verified
+375,Manish Sharma,Swiggy Instamart,Pune,Baner,scooter,5.7,2.8,Part-time,manishs542@okicici,YESB907969,DEV746290889,1,0,0.8855,flagged
+376,Sneha Dubey,Zepto,Hyderabad,Banjara Hills,scooter,12.1,0.6,Full-time,snehadu910@ybl,IOBA497414,DEV392408307,1,0,0.7303,flagged
+377,Ravi Venkatesan,BigBasket Now,Chennai,T Nagar,scooter,4.9,11.0,Part-time,raviven572@okhdfcbank,UBIN335778,DEV342832571,1,1,0.0418,verified
+378,Kamla Krishnamurthy,BigBasket Now,Pune,Kondhwa,scooter,7.6,11.3,Part-time,kamlakr120@ptyes,AXIS234881,DEV273212942,0,1,0.808,flagged
+379,Rajan Desai,BigBasket Now,Mumbai,Thane-W,scooter,5.7,0.3,Part-time,rajande263@ptyes,YESB902199,DEV778846557,0,0,0.5082,pending
+380,Nandini Sundaram,Blinkit,Hyderabad,Ameerpet,scooter,7.2,5.0,Part-time,nandini213@okhdfcbank,IOBA732069,DEV416674550,1,1,0.0471,verified
+381,Vijay Mishra,Swiggy Instamart,Pune,Shivajinagar,bike,7.9,0.7,Part-time,vijaymi68@ptyes,BARB720813,DEV917845138,1,0,0.4936,pending
+382,Praveen Patil,Blinkit,Bengaluru,Whitefield,scooter,6.4,11.8,Full-time,praveen720@oksbi,BARB846437,DEV314367073,1,0,0.4318,pending
+383,Sudha Bhatia,Amazon Now,Pune,Baner,scooter,10.7,5.7,Full-time,sudhabh625@okaxis,YESB219783,DEV361084289,1,1,0.1197,verified
+384,Shankar Sethi,Swiggy Instamart,Mumbai,Worli,scooter,7.0,2.3,Full-time,shankar964@upi,UTIB746378,DEV450154939,1,1,0.0277,verified
+385,Yogesh Dwivedi,Flipkart Minutes,Hyderabad,LB Nagar,scooter,9.5,5.0,Full-time,yogeshd723@jupiteraxis,BARB846437,DEV045312599,1,1,0.0314,verified
+386,Karthik Reddy,BigBasket Now,Hyderabad,Dilsukhnagar,scooter,10.2,4.0,Full-time,karthik926@upi,CITI709168,DEV391937813,1,1,0.5794,pending
+387,Nisha Malhotra,BigBasket Now,Chennai,Chrompet,scooter,13.2,3.1,Full-time,nishama809@okhdfcbank,UTIB389973,DEV853901482,1,0,0.0612,pending
+388,Swapna Joshi,Amazon Now,Delhi,Vasant Kunj,scooter,5.4,8.0,Part-time,nikhilr874@okicici,KKBK568957,DEV653257794,1,1,0.2639,verified
+389,Rajeev Sharma,Swiggy Instamart,Mumbai,Mulund,scooter,7.8,0.9,Part-time,rajeevs912@okicici,PUNB909501,DEV999242070,1,1,0.1531,verified
+390,Rupa Kumar,BigBasket Now,Mumbai,Kurla,scooter,6.7,2.1,Full-time,rupakum159@apl,CNRB143491,DEV177668098,0,0,0.8417,flagged
+391,Shruti Gupta,Blinkit,Pune,Kothrud,scooter,8.3,1.5,Full-time,shrutig97@ibl,PUNB219587,DEV973514914,1,1,0.1268,verified
+392,Saravanan Walia,Flipkart Minutes,Delhi,Saket,scooter,13.2,1.7,Full-time,saravan216@upi,UTIB918121,DEV493123228,0,1,0.321,pending
+393,Saravanan Choudhary,Blinkit,Pune,Wakad,bike,10.1,3.4,Full-time,saravan952@ybl,SBIN201922,DEV596562110,1,1,0.2198,verified
+394,Rohan Khanna,Swiggy Instamart,Jaipur,Tonk Rd,scooter,11.6,5.4,Full-time,rohankh566@apl,UTIB389973,DEV693355564,1,1,0.2314,verified
+395,Vijay Malhotra,Swiggy Instamart,Mumbai,Worli,bike,10.1,0.8,Full-time,vijayma763@okhdfcbank,YESB420312,DEV033869204,1,1,0.1043,verified
+396,Vidya Shukla,Flipkart Minutes,Hyderabad,Secunderabad,bike,10.0,4.0,Full-time,vidyash334@jupiteraxis,UBIN791602,DEV095785180,1,1,0.1003,verified
+397,Kavitha Dwivedi,Blinkit,Jaipur,Murlipura,bike,10.0,2.2,Full-time,kavitha624@ybl,KKBK163297,DEV483183264,1,1,0.0491,verified
+398,Sunil Malhotra,BigBasket Now,Bengaluru,Bellandur,scooter,10.6,3.1,Full-time,sunilma715@ptyes,IOBA160476,DEV104309174,0,1,0.8668,flagged
+399,Naresh Joshi,Swiggy Instamart,Chennai,Velachery,scooter,4.7,9.3,Part-time,nareshj84@okaxis,CITI433208,DEV666623470,0,0,0.5858,pending
+400,Sowmya Ghosh,Swiggy Instamart,Hyderabad,Mehdipatnam,scooter,6.0,1.9,Part-time,sowmyag386@apl,CITI408125,DEV185287617,1,1,0.1877,verified

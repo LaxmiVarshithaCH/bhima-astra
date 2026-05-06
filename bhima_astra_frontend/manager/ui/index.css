@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Mono", monospace;
+    background-color: #f8f8f8;
+    color: #1a1a1a;
+    overflow-x: hidden;
+}
+
+/* Typography System */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #000000;
+}
+
+h1 {
+    font-size: 3.6875rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2.6875rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 2.0625rem;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 1.6875rem;
+    font-weight: 700;
+}
+
+/* Monospace body text for UI */
+.display-text {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.ui-label {
+    font-family: "DM Mono", monospace;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #666666;
+}
+
+.ui-text {
+    font-family: "DM Mono", monospace;
+    font-size: 1.0625rem;
+    letter-spacing: 0px;
+    font-weight: 500;
+    color: #333333;
+}
+
+.ui-data {
+    font-family: "DM Mono", monospace;
+    font-size: 1.1875rem;
+    letter-spacing: 0px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.body-text {
+    font-family: "DM Mono", monospace;
+    font-size: 0.9375rem;
+    letter-spacing: 0.005em;
+    line-height: 1.6;
+    color: #333333;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999999;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666666;
+}
+
+/* Clean monochrome design */
+.glass {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Removed decorative effects - clean and minimal */
+.neumorphic {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.neumorphic-inset {
+    background: #f5f5f5;
+    border: 1px solid #e8e8e8;
+}
+
+/* Removed decorative animations */
+.animate-spin-slow {
+    animation: none;
+}
+
+/* Updated color system for monochrome */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f8f8;
+    --bg-tertiary: #f0f0f0;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --text-tertiary: #666666;
+    --text-quaternary: #999999;
+    --border-color: #e8e8e8;
+    --shadow-light: rgba(0, 0, 0, 0.04);
+    --shadow-medium: rgba(0, 0, 0, 0.08);
+    --shadow-strong: rgba(0, 0, 0, 0.12);
+    --accent-gray: #555555;
+}
+
+/* Scroll Effects */
+.scroll-effects-container {
+    position: relative;
+}
+
+.parallax {
+    will-change: transform;
+}
+
+.float-animation {
+    will-change: transform;
+}
+
+.scale-animation {
+    will-change: transform;
+}
+
+.slide-animation {
+    will-change: transform;
+}
+
+/* Smooth transitions */
+* {
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.neumorphic:hover {
+    box-shadow:
+        inset -5px -5px 10px rgba(255, 255, 255, 0.1),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.1);
+}
+
+.neumorphic:active {
+    box-shadow:
+        inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+        inset 2px 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Wow Effects */
+.glow-effect {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 20px rgba(255, 95, 31, 0.3);
+    }
+    to {
+        box-shadow:
+            0 0 30px rgba(255, 95, 31, 0.6),
+            0 0 40px rgba(204, 255, 0, 0.4);
+    }
+}
+
+.pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(204, 255, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(204, 255, 0, 0.8);
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes float-delayed {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: float-delayed 3s ease-in-out infinite;
+    animation-delay: 1s;
+}
+@keyframes dashMove {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+.animated-route {
+    stroke-dasharray: 10, 10;
+    animation: dashMove 1s linear infinite;
+}

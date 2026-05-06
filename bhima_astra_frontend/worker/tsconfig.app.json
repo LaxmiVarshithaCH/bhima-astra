@@ -1,0 +1,72 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "esnext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting — relaxed so existing components across all three frontends compile */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "ignoreDeprecations": "6.0",
+
+    /* Path aliases — mirrors vite.config.ts resolve.alias so TypeScript
+       resolves the same packages (framer-motion, react, etc.) from
+       worker/node_modules, not from the sub-project node_modules that
+       were deleted to prevent the "multiple React instances" crash.      */
+    "baseUrl": ".",
+    "paths": {
+      "react": ["node_modules/react/index.js"],
+      "react/*": ["node_modules/react/*"],
+      "react-dom": ["node_modules/react-dom/index.js"],
+      "react-dom/*": ["node_modules/react-dom/*"],
+      "framer-motion": ["node_modules/framer-motion/dist/framer-motion.js"],
+      "framer-motion/*": ["node_modules/framer-motion/*"],
+      "react-router-dom": ["node_modules/react-router-dom/dist/index.js"],
+      "react-router-dom/*": ["node_modules/react-router-dom/*"],
+      "lucide-react": ["node_modules/lucide-react/dist/cjs/lucide-react.js"],
+      "lucide-react/*": ["node_modules/lucide-react/*"],
+      "gsap": ["node_modules/gsap/index.js"],
+      "gsap/*": ["node_modules/gsap/*"],
+    },
+  },
+  "include": [
+    "src",
+    "../manager/*.tsx",
+    "../manager/*.ts",
+    "../manager/src/*.tsx",
+    "../manager/src/*.ts",
+    "../landingPage/bhima-astra/src/**/*.tsx",
+    "../landingPage/bhima-astra/src/**/*.ts",
+    "../admin/src/**/*.tsx",
+    "../admin/src/**/*.jsx",
+    "../admin/src/**/*.ts",
+    "../admin/src/**/*.js",
+  ],
+  "exclude": [
+    "node_modules",
+    "../manager/node_modules",
+    "../landingPage/bhima-astra/node_modules",
+    "../admin/node_modules",
+    "../manager/mockData.ts",
+    "../manager/src/App.tsx",
+    "../manager/src/main.tsx",
+    "../admin/src/main.jsx",
+    "../manager/*.backup",
+    "../manager/*.broken",
+    "../landingPage/bhima-astra/src/App.test.tsx",
+    "../landingPage/bhima-astra/src/reportWebVitals.ts",
+    "../landingPage/bhima-astra/src/setupTests.ts",
+  ],
+}

@@ -1,0 +1,67 @@
+BHIMA ASTRA — SYSTEM LOGIC OVERVIEW
+====================================
+
+STAGE 1: FRAUD ENGINE
+---------------------
+The Fraud Engine is the first gate in the pipeline.
+It analyses incoming claim signals for anomalies before
+any payout decision is made.
+
+Detection inputs:
+  - GPS Mismatch: compares rider-reported location with
+    cell-tower and map data.
+  - Speed Anomaly: flags abnormally high or zero speeds
+    during the claimed disruption window.
+  - Behavioral Patterns: unusual claim frequency, odd
+    timing, or device fingerprint mismatches.
+  - Graph Clustering: network analysis to detect
+    coordinated fraud rings.
+
+Possible outputs:
+  APPROVE  — No anomalies detected; proceed to Stage 2.
+  REVIEW   — Suspicious signals found; hold for human review.
+  BLOCK    — Clear fraud indicators; reject immediately.
+
+STAGE 2: MANAGER INTELLIGENCE AGENT
+------------------------------------
+The Manager Agent verifies whether a real-world disruption
+actually occurred at the rider's location and time.
+
+Verification signals:
+  - Route Feasibility: checks if alternate routes existed.
+  - Rider Velocity: near-zero velocity confirms rider was stuck.
+  - Crowd Signals: aggregated movement data from the zone.
+  - External APIs: weather services, traffic APIs, news feeds.
+
+Possible outputs:
+  CONFIRMED   — Disruption fully verified by multiple signals.
+  PARTIAL     — Some evidence of disruption; alternate route may
+                exist or only part of the journey was affected.
+  UNVERIFIED  — No independent evidence; claim not substantiated.
+
+STAGE 3: POLICY ENGINE
+----------------------
+The Policy Engine applies business rules to compute the
+final payout decision.
+
+Rules applied:
+  - Weekly claim limit (max 2 per rider per week).
+  - Plan-based weekly payout caps (Basic / Standard / Premium).
+  - API fallback cap: if external APIs fail, payout ≤ ₹400.
+  - Trust Score adjustments (see below).
+
+Possible outputs:
+  PAY    — Claim approved; payout amount computed.
+  HOLD   — Flagged for manual review.
+  REJECT — Claim does not meet policy criteria.
+
+TRUST SCORE SYSTEM
+------------------
+Each rider carries a Trust Score (0–100) derived from
+their claim history, GPS accuracy, and platform tenure.
+
+  High Trust (≥70): Thresholds relaxed; faster approvals.
+  Medium Trust (40–69): Standard thresholds applied.
+  Low Trust (<40): Strict thresholds; higher fraud scrutiny.
+
+Trust scores are updated after every resolved claim.

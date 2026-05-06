@@ -1,0 +1,342 @@
+import React, { useEffect, useRef, useState } from 'react';
+
+// Dark store location (Andheri West, Mumbai)
+const DARK_STORE_LAT = 19.1199;
+const DARK_STORE_LNG = 72.8465;
+const ZONE_RADIUS_METERS = 3000;
+
+// Mock worker data with delivery routes
+const WORKER_LOCATIONS = [
+  {
+    id: 1024,
+    name: 'Raj Kumar',
+    lat: 19.1348,
+    lng: 72.8289,
+    status: 'online',
+    route: [
+      { lat: 19.1199, lng: 72.8465 }, // Dark store
+      { lat: 19.1250, lng: 72.8400 }, // Route point 1
+      { lat: 19.1300, lng: 72.8350 }, // Route point 2
+      { lat: 19.1348, lng: 72.8289 }, // Worker location
+    ],
+    blocked: false
+  },
+  {
+    id: 1025,
+    name: 'Priya Sharma',
+    lat: 19.0950,
+    lng: 72.8650,
+    status: 'offline',
+    route: [
+      { lat: 19.1199, lng: 72.8465 }, // Dark store
+      { lat: 19.1100, lng: 72.8550 }, // Route point 1 (BLOCKED)
+      { lat: 19.1050, lng: 72.8600 }, // Route point 2
+      { lat: 19.0950, lng: 72.8650 }, // Worker location
+    ],
+    blocked: true
+  },
+  {
+    id: 1026,
+    name: 'Amit Patel',
+    lat: 19.1500,
+    lng: 72.8200,
+    status: 'online',
+    route: [
+      { lat: 19.1199, lng: 72.8465 }, // Dark store
+      { lat: 19.1350, lng: 72.8350 }, // Route point 1
+      { lat: 19.1420, lng: 72.8270 }, // Route point 2
+      { lat: 19.1500, lng: 72.8200 }, // Worker location
+    ],
+    blocked: true
+  },
+  {
+    id: 1027,
+    name: 'Sneha Reddy',
+    lat: 19.1050,
+    lng: 72.8700,
+    status: 'online',
+    route: [
+      { lat: 19.1199, lng: 72.8465 }, // Dark store
+      { lat: 19.1150, lng: 72.8550 }, // Route point 1
+      { lat: 19.1100, lng: 72.8620 }, // Route point 2
+      { lat: 19.1050, lng: 72.8700 }, // Worker location
+    ],
+    blocked: false
+  },
+  {
+    id: 1028,
+    name: 'Vikram Singh',
+    lat: 19.1250,
+    lng: 72.8750,
+    status: 'offline',
+    route: [
+      { lat: 19.1199, lng: 72.8465 }, // Dark store
+      { lat: 19.1180, lng: 72.8600 }, // Route point 1 (BLOCKED)
+      { lat: 19.1210, lng: 72.8680 }, // Route point 2
+      { lat: 19.1250, lng: 72.8750 }, // Worker location
+    ],
+    blocked: true
+  }
+];
+
+// Google Maps light theme styles
+const LIGHT_MAP_STYLES: any[] = [
+  { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+  { elementType: 'labels.icon', stylers: [{ visibility: 'on' }] },
+  { elementType: 'labels.text.fill', stylers: [{ color: '#616161' }] },
+  { elementType: 'labels.text.stroke', stylers: [{ color: '#f5f5f5' }] },
+  { featureType: 'administrative', elementType: 'geometry', stylers: [{ color: '#e0e0e0' }] },
+  { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#eeeeee' }] },
+  { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+  { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#cccccc' }] },
+  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9e4f7' }] },
+];
+
+const WorkerLiveMapFixed: React.FC = () => {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<any>(null);
+  const [mapReady, setMapReady] = useState(false);
+  const [mapError, setMapError] = useState(false);
+  const [workers, setWorkers] = useState(WORKER_LOCATIONS);
+  const isMountedRef = useRef(true);
+  const markersRef = useRef<any[]>([]);
+  const polylinesRef = useRef<any[]>([]);
+
+  useEffect(() => {
+    // Initialize map only once
+    if (!mapInstanceRef.current && (window as any).google?.maps && mapRef.current) {
+      try {
+        const maps = (window as any).google.maps;
+        const map = new maps.Map(mapRef.current, {
+          center: { lat: DARK_STORE_LAT, lng: DARK_STORE_LNG },
+          zoom: 13,
+          styles: LIGHT_MAP_STYLES,
+          disableDefaultUI: false,
+          zoomControl: true,
+          mapTypeControl: true,
+          streetViewControl: false,
+          fullscreenControl: false,
+          gestureHandling: 'cooperative',
+        });
+        
+        mapInstanceRef.current = map;
+        setMapReady(true);
+
+        // Add dark store marker
+        const darkStoreMarker = new maps.Marker({
+          position: { lat: DARK_STORE_LAT, lng: DARK_STORE_LNG },
+          map,
+          title: 'Dark Store - Andheri West',
+          icon: {
+            path: maps.SymbolPath.CIRCLE,
+            scale: 12,
+            fillColor: '#1f2937',
+            fillOpacity: 1,
+            strokeColor: '#ffffff',
+            strokeWeight: 2,
+          },
+        });
+
+        // Add zone circle
+        new maps.Circle({
+          map,
+          center: { lat: DARK_STORE_LAT, lng: DARK_STORE_LNG },
+          radius: ZONE_RADIUS_METERS,
+          fillColor: '#3b82f6',
+          fillOpacity: 0.1,
+          strokeColor: '#3b82f6',
+          strokeOpacity: 0.3,
+          strokeWeight: 2,
+        });
+
+        // Add worker markers and routes
+        const newMarkers: any[] = [];
+        const newPolylines: any[] = [];
+
+        workers.forEach(worker => {
+          // Worker marker
+          const markerColor = worker.status === 'online' ? '#10b981' : '#6b7280';
+          const workerMarker = new maps.Marker({
+            position: { lat: worker.lat, lng: worker.lng },
+            map,
+            title: `${worker.name} - ${worker.status}`,
+            icon: {
+              path: maps.SymbolPath.CIRCLE,
+              scale: 8,
+              fillColor: markerColor,
+              fillOpacity: 1,
+              strokeColor: '#ffffff',
+              strokeWeight: 2,
+            },
+          });
+
+          // Worker route
+          if (worker.route && worker.route.length > 1) {
+            const routeColor = worker.blocked ? '#ef4444' : '#10b981';
+            const routeOpacity = worker.blocked ? 0.7 : 0.5;
+            
+            const polyline = new maps.Polyline({
+              path: worker.route,
+              map,
+              geodesic: true,
+              strokeColor: routeColor,
+              strokeOpacity: routeOpacity,
+              strokeWeight: worker.blocked ? 4 : 3,
+            });
+
+            newPolylines.push(polyline);
+
+            // Add route markers for blocked sections
+            if (worker.blocked && worker.route.length > 2) {
+              for (let i = 1; i < worker.route.length - 1; i++) {
+                const blockageMarker = new maps.Marker({
+                  position: worker.route[i],
+                  map,
+                  icon: {
+                    path: maps.SymbolPath.CIRCLE,
+                    scale: 6,
+                    fillColor: '#ef4444',
+                    fillOpacity: 1,
+                    strokeColor: '#ffffff',
+                    strokeWeight: 2,
+                  },
+                  title: 'Route Blockage',
+                });
+                newMarkers.push(blockageMarker);
+              }
+            }
+          }
+
+          newMarkers.push(workerMarker);
+        });
+
+        markersRef.current = newMarkers;
+        polylinesRef.current = newPolylines;
+
+      } catch (error) {
+        console.error('Error initializing map:', error);
+        setMapError(true);
+      }
+    }
+  }, []);
+
+  // Cleanup function
+  useEffect(() => {
+    return () => {
+      isMountedRef.current = false;
+      
+      // Clean up markers and polylines
+      markersRef.current.forEach(marker => {
+        if (marker && marker.setMap) {
+          marker.setMap(null);
+        }
+      });
+      
+      polylinesRef.current.forEach(polyline => {
+        if (polyline && polyline.setMap) {
+          polyline.setMap(null);
+        }
+      });
+      
+      // Clear map instance
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current = null;
+      }
+    };
+  }, []);
+
+  // Simulate real-time updates
+  useEffect(() => {
+    if (!isMountedRef.current) return;
+    
+    const interval = setInterval(() => {
+      if (isMountedRef.current) {
+        setWorkers(prev => prev.map(worker => ({
+          ...worker,
+          status: Math.random() > 0.8 ? (worker.status === 'online' ? 'offline' : 'online') : worker.status,
+          blocked: Math.random() > 0.7 ? !worker.blocked : worker.blocked
+        })));
+      }
+    }, 15000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const blockedCount = workers.filter(w => w.blocked).length;
+  const totalCount = workers.length;
+  const blockagePercentage = (blockedCount / totalCount) * 100;
+
+  return (
+    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+      <div className="p-4 border-b border-gray-200">
+        <div className="flex items-center justify-between">
+          <h3 className="font-bold text-gray-900">Worker Delivery Routes</h3>
+          <div className="flex items-center space-x-4 text-sm">
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-green-500 rounded-full mr-2" />
+              <span className="text-gray-600">Clear</span>
+            </div>
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-red-500 rounded-full mr-2" />
+              <span className="text-gray-600">Blocked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div ref={mapRef} className="h-96 relative">
+        {!mapReady && !mapError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
+          </div>
+        )}
+        
+        {mapError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-gray-400 text-2xl">!</span>
+              </div>
+              <p className="text-gray-600 font-medium">Map unavailable</p>
+              <p className="text-gray-500 text-sm">Please check your internet connection</p>
+            </div>
+          )}
+        )}
+      </div>
+
+      {/* Route Statistics */}
+      <div className="p-4 border-t border-gray-200 bg-gray-50">
+        <div className="grid grid-cols-3 gap-4 text-sm">
+          <div className="text-center">
+            <p className="font-bold text-gray-900">{totalCount}</p>
+            <p className="text-gray-600">Total Workers</p>
+          </div>
+          <div className="text-center">
+            <p className={`font-bold ${blockedCount > 0 ? 'text-red-600' : 'text-green-600'}`}>
+              {blockedCount}
+            </p>
+            <p className="text-gray-600">Blocked Routes</p>
+          </div>
+          <div className="text-center">
+            <p className={`font-bold ${blockagePercentage > 60 ? 'text-red-600' : 'text-green-600'}`}>
+              {blockagePercentage.toFixed(0)}%
+            </p>
+            <p className="text-gray-600">Blockage Rate</p>
+          </div>
+        </div>
+        
+        {blockagePercentage > 60 && (
+          <div className="mt-3 p-2 bg-red-50 border border-red-200 rounded">
+            <p className="text-red-800 text-sm font-medium">
+              Alert: {blockagePercentage.toFixed(0)}% of routes blocked - Consider flagging disruption
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default WorkerLiveMapFixed;

@@ -1,0 +1,48 @@
+BHIMA ASTRA — FRAUD DETECTION SYSTEM
+=====================================
+
+DETECTION METHODS
+-----------------
+1. GPS Mismatch
+   The rider's self-reported location is cross-validated
+   against cell-tower triangulation and historical GPS
+   traces. Significant deviations flag the claim.
+
+2. Speed Anomalies
+   Unnatural speed patterns (e.g., zero speed in a moving
+   vehicle, or teleportation-like jumps) indicate GPS
+   spoofing or false claims.
+
+3. Behavioral Patterns
+   Machine-learning model trained on claim history:
+   - Unusually high claim frequency.
+   - Claims always submitted at the weekly limit boundary.
+   - Device fingerprint shared across multiple accounts.
+
+4. Graph Clustering
+   Network graph of riders, zones, and claim times is
+   analysed for coordinated rings. Riders with abnormally
+   high connectivity to other flagged accounts are reviewed.
+
+FRAUD DECISION OUTCOMES
+-----------------------
+  BLOCK  → Fraud is confirmed with high confidence.
+           Claim is REJECTED immediately. Account flagged.
+
+  REVIEW → Suspicious signals detected but not conclusive.
+           Claim is placed on HOLD. Human investigator
+           reviews within 24 hours.
+
+  APPROVE → No fraud signals. Proceed to Stage 2.
+
+FALSE POSITIVE MANAGEMENT
+--------------------------
+Riders who believe they were incorrectly flagged can
+request a manual review via support@bhimaastra.ai.
+All BLOCK decisions are logged with the evidence snapshot
+used at decision time for auditability.
+
+DATA RETENTION
+--------------
+Fraud signals and audit logs are retained for 180 days
+in compliance with platform data governance policy.

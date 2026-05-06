@@ -1,0 +1,1823 @@
+/* Global typography system enforced via index.html link tags */
+
+/* ─── TAILWIND DIRECTIVES (must be first) ──────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── IMPORT FONTS ────────────────────────────────ـ */
+@font-face {
+    font-family: "Aestera";
+    src:
+        local("Aestera"),
+        url("/fonts/Aestera.woff2") format("woff2");
+    font-weight: 600 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Qurova";
+    src:
+        local("Qurova"),
+        url("/fonts/Qurova.woff2") format("woff2");
+    font-weight: 500 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Nevera";
+    src:
+        local("Nevera"),
+        url("/fonts/Nevera.woff2") format("woff2");
+    font-weight: 400 500;
+    font-display: swap;
+}
+
+:root {
+    --bg: #0b0f1a;
+    --bg-deep: #05070d;
+    --surface: #12151c;
+    --surface-2: #181c27;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-bright: rgba(255, 255, 255, 0.14);
+    --text: #111827;
+    --text-secondary: #111827;
+    --text-muted: #111827;
+    --bg-dark: #000000;
+    --bg-card: rgba(18, 21, 28, 0.7);
+    --border-light: rgba(255, 255, 255, 0.08);
+
+    --accent-green: #22c55e;
+    --accent-amber: #fbbf24;
+    --accent-blue: #60a5fa;
+    --accent-teal: #00d1b2;
+    --accent-red: #ff5c5c;
+    --accent-purple: #a78bfa;
+    --text-main: #111827;
+    --text-dim: #111827;
+
+    --font-heading: "NumericSans", "Cormorant Garamond", serif;
+    --font-subheading:
+        "NumericSans", "DM Mono", monospace; /* Fallback mapping */
+    --font-body: "NumericSans", "DM Mono", monospace;
+
+    --mono: "NumericSans", "DM Mono", monospace;
+    --serif: "NumericSans", "Cormorant Garamond", serif;
+
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+}
+
+/* ─── NEW TYPOGRAPHY SYSTEM ───────────────────────── */
+@font-face {
+    font-family: "NumericSans";
+    /* Fallback stack for native bold sans-serif */
+    src:
+        local("Inter Bold"), local("Segoe UI Bold"), local("Roboto Bold"),
+        local("Helvetica Neue Bold"), local("Arial Bold");
+    /* Ensure this font always loads bold */
+    font-weight: 100 900;
+    /* Apply exclusively to Numbers, Rupee sign, Comma, Period, Percent */
+    unicode-range: U+0030-0039, U+20B9, U+002C, U+002E, U+0025;
+}
+body {
+    font-family: var(--font-body) !important;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+/* Enforce Consistency */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.dash-hero-heading,
+.plans-header-title {
+    font-family: var(--font-heading) !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+}
+
+button,
+label,
+input,
+textarea,
+select,
+.badge {
+    font-family: var(--font-body) !important;
+    font-weight: 500;
+}
+
+button {
+    letter-spacing: 0.5px !important;
+}
+
+p,
+span,
+div,
+a,
+li {
+    font-family: var(--font-body) !important;
+}
+
+.heading {
+    font-family: var(--font-heading) !important;
+}
+
+.subheading,
+.body-text {
+    font-family: var(--font-body) !important;
+}
+
+[style*="Bebas Neue"],
+[style*="Barlow Condensed"] {
+    font-family: var(--font-heading) !important;
+}
+
+[style*="DM Mono"],
+[style*="Geist Mono"],
+[style*="Inter"] {
+    font-family: var(--font-body) !important;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: linear-gradient(180deg, #0b0f1a 0%, #05070d 100%);
+    scroll-behavior: smooth;
+    min-height: 100%;
+}
+
+body {
+    background: linear-gradient(180deg, #0b0f1a 0%, #05070d 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+}
+
+/* ─── SCROLLBAR ─────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: #05070d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── SELECTION ─────────────────────────────────── */
+::selection {
+    background: rgba(96, 165, 250, 0.3);
+    color: #fff;
+}
+
+/* ══════════════════════════════════════════════════
+   KEYFRAME ANIMATIONS
+══════════════════════════════════════════════════ */
+
+/* ─── PULSE DOT ─────────────────────────────────── */
+@keyframes pulse-dot {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 0 0 currentColor;
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.5);
+        box-shadow: 0 0 6px 3px currentColor;
+    }
+}
+
+.pulse-dot {
+    animation: pulse-dot 2s ease infinite;
+}
+
+/* ─── TICKER ────────────────────────────────────── */
+@keyframes ticker {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.ticker-animate {
+    animation: ticker 28s linear infinite;
+}
+
+/* ─── FLOAT ─────────────────────────────────────── */
+@keyframes float-y {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.float-anim {
+    animation: float-y 4s ease-in-out infinite;
+}
+
+/* ─── SHIMMER ───────────────────────────────────── */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer-text {
+    background: linear-gradient(90deg, #fff 0%, #666 40%, #fff 60%, #666 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+}
+
+/* ─── SHIMMER CARD ──────────────────────────────── */
+@keyframes shimmer-card {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer-card {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.04) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer-card 2.5s linear infinite;
+}
+
+/* ─── SCROLL BLUR REVEAL ────────────────────────── */
+/* Applied via JS IntersectionObserver on each section */
+.section-reveal {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(30px);
+    transition:
+        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, filter, transform;
+}
+
+.section-reveal.revealed {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+}
+
+/* Staggered children inside revealed sections */
+.section-reveal.revealed .reveal-child-1 {
+    transition-delay: 0.08s;
+}
+
+.section-reveal.revealed .reveal-child-2 {
+    transition-delay: 0.16s;
+}
+
+.section-reveal.revealed .reveal-child-3 {
+    transition-delay: 0.24s;
+}
+
+.section-reveal.revealed .reveal-child-4 {
+    transition-delay: 0.32s;
+}
+
+.section-reveal.revealed .reveal-child-5 {
+    transition-delay: 0.4s;
+}
+
+.section-reveal.revealed .reveal-child-6 {
+    transition-delay: 0.48s;
+}
+
+.section-reveal.revealed .reveal-child-7 {
+    transition-delay: 0.56s;
+}
+
+/* ─── PARALLAX CARD ─────────────────────────────── */
+.parallax-card {
+    will-change: transform;
+    transition: transform 0.1s linear;
+}
+
+/* ─── PREMIUM CARD BASE ─────────────────────────── */
+.pcard {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.4),
+        0 0 0 0.5px rgba(255, 255, 255, 0.02) inset;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease !important;
+}
+
+.pcard:not(.no-hover-lift):hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 10px 30px rgba(124, 58, 237, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.12) inset !important;
+}
+
+/* ─── GRADIENT CARD TOP GLOW ────────────────────── */
+.pcard-green::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-green),
+        transparent
+    );
+}
+
+.pcard-amber::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-amber),
+        transparent
+    );
+}
+
+.pcard-red::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-red),
+        transparent
+    );
+}
+
+.pcard-teal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-teal),
+        transparent
+    );
+}
+
+.pcard-blue::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--accent-blue),
+        transparent
+    );
+}
+
+.pcard-white::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+}
+
+/* ─── JUNO-STYLE HIGHLIGHT CARDS ─────────────────── */
+.pcard.pcard-green,
+.pcard.dash-cta-card,
+.payouts-balance-card {
+    background: linear-gradient(
+        135deg,
+        rgba(106, 17, 203, 0.1),
+        rgba(37, 117, 252, 0.1)
+    ) !important;
+}
+
+/* ─── DIAMOND SPARKLE ───────────────────────────── */
+@keyframes sparkle-spin {
+    0% {
+        transform: rotate(0deg) scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(360deg) scale(0);
+        opacity: 0;
+    }
+}
+
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+    animation: sparkle-spin 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ─── RIPPLE ────────────────────────────────────── */
+@keyframes ripple-out {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(2.4);
+        opacity: 0;
+    }
+}
+
+.ripple-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    animation: ripple-out 1.6s ease-out infinite;
+    pointer-events: none;
+}
+
+/* ─── GLOW RING PULSE ───────────────────────────── */
+@keyframes glow-pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+    }
+}
+
+.glow-green {
+    animation: glow-pulse 2.5s ease infinite;
+}
+
+@keyframes glow-pulse-red {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 92, 92, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 0 12px rgba(255, 92, 92, 0);
+    }
+}
+
+.glow-red {
+    animation: glow-pulse-red 1.8s ease infinite;
+}
+
+/* ─── STANDARD GLOW ─────────────────────────────── */
+@keyframes standard-glow {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.04);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.08);
+    }
+}
+
+.standard-glow {
+    animation: standard-glow 3s ease infinite;
+}
+
+/* ─── POP IN ────────────────────────────────────── */
+@keyframes pop-in {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.pop-in {
+    animation: pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── DIAGONAL WIPE ─────────────────────────────── */
+@keyframes diagonal-wipe {
+    from {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+.diagonal-wipe {
+    animation: diagonal-wipe 1.2s cubic-bezier(0.77, 0, 0.175, 1) both;
+}
+
+/* ─── FADE UP ────────────────────────────────────── */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-up {
+    animation: fade-up 0.7s ease both;
+}
+
+.fade-up-1 {
+    animation: fade-up 0.7s 0.1s ease both;
+}
+
+.fade-up-2 {
+    animation: fade-up 0.7s 0.25s ease both;
+}
+
+.fade-up-3 {
+    animation: fade-up 0.7s 0.4s ease both;
+}
+
+.fade-up-4 {
+    animation: fade-up 0.7s 0.55s ease both;
+}
+
+/* ─── ACTIVATE BUTTON — DUAL SHINE SWEEP EFFECT ──── */
+.activate-btn {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 10px;
+    background: #000 !important;
+    color: #fff !important;
+    z-index: 0;
+    transition: box-shadow 0.3s ease;
+}
+
+/* First shine line — sweeps right */
+.activate-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: destination-out;
+}
+
+/* Second shine line — sweeps left (opposite direction) */
+.activate-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+        300deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: destination-out;
+}
+
+.activate-btn:hover {
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+}
+
+.activate-btn:hover::before,
+.activate-btn:hover::after {
+    opacity: 1;
+}
+
+.activate-btn:hover::before {
+    animation: sweepRight 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.activate-btn:hover::after {
+    animation: sweepLeft 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes sweepRight {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes sweepLeft {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ─── NOISE TEXTURE ─────────────────────────────── */
+.noise-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ─── APP HEADER (always fixed, all screen sizes) ─ */
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 50;
+}
+
+/* ─── BOTTOM NAV MOBILE ─────────────────────────── */
+.bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(5, 7, 13, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 6px 8px max(10px, env(safe-area-inset-bottom));
+    height: 64px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    .dashboard-body {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hide only the nav tabs — logo + profile icon stay visible */
+    .desktop-nav-tabs {
+        display: none !important;
+    }
+
+    /* Show bottom navigation */
+    .bottom-nav {
+        display: flex !important;
+    }
+
+    /* Body: clear the fixed header (58px) + bottom nav (64px) */
+    .dashboard-body {
+        padding-top: 70px !important;
+        padding-bottom: 80px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    /* Header: tighter padding on small screens */
+    .app-header {
+        padding: 0 16px !important;
+    }
+
+    /* Section spacing reduced */
+    .section-reveal {
+        margin-bottom: 40px !important;
+    }
+
+    /* Compact data rows on mobile */
+    .data-row {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+}
+
+/* ─── DASHBOARD EDITORIAL GRID ──────────────────── */
+
+/* Mobile: single column */
+.dash-grid {
+    grid-template-columns: 1fr;
+}
+
+.dash-cell {
+    background: #12151c;
+    min-height: 240px;
+}
+
+.dash-span2 {
+    grid-column: span 1;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 720px) {
+    .dash-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dash-span2 {
+        grid-column: span 2;
+    }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1100px) {
+    .dash-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .dash-span2 {
+        grid-column: span 2;
+    }
+}
+
+/* ─── FORECAST GRID ─────────────────────────────── */
+.forecast-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+@media (min-width: 640px) {
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .forecast-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 7-day calendar row */
+.forecast-week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+@media (max-width: 640px) {
+    .forecast-week {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ─── LIVE MAP CONTAINER ─────────────────────────── */
+.map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+}
+
+@media (max-width: 1200px) {
+    .map-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        height: 220px;
+    }
+}
+
+.map-container iframe,
+.map-container > div {
+    width: 100%;
+    height: 100%;
+}
+
+/* ─── ANTI-GRAVITY WIDGET FLOAT ─────────────────── */
+@keyframes widget-float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.widget-float {
+    animation: widget-float 7s ease-in-out infinite;
+}
+
+/* ─── SCROLL REVEAL (CSS fallback) ──────────────── */
+@keyframes scroll-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-reveal {
+    animation: scroll-reveal 0.65s ease both;
+}
+
+/* ─── HERO GRADIENT GLOW ─────────────────────────── */
+.hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.12;
+}
+
+/* ─── LABEL ─────────────────────────────────────── */
+.label-mono {
+    font-family: var(--ff-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+/* ─── HOW IT WORKS STEPS ─────────────────────────── */
+.step-connector {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.03)
+    );
+}
+
+/* ─── STATUS BADGE ───────────────────────────────── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-family: var(--ff-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.badge-green {
+    color: var(--accent-green);
+    border-color: rgba(34, 197, 94, 1);
+    background: rgba(34, 197, 94, 0.8);
+}
+
+.badge-amber {
+    color: var(--accent-amber);
+    border-color: rgba(251, 191, 36, 1);
+    background: rgba(251, 191, 36, 0.08);
+}
+
+.badge-red {
+    color: var(--accent-red);
+    border-color: rgba(255, 92, 92, 1);
+    background: rgba(255, 92, 92, 0.08);
+}
+
+.badge-teal {
+    color: var(--accent-teal);
+    border-color: rgba(0, 209, 178, 1);
+    background: rgba(0, 209, 178, 0.08);
+}
+
+.badge-blue {
+    color: var(--accent-blue);
+    border-color: rgba(96, 165, 250, 1);
+    background: rgba(96, 165, 250, 0.8);
+}
+
+/* ─── LOADING SKELETON ───────────────────────────── */
+@keyframes skeleton-pulse {
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.skeleton {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    animation: skeleton-pulse 1.6s ease infinite;
+}
+
+/* ─── DATA ROW ───────────────────────────────────── */
+.data-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.data-row:last-child {
+    border-bottom: none;
+}
+
+/* ─── PROGRESS BAR ───────────────────────────────── */
+.progress-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ─── CTA BUTTON ─────────────────────────────────── */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px;
+    color: #ffffff;
+    font-family: var(--ff-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(106, 17, 203, 0.2);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #7c22df, #3884ff) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4) !important;
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-family: var(--ff-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ─── SLIDING BORDER HOVER ───────────────────────── */
+.btn-sliding-lines {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-sliding-lines::before,
+.btn-sliding-lines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.btn-sliding-lines::before {
+    top: 0;
+    animation: slide-line 2s linear infinite;
+}
+
+.btn-sliding-lines::after {
+    bottom: 0;
+    animation: slide-line-reverse 2s linear infinite;
+}
+
+.btn-sliding-lines:hover::before,
+.btn-sliding-lines:hover::after {
+    opacity: 1;
+}
+
+@keyframes slide-line {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slide-line-reverse {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* ─── HOVER SHINE EFFECT ─────────────────────────── */
+.hover-shine-effect {
+    /* legacy class mapped to premium hover below */
+}
+
+@keyframes shine-slide {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* ─── SECTION LABEL BAR ──────────────────────────── */
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.section-label-text {
+    font-family: var(--ff-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.section-label-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ─── FORECAST DAY CARD ──────────────────────────── */
+.forecast-day-card {
+    background: rgba(18, 21, 28, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radius-md);
+    padding: 16px 14px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ─── GLOBAL PREMIUM HOVER SHINE EFFECT ─────────────────── */
+.pcard,
+.premium-hover,
+.hover-shine-effect,
+.forecast-day-card,
+.data-row,
+.section-label {
+    transition:
+        transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ensure no shift, use translateY/opacity only */
+.pcard:hover,
+.premium-hover:hover,
+.hover-shine-effect:hover,
+.forecast-day-card:hover,
+.data-row:hover,
+.section-label:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* We use ::after for the shine to avoid clashing with gradient borders using ::before */
+.pcard::after,
+.premium-hover::after,
+.hover-shine-effect::after,
+.forecast-day-card::after,
+.data-row::after,
+.section-label::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0) 70%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    transition: none;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.pcard:hover::after,
+.premium-hover:hover::after,
+.hover-shine-effect:hover::after,
+.forecast-day-card:hover::after,
+.data-row:hover::after,
+.section-label:hover::after {
+    animation: shine-slide 0.8s ease-in-out forwards;
+}
+
+.forecast-day-card.high-risk {
+    border-top: 2px solid var(--accent-red);
+}
+
+.forecast-day-card.medium-risk {
+    border-top: 2px solid var(--accent-amber);
+}
+
+.forecast-day-card.low-risk {
+    border-top: 2px solid var(--accent-green);
+}
+
+/* ══════════════════════════════════════════════════
+   GLOBAL TYPOGRAPHY SYSTEM ENFORCEMENT
+   Strict variable adherence — structure unchanged
+══════════════════════════════════════════════════ */
+
+/* ─── 1. FORCE BASE FONT ────────────────────────── */
+* {
+    font-family: var(--mono) !important;
+}
+
+/* ─── 2. HEADING SYSTEM ─────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--serif) !important;
+    letter-spacing: -0.5px;
+}
+
+/* ─── 3. TARGETED ELEMENTS (SERIF) ──────────────── */
+.hero-title,
+.main-heading,
+.page-title,
+.stat-value-xl,
+.big-number,
+.amount,
+.dash-hero-heading,
+.plans-header-title {
+    font-family: var(--serif) !important;
+}
+
+/* ─── 4. TARGETED ELEMENTS (MONO) ───────────────── */
+button,
+.label,
+.meta,
+.caption,
+.small,
+.text-label,
+.secondary-text,
+.text-secondary,
+.badge {
+    font-family: var(--mono) !important;
+}
+
+/* ─── 5. SAFE COLOR ENFORCEMENT ─────────────────── */
+body {
+    background: var(--bg) !important;
+    color: var(--text);
+}
+
+/* ─── 6. CARD SYSTEM ONLY ───────────────────────── */
+.card,
+.dashboard-card,
+.widget,
+.box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+}
+
+/* ─── 7. NAVBAR FIX (IMPORTANT) ─────────────────── */
+nav,
+.navbar,
+.header {
+    background: transparent !important;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+/* ─── 8. BUTTON SYSTEM ──────────────────────────── */
+button {
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+button.secondary,
+.btn-outline {
+    background: transparent !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-muted) !important;
+}
+
+/* ─── 13. PAGE EXCEPTIONS (MANDATORY) ───────────── */
+
+/* Login & Plans pages — safety override block */
+.login-page,
+.login-page * {
+    all: revert !important;
+}
+
+.plans-page,
+.plans-page * {
+    all: revert !important;
+}
+
+/* Forecast page colors logic is already handled by generic text overrides,
+   but ensuring fonts remain strictly mono */
+.forecast-page *,
+.forecast-page h1,
+.forecast-page h2,
+.forecast-page h3,
+.forecast-page h4,
+.forecast-page h5 {
+    font-family: var(--mono) !important;
+    color: var(--text) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   DE-NEON OVERRIDE — Professional Color System
+   ✔ Colors only  ✔ Animations untouched
+   ✗ Login / Plans / Forecast excluded
+══════════════════════════════════════════════════ */
+
+/* ─── 1. Kill all neon glow box-shadows ─────────── */
+/* Suppress colored glow rings on status dots, cards, buttons */
+:not(.login-page):not(.login-page *):not(.plans-page):not(.plans-page *):not(
+        .forecast-page
+    ):not(.forecast-page *) {
+    --glow-green-shadow: none;
+    --glow-red-shadow: none;
+}
+
+.glow-green {
+    animation: glow-pulse 2.5s ease infinite;
+    /* Override the neon green pulse to a neutral one */
+}
+
+@keyframes glow-pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.08);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+    }
+}
+
+.glow-red {
+    animation: glow-pulse-red 1.8s ease infinite;
+}
+
+@keyframes glow-pulse-red {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.08);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes standard-glow {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.03);
+    }
+    50% {
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* ─── 2. Strip neon from hero glow blobs ─────────── */
+.hero-glow {
+    opacity: 0.04 !important;
+    filter: blur(80px) !important;
+}
+
+/* ─── 3. Remove drop-shadow filters on SVGs/icons ── */
+svg [style*="drop-shadow"],
+[style*="filter: drop-shadow"] {
+    filter: none !important;
+}
+
+/* ─── 4. pcard hover — remove colored glow shadow ── */
+.pcard:not(.no-hover-lift):hover {
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset !important;
+}
+
+/* ─── 5. Remove neon from btn-primary hover ─────── */
+.btn-primary:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ─── 6. Suppress colored top-line glows on pcards ─ */
+.pcard-green::before,
+.pcard-amber::before,
+.pcard-red::before,
+.pcard-teal::before,
+.pcard-blue::before {
+    opacity: 0.3 !important;
+}
+
+/* ─── 7. Mute badge colors to professional tones ─── */
+.badge-green {
+    color: #86efac !important;
+    border-color: rgba(134, 239, 172, 0.2) !important;
+    background: rgba(134, 239, 172, 0.06) !important;
+}
+
+.badge-amber {
+    color: #fde68a !important;
+    border-color: rgba(253, 230, 138, 0.2) !important;
+    background: rgba(253, 230, 138, 0.06) !important;
+}
+
+.badge-red {
+    color: #fca5a5 !important;
+    border-color: rgba(252, 165, 165, 0.2) !important;
+    background: rgba(252, 165, 165, 0.06) !important;
+}
+
+.badge-teal {
+    color: #99f6e4 !important;
+    border-color: rgba(153, 246, 228, 0.2) !important;
+    background: rgba(153, 246, 228, 0.06) !important;
+}
+
+.badge-blue {
+    color: #bfdbfe !important;
+    border-color: rgba(191, 219, 254, 0.2) !important;
+    background: rgba(191, 219, 254, 0.06) !important;
+}
+
+/* ─── 8. Mute activate-btn glow on hover ─────────── */
+.activate-btn:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ─── 9. Floating chatbot button — neutral shadow ── */
+button[aria-label="Open support chat"] {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* ─── 10. PAGE EXCEPTIONS (untouched) ───────────── */
+.login-page,
+.login-page * {
+    all: revert !important;
+}
+
+.plans-page,
+.plans-page * {
+    all: revert !important;
+}
+
+.forecast-page,
+.forecast-page * {
+    /* Forecast keeps its own colors — only font enforced */
+    font-family: var(--mono) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   ADMIN LIGHT THEME — scoped to .admin-shell only
+   ✔ Excludes login page entirely
+   ✔ Only background + base text
+   ✔ Cards, buttons, layout untouched here
+══════════════════════════════════════════════════ */
+
+/* ─── 1. Root shell override ────────────────────── */
+.admin-shell {
+    background: #f5f7fb !important;
+    color: #111827 !important;
+}
+
+/* ─── 2. Base text color for all children ────────── */
+.admin-shell p,
+.admin-shell span,
+.admin-shell div,
+.admin-shell a,
+.admin-shell li,
+.admin-shell label {
+    color: inherit;
+}
+
+/* ─── 3. Muted / secondary text ─────────────────── */
+.admin-shell .text-muted,
+.admin-shell .label-mono,
+.admin-shell .section-label-text {
+    color: #111827 !important;
+}
+
+/* ─── 4. Light mobile bottom nav ─────────────────── */
+.admin-bottom-nav {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-top: 1px solid #e5e7eb !important;
+}
+
+/* ─── 5. Scrollbar — light variant ──────────────── */
+.admin-shell ::-webkit-scrollbar-track {
+    background: #f5f7fb;
+}
+
+.admin-shell ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.admin-shell ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* ══════════════════════════════════════════════════
+   ADMIN CARD CONVERSION — .pcard → white card
+   Scoped strictly to .admin-shell
+   ✔ No login impact  ✔ All variants covered
+══════════════════════════════════════════════════ */
+
+/* ─── Core card reset ───────────────────────────── */
+.admin-shell .pcard {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* ─── Hover lift — neutralise colored glow ──────── */
+.admin-shell .pcard:not(.no-hover-lift):hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09) !important;
+    border-color: #111827 !important;
+    transform: translateY(-2px);
+}
+
+/* ─── Remove colored top-line glows on variants ─── */
+.admin-shell .pcard-green::before,
+.admin-shell .pcard-amber::before,
+.admin-shell .pcard-red::before,
+.admin-shell .pcard-teal::before,
+.admin-shell .pcard-blue::before,
+.admin-shell .pcard-white::before {
+    display: none !important;
+}
+
+/* ─── Flatten gradient backgrounds on highlight cards */
+.admin-shell .pcard.pcard-green,
+.admin-shell .pcard.dash-cta-card,
+.admin-shell .payouts-balance-card {
+    background: #ffffff !important;
+}
+
+/* ─── Forecast day cards ─────────────────────────── */
+.admin-shell .forecast-day-card {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.admin-shell .forecast-day-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    border-color: #111827 !important;
+}
+
+/* ─── .card / .widget / .box / .dashboard-card ───── */
+.admin-shell .card,
+.admin-shell .dashboard-card,
+.admin-shell .widget,
+.admin-shell .box {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* ─── Internal dividers — adjust to light theme ──── */
+.admin-shell .data-row {
+    border-bottom-color: #f3f4f6 !important;
+}
+
+.admin-shell .section-label-line {
+    background: #e5e7eb !important;
+}
+
+.admin-shell .progress-track {
+    background: #f3f4f6 !important;
+}
+
+/* ─── Skeleton loaders — light version ───────────── */
+.admin-shell .skeleton {
+    background: #f3f4f6 !important;
+}
+
+/* ─── Hero glow blobs — hide in light theme ──────── */
+.admin-shell .hero-glow {
+    opacity: 0 !important;
+}
+
+/* ─── Step connector line ────────────────────────── */
+.admin-shell .step-connector {
+    background: linear-gradient(90deg, #e5e7eb, #f3f4f6) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   ADMIN BUTTON SYSTEM
+══════════════════════════════════════════════════ */
+
+.button-primary {
+    background: #111827;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.18s ease;
+}
+
+.button-primary:hover {
+    background: #1f2937;
+}
+
+.button-secondary {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #111827;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition:
+        border-color 0.18s ease,
+        background 0.18s ease;
+}
+
+.button-secondary:hover {
+    background: #f9fafb;
+    border-color: #111827;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   WORKER PAGES — VISUAL IMPROVEMENTS
+   1. Gray → Black text
+   2. Headings Bold (reinforcement)
+   3. Tailwind gray-class overrides
+═══════════════════════════════════════════════════════════ */
+
+/* ── 1. HEADINGS BOLD — all worker containers ─────────────── */
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4,
+.admin-shell h5,
+.admin-shell h6,
+.forecast-page-wrapper h1,
+.forecast-page-wrapper h2,
+.forecast-page-wrapper h3,
+.forecast-page-wrapper h4,
+.forecast-page-wrapper h5,
+.forecast-page-wrapper h6,
+.login-page-container h1,
+.login-page-container h2,
+.login-page-container h3 {
+    font-weight: 700 !important;
+}
+
+/* ── 2. GRAY → BLACK — Tailwind utility classes ───────────── */
+.admin-shell .text-gray-200,
+.admin-shell .text-gray-300,
+.admin-shell .text-gray-400,
+.admin-shell .text-gray-500,
+.admin-shell .text-gray-600,
+.admin-shell .text-gray-700,
+.admin-shell .text-gray-800,
+.admin-shell .text-zinc-400,
+.admin-shell .text-zinc-500,
+.admin-shell .text-neutral-400,
+.admin-shell .text-neutral-500,
+.admin-shell .text-slate-400,
+.admin-shell .text-slate-500,
+.forecast-page-wrapper .text-gray-300,
+.forecast-page-wrapper .text-gray-400,
+.forecast-page-wrapper .text-gray-500,
+.forecast-page-wrapper .text-gray-600,
+.forecast-page-wrapper .text-gray-700 {
+    color: #000000 !important;
+}
+
+/* ── 3. GRAY → BLACK — CSS semantic classes ───────────────── */
+.admin-shell .text-muted,
+.admin-shell .secondary-text,
+.admin-shell .text-secondary,
+.admin-shell .label-mono,
+.admin-shell .section-label-text,
+.admin-shell .caption,
+.admin-shell .meta,
+.forecast-page-wrapper .text-muted,
+.forecast-page-wrapper .secondary-text {
+    color: #000000 !important;
+}
+
+/* ── 4. SECTION LABEL TEXT — force black ─────────────────── */
+.admin-shell .section-label-text {
+    color: #000000 !important;
+}
+
+/* ── 5. FORECAST PAGE — force all non-SVG text black ─────── */
+.forecast-page-wrapper p,
+.forecast-page-wrapper span,
+.forecast-page-wrapper label,
+.forecast-page-wrapper li,
+.forecast-page-wrapper a {
+    color: #000000 !important;
+}
+
+/* Restore AQI / status colored text in forecast */
+.forecast-page-wrapper [style*="color: rgb(34"],
+.forecast-page-wrapper [style*="color: rgb(239"],
+.forecast-page-wrapper [style*="color: rgb(251"] {
+    /* keep inline accent colors — don't override */
+}

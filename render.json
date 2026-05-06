@@ -1,0 +1,34 @@
+{
+  "services": [
+    {
+      "type": "web",
+      "name": "bhima-astra-backend",
+      "runtime": "python310",
+      "plan": "free",
+      "buildCommand": "pip install -r bhima_astra_backend/requirements.txt",
+      "startCommand": "cd bhima_astra_backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT",
+      "envVars": [
+        {
+          "key": "DATABASE_URL",
+          "scope": "build"
+        },
+        {
+          "key": "REDIS_URL",
+          "scope": "build"
+        },
+        {
+          "key": "ENVIRONMENT",
+          "value": "production"
+        },
+        {
+          "key": "ANTHROPIC_API_KEY",
+          "scope": "build"
+        },
+        {
+          "key": "SECRET_KEY",
+          "scope": "build"
+        }
+      ]
+    }
+  ]
+}

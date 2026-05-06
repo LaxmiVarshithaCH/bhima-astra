@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "https://ADMIN_VERCEL_URL/admin"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://ADMIN_VERCEL_URL/admin/:path*"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "https://ADMIN_VERCEL_URL/_next/:path*"
+    }
+  ]
+}

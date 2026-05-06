@@ -1,0 +1,48 @@
+BHIMA ASTRA — FREQUENTLY ASKED QUESTIONS
+=========================================
+
+Q1: Why was my claim rejected?
+--------------------------------
+A claim may be rejected for one of three reasons:
+  a) No active disruption was detected at your location
+     and time — the trigger conditions were not met.
+  b) Fraud signals were detected on your account or device.
+  c) You have exceeded your weekly claim or payout limit
+     for your current subscription plan.
+
+Q2: Why did I receive only a partial payout?
+---------------------------------------------
+A partial payout is issued when:
+  a) An alternate route existed that you could have taken,
+     meaning the disruption was not complete.
+  b) The disruption was only partially verified — some
+     signals confirmed it, but others were inconclusive.
+  In these cases the severity_multiplier is set between
+  0.3 and 0.7 rather than the full 1.0.
+
+Q3: What if the system made a wrong decision?
+---------------------------------------------
+You can raise a dispute or request a manual review by
+contacting our support team:
+  Email : support@bhimaastra.ai
+  SLA   : Response within 24 business hours.
+All decisions include a full audit log that the support
+team can examine.
+
+Q4: How do I improve my Trust Score?
+-------------------------------------
+Maintain accurate GPS, avoid suspicious claim patterns,
+and have a long clean history on the platform. Trust
+Scores are recalculated after each resolved claim.
+
+Q5: What is the API failure cap?
+---------------------------------
+If external APIs (weather, traffic, maps) are unavailable
+during claim processing, the maximum payout is capped at
+₹400 to manage risk under incomplete data.
+
+Q6: How many claims can I submit per week?
+------------------------------------------
+A maximum of 2 claims per calendar week, subject to your
+plan's weekly payout cap (Basic ₹600 / Standard ₹800 /
+Premium ₹1200).

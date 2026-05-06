@@ -1,0 +1,45 @@
+BHIMA ASTRA — RIDER POLICY RULES
+=================================
+
+CLAIM FREQUENCY LIMITS
+----------------------
+Maximum claims per rider per calendar week: 2
+
+If a rider submits a 3rd claim in the same week, it is
+automatically rejected by the Policy Engine regardless
+of disruption validity.
+
+WEEKLY PAYOUT CAPS (by subscription plan)
+------------------------------------------
+  Basic    plan : ₹600  per week
+  Standard plan : ₹800  per week
+  Premium  plan : ₹1200 per week
+
+If the total paid out in a week reaches the plan cap,
+any further claims that week will be rejected even if
+individually valid.
+
+MINIMUM PAYOUT
+--------------
+The minimum payout for any approved claim is ₹50.
+Claims where the computed Expected Loss falls below ₹50
+are rejected as economically insignificant.
+
+FRAUD & SUSPICIOUS ACTIVITY
+----------------------------
+FRAUD DETECTED  → Immediate REJECTION. The rider's account
+                  is flagged; repeated fraud leads to
+                  permanent ban.
+SUSPICIOUS       → Claim is placed on HOLD for manual review
+                  by the operations team within 24 hours.
+
+TRUST SCORE IMPACT ON POLICY
+-----------------------------
+A low Trust Score (<40) may lower the effective plan cap
+by up to 20 % and increase the minimum payout threshold
+to ₹100 until the score recovers.
+
+APPEALS & SUPPORT
+-----------------
+Riders may appeal a rejected claim by contacting:
+support@bhimaastra.ai within 7 days of the decision.

@@ -1,0 +1,41 @@
+BHIMA ASTRA — DISRUPTION TRIGGER DEFINITIONS
+=============================================
+
+RECOGNISED TRIGGER TYPES
+-------------------------
+1. Heavy Rainfall
+   Condition: Rainfall intensity ≥ threshold (from weather API)
+   causing roads to become impassable or dangerous.
+
+2. Traffic Blockage
+   Condition: Major road blocked due to accident, construction,
+   or flooding, confirmed via traffic API or crowd signals.
+
+3. Protests / Curfew
+   Condition: Civic unrest, police curfew, or demonstration
+   that physically prevents movement in a zone.
+
+ACTIVATION CRITERIA (ALL must hold)
+------------------------------------
+A trigger is marked ACTIVE only when AT LEAST ONE of the
+following conditions is satisfied:
+
+  a) No viable alternate route exists for the rider's O→D pair.
+  b) Rider velocity is very low (< 2 km/h sustained for
+     ≥ 10 minutes in the disruption zone).
+  c) Crowd signals (aggregated anonymised GPS) confirm
+     widespread movement stoppage in the zone.
+
+IMPORTANT:
+  - A trigger event reported in the news but NOT confirmed
+    by sensor/API data does NOT activate the system.
+  - If no trigger is active at claim time → the claim is
+    automatically REJECTED at Stage 2.
+  - Multiple simultaneous triggers increase the disruption
+    probability score but do not change the activation logic.
+
+TRIGGER EXPIRY
+--------------
+Each trigger has a validity window (e.g., 2 hours for
+rainfall, 4 hours for curfew). Claims submitted after the
+window expires are not eligible.

@@ -1,0 +1,41 @@
+BHIMA ASTRA — PAYOUT CALCULATION RULES
+=======================================
+
+EXPECTED LOSS FORMULA
+---------------------
+Expected Loss = disruption_probability × (predicted_income
+                × severity_multiplier)
+
+Where:
+  disruption_probability — float [0, 1] derived from Stage 2
+                           confidence score.
+  predicted_income       — rider's estimated income for the
+                           disrupted period (₹).
+  severity_multiplier    — determined by Manager decision:
+      CONFIRMED  → 1.0  (full disruption)
+      PARTIAL    → 0.3 to 0.7 (dynamic, based on route
+                   feasibility score)
+      UNVERIFIED → 0.0  (no payout)
+
+PAYOUT THRESHOLDS
+-----------------
+  Minimum payout threshold : ₹50
+      If computed payout < ₹50, claim is rejected as
+      economically insignificant.
+
+  API failure cap          : ₹400
+      If one or more external APIs (weather, traffic, maps)
+      fail during processing, the payout is capped at ₹400
+      regardless of the computed value, to limit risk under
+      uncertain data.
+
+EXAMPLE CALCULATION
+-------------------
+Scenario: PARTIAL disruption, 60 % feasibility score.
+  disruption_probability  = 0.75
+  predicted_income        = ₹600
+  severity_multiplier     = 0.5  (PARTIAL, mid-range)
+
+Expected Loss = 0.75 × (600 × 0.5) = 0.75 × 300 = ₹225
+
+Final payout = ₹225 (above ₹50 minimum, below plan cap).

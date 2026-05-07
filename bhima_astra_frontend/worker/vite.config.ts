@@ -43,6 +43,7 @@ export default defineConfig({
     dedupe: [
       "react", "react-dom", "framer-motion", "react-router-dom",
       "lucide-react", "gsap", "@react-three/fiber", "@react-three/drei", "three",
+      "leaflet", "react-leaflet",
     ],
     alias: {
       react:                r("react"),
@@ -54,6 +55,8 @@ export default defineConfig({
       "@react-three/fiber": r("@react-three/fiber"),
       "@react-three/drei":  r("@react-three/drei"),
       three:                r("three"),
+      leaflet:              r("leaflet"),
+      "react-leaflet":      r("react-leaflet"),
     },
   },
   optimizeDeps: {
@@ -62,6 +65,7 @@ export default defineConfig({
       "react/jsx-runtime", "react/jsx-dev-runtime",
       "framer-motion", "react-router-dom", "lucide-react",
       "gsap", "@react-three/fiber", "@react-three/drei", "three",
+      "leaflet", "react-leaflet",
     ],
   },
 });

@@ -39,10 +39,6 @@
       "lucide-react/*": ["node_modules/lucide-react/*"],
       "gsap": ["node_modules/gsap/index.js"],
       "gsap/*": ["node_modules/gsap/*"],
-      "leaflet": ["node_modules/leaflet/dist/leaflet.js"],
-      "leaflet/*": ["node_modules/leaflet/*"],
-      "react-leaflet": ["node_modules/react-leaflet/dist/react-leaflet.js"],
-      "react-leaflet/*": ["node_modules/react-leaflet/*"],
     },
   },
   "include": [

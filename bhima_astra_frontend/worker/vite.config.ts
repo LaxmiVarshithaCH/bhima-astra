@@ -35,6 +35,7 @@ export default defineConfig({
           if (id.includes("node_modules/three/") || id.includes("node_modules/@react-three/")) return "vendor-three";
           if (id.includes("node_modules/gsap/")) return "vendor-gsap";
           if (id.includes("node_modules/lucide-react/")) return "vendor-ui";
+          if (id.includes("node_modules/leaflet/")) return "vendor-leaflet";
         },
       },
     },
@@ -55,8 +56,6 @@ export default defineConfig({
       "@react-three/fiber": r("@react-three/fiber"),
       "@react-three/drei":  r("@react-three/drei"),
       three:                r("three"),
-      leaflet:              r("leaflet"),
-      "react-leaflet":      r("react-leaflet"),
     },
   },
   optimizeDeps: {

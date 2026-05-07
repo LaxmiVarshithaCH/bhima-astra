@@ -26,7 +26,6 @@ export default defineConfig({
     chunkSizeWarningLimit: 6000,
     sourcemap: false,
     rollupOptions: {
-      external: ['leaflet'],
       output: {
         manualChunks: (id: string) => {
           if (id.includes("node_modules/react/") || id.includes("node_modules/react-dom/") || id.includes("node_modules/react-router-dom/")) {
@@ -37,6 +36,7 @@ export default defineConfig({
           if (id.includes("node_modules/gsap/")) return "vendor-gsap";
           if (id.includes("node_modules/lucide-react/")) return "vendor-ui";
           if (id.includes("node_modules/leaflet/")) return "vendor-leaflet";
+          if (id.includes("node_modules/react-leaflet/")) return "vendor-leaflet";
         },
       },
     },
@@ -57,6 +57,8 @@ export default defineConfig({
       "@react-three/fiber": r("@react-three/fiber"),
       "@react-three/drei":  r("@react-three/drei"),
       three:                r("three"),
+      leaflet:              r("leaflet"),
+      "react-leaflet":      r("react-leaflet"),
     },
   },
   optimizeDeps: {

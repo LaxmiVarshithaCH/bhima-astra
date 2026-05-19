@@ -1,0 +1,6 @@
+{
+  "root": "bhima_astra_frontend/worker",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install"
+}

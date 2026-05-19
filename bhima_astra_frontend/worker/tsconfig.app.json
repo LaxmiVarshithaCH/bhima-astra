@@ -43,6 +43,10 @@
       "leaflet/*": ["node_modules/leaflet/*"],
       "react-leaflet": ["node_modules/react-leaflet/dist/react-leaflet.js"],
       "react-leaflet/*": ["node_modules/react-leaflet/*"],
+      "recharts": ["node_modules/recharts/dist/Recharts.js"],
+      "recharts/*": ["node_modules/recharts/*"],
+      "maplibre-gl": ["node_modules/maplibre-gl/dist/maplibre-gl.js"],
+      "maplibre-gl/*": ["node_modules/maplibre-gl/*"],
     },
   },
   "include": [

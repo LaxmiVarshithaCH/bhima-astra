@@ -7,7 +7,7 @@ const BentoGrid: React.FC = () => {
     {
       icon: Code,
       label: "GitHub",
-      url: "https://github.com/32732Nikitha",
+      url: "https://github.com/LaxmiVarshithaCH/bhima-astra",
       description: "View our code",
       color: "hover:text-white",
       bgColor: "bg-gray-800",
@@ -124,6 +124,7 @@ const BentoGrid: React.FC = () => {
                 <motion.button
                   className="px-8 py-4 bg-[#CCFF00] text-black font-bold rounded-2xl"
                   whileHover={{ scale: 1.05 }}
+                  onClick={() => window.open('https://bhima-astra-worker.vercel.app', '_blank')}
                 >
                   {contactInfo.cta}
                 </motion.button>

@@ -136,6 +136,7 @@ const Pricing: React.FC = () => {
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => window.open('https://bhima-astra-worker.vercel.app', '_blank')}
                 >
                   {plan.highlighted ? 'Get Started Now' : 'Choose Plan'}
                 </motion.button>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { formatINR } from "../utils/currency";
+import { jsPDF } from "jspdf";
 import { useLocation, useNavigate } from "react-router-dom";
 import PlansTab from "./PlansTab";
 import ForecastPage from "./ForecastPage";
@@ -515,6 +516,121 @@ const DashboardOverview: React.FC = () => {
   const navigate = useNavigate();
   const [showDocsModal, setShowDocsModal] = useState(false);
   const { profile, policy, payouts, zoneLive } = useWorker();
+
+  /* ── Generate & download real policy PDF ─────────────────────────── */
+  const generatePolicyPDF = () => {
+    const doc = new jsPDF();
+
+    // Derived values
+    const name = profile?.worker_name ?? "Worker";
+    const phone = profile?.phone ?? "";
+    const city = profile?.city ?? "India";
+    const zone = profile?.geo_zone_id ?? "";
+    const platform = profile?.platform ?? "";
+    const upi = profile?.upi_id ?? "Not set";
+    const kyc = profile?.kyc_verified ? "Verified ✓" : "Pending";
+
+    const planTier = (policy?.plan_tier ?? "standard").toLowerCase();
+    const PLAN_META: Record<string, { weeklyPremium: number; perEventPayout: number; maxWeeklyPayout: number }> = {
+      basic:    { weeklyPremium: 49,  perEventPayout: 350,  maxWeeklyPayout: 700  },
+      standard: { weeklyPremium: 99,  perEventPayout: 600,  maxWeeklyPayout: 1200 },
+      premium:  { weeklyPremium: 199, perEventPayout: 1200, maxWeeklyPayout: 2400 },
+    };
+    const meta = PLAN_META[planTier] ?? PLAN_META.standard;
+    const weeklyPremium   = policy?.weekly_premium    ?? meta.weeklyPremium;
+    const perEventPayout  = policy?.per_event_payout  ?? meta.perEventPayout;
+    const maxWeeklyPayout = policy?.max_weekly_payout ?? meta.maxWeeklyPayout;
+    const policyStatus    = policy?.policy_status ?? "active";
+
+    const policyNumber = policy?.policy_id
+      ? `BA-${String(policy.policy_id).padStart(6, "0")}`
+      : `BA-${String(profile?.worker_id ?? 0).padStart(6, "0")}`;
+
+    const activationDateStr = policy?.activation_date
+      ? new Date(policy.activation_date).toLocaleDateString("en-IN")
+      : new Date().toLocaleDateString("en-IN");
+
+    const expiryDateStr = (() => {
+      const base = policy?.expiry_date ? new Date(policy.expiry_date)
+                 : policy?.activation_date ? new Date(policy.activation_date)
+                 : new Date();
+      if (!policy?.expiry_date) base.setDate(base.getDate() + 30);
+      return base.toLocaleDateString("en-IN");
+    })();
+
+    // ── Page 1 ──
+    doc.setFontSize(22); doc.setTextColor(124, 58, 237);
+    doc.text("BHIMA ASTRA", 20, 20);
+    doc.setFontSize(14); doc.setTextColor(0, 0, 0);
+    doc.text("GigShield Parametric Insurance — Policy Document", 20, 30);
+    doc.setFontSize(10); doc.setTextColor(100, 100, 100);
+    doc.text(`Policy Number: ${policyNumber}`, 20, 40);
+    doc.text(`Date of Issue: ${activationDateStr}`, 20, 46);
+    doc.text(`Valid Till:    ${expiryDateStr}`, 20, 52);
+    doc.text(`Generated:     ${new Date().toLocaleString("en-IN")}`, 20, 58);
+    doc.setDrawColor(200, 200, 200); doc.line(20, 64, 190, 64);
+
+    doc.setFontSize(13); doc.setTextColor(0, 0, 0);
+    doc.text("Worker Details", 20, 74);
+    doc.setFontSize(10); doc.setTextColor(50, 50, 50);
+    doc.text(`Full Name:    ${name}`,         20, 84);
+    doc.text(`Phone:        ${phone || "Not provided"}`, 20, 90);
+    doc.text(`City:         ${city}`,          20, 96);
+    doc.text(`Zone:         ${zone || "Not provided"}`,  20, 102);
+    doc.text(`Platform:     ${platform || "Not provided"}`, 20, 108);
+    doc.text(`UPI ID:       ${upi}`,           20, 114);
+    doc.text(`KYC Status:   ${kyc}`,           20, 120);
+    doc.line(20, 126, 190, 126);
+
+    doc.setFontSize(13); doc.setTextColor(0, 0, 0);
+    doc.text("Policy Details", 20, 136);
+    doc.setFontSize(10); doc.setTextColor(50, 50, 50);
+    doc.text(`Plan Type:         ${planTier.charAt(0).toUpperCase() + planTier.slice(1)} Plan`, 20, 146);
+    doc.text(`Policy Status:     ${policyStatus.toUpperCase()}`,                              20, 152);
+    doc.text(`Weekly Premium:    INR ${weeklyPremium}`,                                       20, 158);
+    doc.text(`Monthly Premium:   INR ${weeklyPremium * 4}`,                                   20, 164);
+    doc.text(`Activation Date:   ${activationDateStr}`,                                       20, 170);
+    doc.text(`Expiry Date:       ${expiryDateStr}`,                                           20, 176);
+    doc.line(20, 182, 190, 182);
+
+    doc.setFontSize(13); doc.setTextColor(0, 0, 0);
+    doc.text("Parametric Payout Structure", 20, 192);
+    doc.setFontSize(10); doc.setTextColor(50, 50, 50);
+    doc.text(`Per-Event Payout:      INR ${perEventPayout}`,                                  20, 202);
+    doc.text(`Max Weekly Payout:     INR ${maxWeeklyPayout}`,                                 20, 208);
+    doc.text(`Trigger: Rainfall L1 (>= 64.5 mm/day)  — INR ${perEventPayout}`,               20, 214);
+    doc.text(`Trigger: Rainfall L2 (>= 115.6 mm/day) — INR ${Math.round(perEventPayout*1.5)}`,20, 220);
+    doc.text(`Trigger: Rainfall L3 (>= 204.5 mm/day) — INR ${maxWeeklyPayout}`,              20, 226);
+    doc.text(`Trigger: Heat L1 (>= 40 C)             — INR ${perEventPayout}`,               20, 232);
+    doc.text(`Trigger: AQI >= 300 (CPCB Very Poor)   — INR ${perEventPayout}`,               20, 238);
+    doc.text(`Trigger: Flood / Zone Shutdown          — Plan payout`,                         20, 244);
+    doc.text(`Trigger: Platform Outage / Curfew       — Plan payout`,                         20, 250);
+
+    // ── Page 2 ──
+    doc.addPage();
+    doc.setFontSize(13); doc.setTextColor(200, 0, 0);
+    doc.text("Exclusions (NOT Covered)", 20, 20);
+    doc.setFontSize(10); doc.setTextColor(180, 0, 0);
+    doc.text("- Wars, armed conflict, and civil unrest (unless manager-verified)", 20, 32);
+    doc.text("- Vehicle accidents and personal injury",                            20, 38);
+    doc.text("- Vehicle damage or theft",                                          20, 44);
+    doc.text("- Income loss due to personal illness",                              20, 50);
+    doc.text("- Fraud or misrepresentation of location data",                      20, 56);
+    doc.setDrawColor(200,200,200); doc.line(20, 62, 190, 62);
+
+    doc.setFontSize(13); doc.setTextColor(0, 0, 0);
+    doc.text("Claim Process", 20, 72);
+    doc.setFontSize(10); doc.setTextColor(50, 50, 50);
+    doc.text("Payouts are fully parametric — no claims required.",                    20, 82);
+    doc.text("Triggers fire automatically when thresholds are exceeded.",             20, 88);
+    doc.text("Funds are credited to your registered UPI ID within 2-4 hours.",       20, 94);
+    doc.line(20, 100, 190, 100);
+    doc.setFontSize(9); doc.setTextColor(130, 130, 130);
+    doc.text(`BHIMA ASTRA GigShield | Policy: ${policyNumber} | ${name} | ${city}`, 20, 110);
+    doc.text("This is an auto-generated parametric insurance policy document.",       20, 116);
+
+    doc.save(`BHIMA-ASTRA-Policy-${policyNumber}.pdf`);
+  };
 
   // ── Derived stats from real data ─────────────────────────────────────
   const riskIndex = zoneLive
@@ -1815,46 +1931,108 @@ const DashboardOverview: React.FC = () => {
                 Download your active coverage policy terms and schedules.
               </p>
 
-              <div
-                style={{ display: "flex", flexDirection: "column", gap: 10 }}
-              >
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {/* Policy Certificate */}
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
+                    alignItems: "center",
                     padding: "12px 16px",
                     background: "#f9fafb",
                     border: "1px solid #e5e7eb",
                     borderRadius: 8,
                   }}
                 >
-                  <span style={{ ...mono(10), color: "#111827" }}>
-                    Schedule_APR2026.pdf
-                  </span>
-                  <span
-                    style={{ color: "#2563eb", cursor: "pointer", ...mono(9) }}
+                  <div>
+                    <div style={{ ...mono(10), color: "#111827", marginBottom: 2 }}>
+                      Policy_Certificate.pdf
+                    </div>
+                    <div style={{ ...mono(8), color: "#6b7280" }}>
+                      {profile?.worker_name ?? "Worker"} · {policy?.plan_tier ?? "Standard"} Plan
+                    </div>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={generatePolicyPDF}
+                    style={{
+                      background: "rgba(124,58,237,0.08)",
+                      border: "1px solid rgba(124,58,237,0.3)",
+                      borderRadius: 6,
+                      padding: "6px 14px",
+                      color: "#7C3AED",
+                      cursor: "pointer",
+                      ...mono(9),
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 5,
+                    }}
                   >
-                    ↓ DL
-                  </span>
+                    ↓ Download
+                  </motion.button>
                 </div>
+
+                {/* Terms & Conditions — static PDF generated inline */}
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
+                    alignItems: "center",
                     padding: "12px 16px",
                     background: "#f9fafb",
                     border: "1px solid #e5e7eb",
                     borderRadius: 8,
                   }}
                 >
-                  <span style={{ ...mono(10), color: "#111827" }}>
-                    Terms_Conditions.pdf
-                  </span>
-                  <span
-                    style={{ color: "#2563eb", cursor: "pointer", ...mono(9) }}
+                  <div>
+                    <div style={{ ...mono(10), color: "#111827", marginBottom: 2 }}>
+                      Terms_and_Conditions.pdf
+                    </div>
+                    <div style={{ ...mono(8), color: "#6b7280" }}>
+                      GigShield Parametric Insurance — Standard Terms
+                    </div>
+                  </div>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => {
+                      const doc = new jsPDF();
+                      doc.setFontSize(16); doc.setTextColor(124, 58, 237);
+                      doc.text("BHIMA ASTRA — Terms & Conditions", 20, 20);
+                      doc.setFontSize(10); doc.setTextColor(50, 50, 50);
+                      const lines = [
+                        "1. Coverage is parametric — payouts trigger on objective weather/event data.",
+                        "2. No manual claims process. Funds auto-credit to your UPI within 2-4 hours.",
+                        "3. The policy covers: Rainfall, Heat, AQI, Flood, Zone Shutdown, Curfew.",
+                        "4. Exclusions: illness, vehicle damage, personal injury, fraud.",
+                        "5. Maximum 3 events claimable per week per policy tier.",
+                        "6. Premium is deducted weekly from your registered payment method.",
+                        "7. Policy auto-renews unless cancelled 24 hours before expiry.",
+                        "8. Disputes must be raised within 7 days of payout date.",
+                        "9. KYC verification is mandatory for payouts above INR 5,000.",
+                        "10. BHIMA ASTRA reserves the right to suspend coverage for fraud.",
+                      ];
+                      lines.forEach((line, i) => doc.text(line, 20, 36 + i * 12));
+                      doc.setFontSize(8); doc.setTextColor(130, 130, 130);
+                      doc.text("BHIMA ASTRA GigShield · Auto-generated · " + new Date().toLocaleDateString("en-IN"), 20, 160);
+                      doc.save("BHIMA-ASTRA-Terms-Conditions.pdf");
+                    }}
+                    style={{
+                      background: "rgba(59,130,246,0.08)",
+                      border: "1px solid rgba(59,130,246,0.3)",
+                      borderRadius: 6,
+                      padding: "6px 14px",
+                      color: "#2563eb",
+                      cursor: "pointer",
+                      ...mono(9),
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 5,
+                    }}
                   >
-                    ↓ DL
-                  </span>
+                    ↓ Download
+                  </motion.button>
                 </div>
               </div>
 

@@ -1455,9 +1455,54 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 ---
 
-### Manual Frontend Setup (Separate Terminals)
+### Start Redis (Terminal 2)
 
-**Terminal 2: Worker Portal**
+If not using Docker, start Redis manually:
+
+```bash
+# Option 1: Via Homebrew (macOS)
+brew services start redis
+
+# Option 2: Direct
+redis-server
+
+# Verify Redis is running
+redis-cli ping   # Should return: PONG
+```
+
+> If using `docker-compose up -d` (from backend setup), Redis is already running on port 6379.
+
+---
+
+### Start Celery Worker + Beat (Terminal 3)
+
+```bash
+cd bhima_astra_backend
+
+# Start Celery worker (runs Monitor, Trigger, Fraud, Payout agents)
+celery -A app.tasks.celery_app worker --loglevel=info --pool=solo
+```
+
+In a **separate terminal (Terminal 4)**, start the Celery beat scheduler:
+
+```bash
+cd bhima_astra_backend
+
+# Start Celery beat (schedules periodic tasks: zone monitoring, fraud scans)
+celery -A app.tasks.celery_app beat --loglevel=info
+```
+
+✅ **Celery Scheduled Tasks:**
+- Monitor Agent: Runs every 5 minutes (weather + zone risk polling)
+- Fraud Monitor: Runs every 2 minutes (continuous fraud scanning)
+- Zone Cache Refresh: Runs every 5 minutes
+- Zone Orchestrator: Runs every 2 minutes (trigger pipeline)
+
+---
+
+### Manual Frontend Setup (Terminal 5)
+
+**Worker Portal**
 ```bash
 cd bhima_astra_frontend/worker
 npm install
@@ -1465,38 +1510,21 @@ npm run dev
 ```
 ✅ **Available at:** `http://localhost:5173`
 
-**Terminal 3: Admin Dashboard**
-```bash
-cd bhima_astra_frontend/admin
-npm install
-npm run dev
-```
-✅ **Available at:** `http://localhost:3000`
-
-**Terminal 4: Manager App (Optional)**
-```bash
-cd bhima_astra_frontend/manager
-npm install
-npm run dev
-```
-✅ **Available at:** `http://localhost:5174`
-
 ---
 
 ### Demo Credentials
 
 The database is pre-seeded with demo users:
 
-| Role | Email / Phone | Password / OTP | Local | Live Deployment |
-|------|---------------|----------------|-------|------------------|
-| **Admin** | `admin@bhima.com` | `password123` | http://localhost:3000 | https://bhima-astra-admin.vercel.app |
-| **Manager** | `ravi.manager@bhima.com` | `password123` | http://localhost:5174 | https://bhima-astra-manager.vercel.app |
-| **Manager** | `anjali.manager@bhima.com` | `password123` | http://localhost:5174 | |
-| **Manager** | `kiran.manager@bhima.com` | `password123` | http://localhost:5174 | |
-| **Manager** | `sameer.manager@bhima.com` | `password123` | http://localhost:5174 | |
-| **Worker** | Any phone: `9493029001` to `9493029400` | OTP: `123456` | http://localhost:5173 | https://bhima-astra-worker.vercel.app |
-
-> **Note:** Worker login uses OTP-based authentication. Enter any phone number in the range above, then use OTP `123456` to log in.
+| Role | Email / Phone | Password |
+|------|---------------|----------------|
+| **Admin** | `admin@bhima.com` | `password123` | 
+| **Manager** | `ravi.manager@bhima.com` | `password123` | 
+| **Manager** | `anjali.manager@bhima.com` | `password123` | 
+| **Manager** | `kiran.manager@bhima.com` | `password123` | 
+| **Manager** | `sameer.manager@bhima.com` | `password123` |
+| **Worker** | Any phone: `9493029001` to `9493029400` | OTP| 
+> **Note:** Worker login uses OTP-based authentication. Enter any phone number in the range above, then use OTP shown in the notifications to log in.
 
 ---
 

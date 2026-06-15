@@ -51,17 +51,23 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-import os
-
-_raw_origins = os.getenv("ALLOWED_ORIGINS", "")
-_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()] or ["*"]
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://localhost:8080",
+    # Vercel production & preview deployments
+    "https://bhima-astra.vercel.app",
+    "https://bhima-astra-igvfp6ysn-laxmivarshithachs-projects.vercel.app",
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_origins,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"https://bhima-astra.*\.vercel\.app",
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # Register all API routers

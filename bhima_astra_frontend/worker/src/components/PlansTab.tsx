@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { formatINR } from "../utils/currency";
 import { useWorker } from "../context/WorkerContext";
 import { activatePolicy, comparePlans } from "../services/api";
+import { useLanguage } from "../context/LanguageContext";
 
 /* ─────────────────────────────────────────────────
    DATA
@@ -685,7 +686,7 @@ const FAQSection = () => {
           textAlign: "center",
         }}
       >
-        Frequently Asked Questions
+        {t('faq_title')}
       </div>
       <div>
         {faqs.map((faq, index) => (
@@ -1012,6 +1013,7 @@ const PlanSelectorCard: React.FC<{
 ───────────────────────────────────────────────── */
 const PlansTab: React.FC = () => {
   const { policy } = useWorker();
+  const { t } = useLanguage();
   const [activatingPlan, setActivatingPlan] = useState<
     (typeof plans)[0] | null
   >(null);
@@ -1142,7 +1144,7 @@ const PlansTab: React.FC = () => {
             lineHeight: 1,
           }}
         >
-          Choose Your Shield
+          {t('plans_title')}
         </div>
         <div
           style={{
@@ -1154,8 +1156,7 @@ const PlansTab: React.FC = () => {
             lineHeight: 1.6,
           }}
         >
-          All plans include automatic claim triggers based on real-time weather
-          and event data in your zone.
+          {t('plans_subtitle')}
         </div>
       </div>
 
@@ -1320,22 +1321,22 @@ const PlansTab: React.FC = () => {
               >
                 {[
                   {
-                    label: "Weekly Premium",
+                    label: t('weekly_premium'),
                     value: effectiveSelectedPlan.meta.weeklyPremium,
                     base: selectedPlan.meta.weeklyPremium,
                   },
                   {
-                    label: "Per Event Payout",
+                    label: t('per_event_payout'),
                     value: effectiveSelectedPlan.meta.perEventPayout,
                     base: selectedPlan.meta.perEventPayout,
                   },
                   {
-                    label: "Max Events / Week",
+                    label: t('max_events_week'),
                     value: effectiveSelectedPlan.meta.maxEventsPerWeek,
                     base: null,
                   },
                   {
-                    label: "Max Weekly Payout",
+                    label: t('max_weekly_payout'),
                     value: effectiveSelectedPlan.meta.maxWeeklyPayout,
                     base: selectedPlan.meta.maxWeeklyPayout,
                   },

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { formatINR } from "../utils/currency";
+import { useLanguage } from "../context/LanguageContext";
 
 const mono = (size = 9): React.CSSProperties => ({
   fontFamily: "DM Mono, monospace",
@@ -144,6 +145,7 @@ const getHeatColor = (val: number, threshold: number) => {
 /* ─── Main Component ─── */
 const PolicyPage: React.FC = () => {
   const { rain, aqi, heatIndex, loaded, error } = usePolledWeather();
+  const { t } = useLanguage();
 
   // Threshold Constants
   const T_RAIN = 25;
@@ -159,16 +161,16 @@ const PolicyPage: React.FC = () => {
             className="badge badge-red"
             style={{ animation: "pulse-slow 2s infinite" }}
           >
-            Ready
+            {t('trigger_ready')}
           </span>
         );
       case "NEAR":
-        return <span className="badge badge-amber">Near</span>;
+        return <span className="badge badge-amber">{t('near')}</span>;
       case "COVERED":
-        return <span className="badge badge-green">Covered</span>;
+        return <span className="badge badge-green">{t('covered')}</span>;
       default:
         return (
-          <span style={{ ...mono(8), color: "#111827" }}>Not Included</span>
+          <span style={{ ...mono(8), color: "#111827" }}>{t('not_included')}</span>
         );
     }
   };
@@ -253,12 +255,12 @@ const PolicyPage: React.FC = () => {
               >
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
-              <div className="badge badge-green">✓ Active</div>
+              <div className="badge badge-green">✓ {t('active')}</div>
             </div>
             <div
               style={{ ...editorial(48), color: "#111827", marginBottom: 6 }}
             >
-              Bhima Astra Policy
+              Bhima Astra {t('policy')}
             </div>
             <div
               style={{
@@ -296,7 +298,7 @@ const PolicyPage: React.FC = () => {
                   opacity: 0.7,
                 }}
               >
-                Activated Date
+                {t('activated_date')}
               </div>
               <div style={{ ...editorial(28), color: "#111827" }}>
                 01 Jan 2026
@@ -313,7 +315,7 @@ const PolicyPage: React.FC = () => {
                   opacity: 0.7,
                 }}
               >
-                Expiry Date
+                {t('expiry_date')}
               </div>
               <div style={{ ...editorial(28), color: "#FBBF24" }}>
                 30 Apr 2026
@@ -350,7 +352,7 @@ const PolicyPage: React.FC = () => {
                 opacity: 0.8,
               }}
             >
-              Coverage Triggers
+              {t('coverage_triggers')}
             </div>
             <div className="policy-trigger-table">
               <div
@@ -376,7 +378,7 @@ const PolicyPage: React.FC = () => {
                       letterSpacing: "0.1em",
                     }}
                   >
-                    Trigger
+                    {t('trigger')}
                   </span>
                   <span
                     style={{
@@ -386,7 +388,7 @@ const PolicyPage: React.FC = () => {
                       letterSpacing: "0.1em",
                     }}
                   >
-                    Threshold
+                    {t('threshold')}
                   </span>
                   <span
                     style={{
@@ -396,7 +398,7 @@ const PolicyPage: React.FC = () => {
                       letterSpacing: "0.1em",
                     }}
                   >
-                    Payout
+                    {t('payout')}
                   </span>
                   <span
                     style={{
@@ -407,7 +409,7 @@ const PolicyPage: React.FC = () => {
                       textAlign: "center",
                     }}
                   >
-                    Level
+                    {t('level')}
                   </span>
                   <span
                     style={{
@@ -418,13 +420,13 @@ const PolicyPage: React.FC = () => {
                       textAlign: "right",
                     }}
                   >
-                    Status
+                    {t('status')}
                   </span>
                 </div>
                 {/* Rows */}
                 {[
                   {
-                    trigger: "Rainfall",
+                    trigger: t('rainfall'),
                     threshold: "> 25 mm/hr",
                     payout: formatINR(600),
                     level: "L2",
@@ -432,7 +434,7 @@ const PolicyPage: React.FC = () => {
                     status: getStatus(rain, T_RAIN),
                   },
                   {
-                    trigger: "AQI",
+                    trigger: t('aqi'),
                     threshold: "> 200",
                     payout: formatINR(600),
                     level: "L1",
@@ -440,7 +442,7 @@ const PolicyPage: React.FC = () => {
                     status: getStatus(aqi, T_AQI),
                   },
                   {
-                    trigger: "Heat Index",
+                    trigger: t('heat_index'),
                     threshold: "> 42°C",
                     payout: formatINR(600),
                     level: "L1",
@@ -448,24 +450,24 @@ const PolicyPage: React.FC = () => {
                     status: getStatus(heatIndex, T_HEAT),
                   },
                   {
-                    trigger: "Cyclone",
+                    trigger: t('cyclone'),
                     threshold: "Category 2+",
                     payout: formatINR(1200),
                     level: "L3",
                     levelColor: "#A78BFA",
-                    status: "Covered",
+                    status: "COVERED",
                   },
                   {
-                    trigger: "Hailstorm",
+                    trigger: t('hailstorm'),
                     threshold: "> 15 mm",
                     payout: formatINR(600),
                     level: "L2",
                     levelColor: "#60A5FA",
-                    status: "Not Included",
+                    status: "NOT_INCLUDED",
                   },
-                ].map((t) => (
+                ].map((row) => (
                   <div
-                    key={t.trigger}
+                    key={row.trigger}
                     style={{
                       display: "grid",
                       gridTemplateColumns: "1.5fr 1fr 1fr 0.8fr 1fr",
@@ -475,29 +477,29 @@ const PolicyPage: React.FC = () => {
                     }}
                   >
                     <span style={{ ...mono(9), color: "#111827" }}>
-                      {t.trigger}
+                      {row.trigger}
                     </span>
                     <span
                       style={{ ...mono(8), color: "#111827", opacity: 0.8 }}
                     >
-                      {t.threshold}
+                      {row.threshold}
                     </span>
                     <span style={{ ...editorial(22), color: "#111827" }}>
-                      {t.payout}
+                      {row.payout}
                     </span>
                     <div style={{ textAlign: "center" }}>
                       <span
                         style={{
                           ...mono(8),
-                          color: t.levelColor,
-                          background: `${t.levelColor}15`,
-                          border: `1px solid ${t.levelColor}30`,
+                          color: row.levelColor,
+                          background: `${row.levelColor}15`,
+                          border: `1px solid ${row.levelColor}30`,
                           padding: "3px 8px",
                           borderRadius: 4,
                           display: "inline-block",
                         }}
                       >
-                        {t.level}
+                        {row.level}
                       </span>
                     </div>
                     <div style={{ textAlign: "right" }}>
@@ -506,7 +508,7 @@ const PolicyPage: React.FC = () => {
                           ...
                         </span>
                       ) : (
-                        renderStatusBadge(t.status)
+                        renderStatusBadge(row.status)
                       )}
                     </div>
                   </div>
@@ -544,7 +546,7 @@ const PolicyPage: React.FC = () => {
                     opacity: 0.8,
                   }}
                 >
-                  Event Cap
+                  {t('event_cap')}
                 </div>
                 <svg
                   width="20"
@@ -570,7 +572,7 @@ const PolicyPage: React.FC = () => {
                     opacity: 0.8,
                   }}
                 >
-                  Used
+                  {t('used')}
                 </div>
               </div>
               <div
@@ -581,11 +583,11 @@ const PolicyPage: React.FC = () => {
                   opacity: 0.7,
                 }}
               >
-                Max payout:{" "}
+                {t('max_payout')}:{" "}
                 <span style={{ color: "#111827", fontWeight: 600 }}>
                   {formatINR(1800)}
                 </span>{" "}
-                this month
+                {t('this_month')}
               </div>
             </div>
           </Section>
@@ -626,7 +628,7 @@ const PolicyPage: React.FC = () => {
                     opacity: 0.8,
                   }}
                 >
-                  Live Thresholds
+                  {t('live_thresholds')}
                 </div>
                 <div className="badge badge-blue">
                   <div
@@ -638,7 +640,7 @@ const PolicyPage: React.FC = () => {
                       borderRadius: "50%",
                     }}
                   />
-                  Live Data
+                  {t('live_data')}
                 </div>
               </div>
 
@@ -655,7 +657,7 @@ const PolicyPage: React.FC = () => {
                     }}
                   >
                     <span style={{ ...mono(9), color: "#111827" }}>
-                      Rainfall
+                      {t('rainfall')}
                     </span>
                     <span
                       style={{ ...mono(9), color: getRainColor(rain, T_RAIN) }}
@@ -688,7 +690,7 @@ const PolicyPage: React.FC = () => {
                       marginBottom: 8,
                     }}
                   >
-                    <span style={{ ...mono(9), color: "#111827" }}>AQI</span>
+                    <span style={{ ...mono(9), color: "#111827" }}>{t('aqi')}</span>
                     <span style={{ ...mono(9), color: getAqiColor(aqi) }}>
                       {loaded ? `${aqi} / ${T_AQI}` : "-- / 200"}
                     </span>
@@ -719,7 +721,7 @@ const PolicyPage: React.FC = () => {
                     }}
                   >
                     <span style={{ ...mono(9), color: "#111827" }}>
-                      Heat Index
+                      {t('heat_index')}
                     </span>
                     <div
                       style={{ display: "flex", alignItems: "center", gap: 8 }}
@@ -793,7 +795,7 @@ const PolicyPage: React.FC = () => {
               marginBottom: 20,
             }}
           >
-            Policy Exclusions
+            {t('policy_exclusions')}
           </div>
           <div
             style={{
@@ -803,11 +805,11 @@ const PolicyPage: React.FC = () => {
             }}
           >
             {[
-              "Scheduled Maintenance",
-              "Personal Illness",
-              "Voluntary Offline",
-              "Fraud Activity",
-              "Acts of War",
+              t('scheduled_maintenance'),
+              t('personal_illness'),
+              t('voluntary_offline'),
+              t('fraud_activity'),
+              t('acts_of_war'),
             ].map((exclusion) => (
               <div
                 key={exclusion}
@@ -859,7 +861,7 @@ const PolicyPage: React.FC = () => {
             className="btn-outline btn-sliding-lines"
             style={{ color: "#111827", borderColor: "#111827" }}
           >
-            Download Policy PDF
+            {t('download_policy_pdf')}
           </button>
           <button
             className="btn-outline btn-sliding-lines"
@@ -873,7 +875,7 @@ const PolicyPage: React.FC = () => {
               e.currentTarget.style.borderColor = "rgba(255,92,92,0.3)";
             }}
           >
-            Cancel Policy
+            {t('cancel_policy')}
           </button>
 
           <motion.div
@@ -883,7 +885,7 @@ const PolicyPage: React.FC = () => {
             whileTap={{ scale: 0.97 }}
           >
             <button className="btn-primary btn-sliding-lines">
-              Renew Policy →
+              {t('renew_policy')} →
             </button>
           </motion.div>
         </div>

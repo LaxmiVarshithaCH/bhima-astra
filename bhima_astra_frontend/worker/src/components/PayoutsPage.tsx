@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../services/api";
+import { useLanguage } from "../context/LanguageContext";
 
 /* ─── Types & Interfaces ─── */
 interface Transaction {
@@ -1115,6 +1116,7 @@ const PaymentOverlay: React.FC<{
 ═══════════════════════════════════════════════════ */
 const PayoutsPage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   /* ── Core state ── */
   const [metrics, setMetrics] = useState<Metrics>({
@@ -1743,7 +1745,7 @@ const PayoutsPage: React.FC = () => {
                 fontSize: "clamp(32px,5vw,56px)",
               }}
             >
-              Vault &amp; <span style={{ color: "#00D1B2" }}>Payouts</span>
+              {t('vault_and_payouts').split('&')[0]}&amp;<span style={{ color: "#00D1B2" }}>{t('vault_and_payouts').split('&')[1] || 'Payouts'}</span>
             </h1>
             <div
               style={{
@@ -1756,7 +1758,7 @@ const PayoutsPage: React.FC = () => {
                 gap: 8,
               }}
             >
-              Secured earnings and protected balances
+              {t('secured_earnings')}
               <span
                 style={{
                   display: "inline-flex",
@@ -1812,14 +1814,14 @@ const PayoutsPage: React.FC = () => {
               >
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
               </svg>
-              Simulate Trigger
+              {t('simulate_trigger')}
             </motion.button>
             <button
               className="btn-outline btn-sliding-lines"
               onClick={handleExportCSV}
               style={{ fontSize: "16px", padding: "12px 20px" }}
             >
-              Export CSV
+              {t('export_csv')}
             </button>
             <button
               className="btn-primary btn-sliding-lines"
@@ -1830,7 +1832,7 @@ const PayoutsPage: React.FC = () => {
                 color: "#ffffff",
               }}
             >
-              Policy
+              {t('policy')}
             </button>
           </div>
         </div>
@@ -1869,22 +1871,22 @@ const PayoutsPage: React.FC = () => {
             >
               {[
                 {
-                  label: "Total Recovered",
+                  label: t('total_recovered'),
                   value: formatCurrency(metrics.totalRecovered),
                   color: "#16a34a",
                 },
                 {
-                  label: "Pending Payout",
+                  label: t('pending_payout'),
                   value: formatCurrency(metrics.pendingPayout),
                   color: "#d97706",
                 },
                 {
-                  label: "Events Triggered",
+                  label: t('events_triggered'),
                   value: String(metrics.eventsTriggered),
                   color: "#3b82f6",
                 },
                 {
-                  label: "Avg Per Event",
+                  label: t('avg_per_event'),
                   value: formatCurrency(metrics.avgPerEvent),
                   color: "#111827",
                 },
@@ -2256,7 +2258,7 @@ const PayoutsPage: React.FC = () => {
                     letterSpacing: "0.1em",
                   }}
                 >
-                  No transactions found
+                  {t('no_transactions')}
                 </div>
               </div>
             ) : (

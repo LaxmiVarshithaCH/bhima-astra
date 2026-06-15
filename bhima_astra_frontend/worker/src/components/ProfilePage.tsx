@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { jsPDF } from "jspdf";
 import { useWorker } from "../context/WorkerContext";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage, SUPPORTED_LANGS } from "../context/LanguageContext";
 import { updateWorkerProfile } from "../services/api";
 
 /* ─── Style tokens (mirrors Dashboard typography) ─────────── */
@@ -181,7 +181,7 @@ interface ProfilePageFullProps {
 const ProfilePageFull: React.FC<ProfilePageFullProps> = ({ onLogout }) => {
   /* ── Context ────────────────────────────────────── */
   const { profile, policy, refresh } = useWorker();
-  const { lang, setLang, t } = useLanguage();
+  const { lang, setLang, t, translating } = useLanguage();
 
   /* ── Plan metadata lookup — matches PlansTab constants ─── */
   const PLAN_META: Record<string, { perEventPayout: number; maxWeeklyPayout: number; weeklyPremium: number; maxEvents: number }> = {
@@ -300,12 +300,8 @@ const ProfilePageFull: React.FC<ProfilePageFullProps> = ({ onLogout }) => {
     sms: true,
   });
 
-  const LANGS = [
-    { code: "EN", name: "English",  flag: "ENG" },
-    { code: "TE", name: "తెలుగు",   flag: "TEL" },
-    { code: "HI", name: "हिन्दी",   flag: "HIN" },
-    { code: "TA", name: "தமிழ்",    flag: "TAM" },
-  ];
+  // Automatically derived from SUPPORTED_LANGS — no manual updates needed
+  const LANGS = SUPPORTED_LANGS;
   // lang / setLang now come from LanguageContext (global)
 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -1045,16 +1041,26 @@ const ProfilePageFull: React.FC<ProfilePageFullProps> = ({ onLogout }) => {
 
         {/* ── Language ─────────────────────────── */}
         <GlassCard accentColor="#60A5FA" style={{ padding: "28px 24px" }}>
-          <div style={{ ...mono(8), color: "#111827", textTransform: "uppercase", letterSpacing: "0.2em", marginBottom: 20 }}>
-            {t('language')}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+            <div style={{ ...mono(8), color: "#111827", textTransform: "uppercase", letterSpacing: "0.2em" }}>
+              {t('language')}
+            </div>
+            {translating && (
+              <div style={{ display: "flex", alignItems: "center", gap: 6, ...mono(8), color: PURPLE }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={PURPLE} strokeWidth="2.5" strokeLinecap="round" style={{ animation: "spin 1s linear infinite" }}>
+                  <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0" />
+                </svg>
+                Translating…
+              </div>
+            )}
           </div>
           <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: 10 }}
           >
             {LANGS.map(({ code, name, flag }) => (
               <button
                 key={code}
-                onClick={() => setLang(code as import('../context/LanguageContext').LangCode)}
+                onClick={() => setLang(code)}
                 className={`lang-card ${lang === code ? "selected" : ""}`}
                 style={{
                   background:

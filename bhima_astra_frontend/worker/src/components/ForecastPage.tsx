@@ -3,6 +3,7 @@ import { useWorker } from "../context/WorkerContext";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import { fetchAQIData, type AQIResult } from "../services/aqiService";
+import { useLanguage } from "../context/LanguageContext";
 
 // --- Icons (SVGs) ---
 const SunIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -447,7 +448,7 @@ const WindyMapCard = () => {
               color: "#111827",
             }}
           >
-            Live Thunderstorm Map — Your Location
+            {t('live_thunderstorm_map')}
           </h3>
           <span
             style={{
@@ -548,6 +549,7 @@ const getVideoForCondition = (conditionStr: string): string => {
 
 export default function ForecastPage() {
   const { profile } = useWorker();
+  const { t } = useLanguage();
 
   // Derive city name for OWM API — fall back to Vijayawada
   const cityQuery = useMemo(() => {
@@ -592,7 +594,7 @@ export default function ForecastPage() {
   const [aqiData, setAqiData] = useState<AQIResult>({
     raw: null,
     display: "--",
-    label: "Loading…",
+    label: t('loading'),
     color: "#111827",
     source: "none",
   });
@@ -1735,7 +1737,7 @@ export default function ForecastPage() {
                   marginBottom: "4px",
                 }}
               >
-                Air Quality Index
+                {t('air_quality')}
               </div>
               <div
                 style={{

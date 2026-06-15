@@ -665,6 +665,7 @@ const FAQItem: React.FC<{
 
 const FAQSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   return (
     <div

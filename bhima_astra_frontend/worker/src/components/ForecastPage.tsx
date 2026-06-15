@@ -318,6 +318,7 @@ const darkMapStyle = [
 
 const WindyMapCard = () => {
   const { profile } = useWorker();
+  const { t } = useLanguage();
 
   const CITY_COORDS: Record<string, { lat: number; lon: number }> = {
     vijayawada: { lat: 16.5062, lon: 80.648 },

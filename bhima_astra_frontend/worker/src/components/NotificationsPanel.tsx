@@ -22,7 +22,7 @@ const fetchNotifications = async (): Promise<Notification[]> => {
   const token = getToken();
   if (!token) return [];
   try {
-    const res = await fetch(`${BASE_URL}/api/v1/workers/me/notifications`, {
+    const res = await fetch(`${BASE_URL}/workers/me/notifications`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ const fetchDisruptionAlerts = async (): Promise<Notification[]> => {
   const token = getToken();
   if (!token) return [];
   try {
-    const res = await fetch(`${BASE_URL}/api/v1/workers/me/disruption-alerts`, {
+    const res = await fetch(`${BASE_URL}/workers/me/disruption-alerts`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

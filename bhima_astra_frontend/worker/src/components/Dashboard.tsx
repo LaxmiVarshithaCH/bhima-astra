@@ -673,8 +673,8 @@ const DashboardOverview: React.FC = () => {
     premium: { coverage: 600, weeklyPremium: 119 },
   };
 
-  const tierKey = (policy?.plan_tier ?? "standard").toLowerCase();
-  const planMeta = PLAN_META[tierKey];
+  const tierKey = (policy?.plan_tier ?? "standard").toLowerCase() as keyof typeof PLAN_META;
+  const planMeta = PLAN_META[tierKey] ?? PLAN_META.standard;
   const policyNo = profile
     ? `WRK-${profile.worker_id}-${(profile.worker_name ?? "XX").slice(0, 2).toUpperCase()}`
     : "WRK-2401-XZ";

@@ -1693,21 +1693,53 @@ flake8 app/
 ## Team
 
 **Astra Karma**
-- Dorbala Sai Nikitha
-- Chennupalli Laxmi Varshitha
-- Dorbala Sai Sujitha
-- Md Abdul Ahad Sharif
-- Chittelu Nissy
 
----
-
-## License
-
-Confidential - Guidewire DEVTrails 2026
-
-**Submission:** Phase 1 (Oct 2025) | Phase 2 (Jan 2026) | Phase 3 (Jun 2026)
-**Status:** Production-ready demo deployed on Vercel + Render
-**Last Updated:** June 15, 2026
+<table>
+  <tr>
+      <td align="center">
+      <a href="https://github.com/32732Nikitha">
+        <img src="https://avatars.githubusercontent.com/32732Nikitha" width="100px;" alt=""/>
+        <br />
+        <sub><b>Dorbala Sai Nikitha</b></sub>
+      </a>
+      <br />
+    </td>
+          <td align="center">
+      <a href="https://github.com/LaxmiVarshithaCH">
+        <img src="https://avatars.githubusercontent.com/LaxmiVarshithaCH" width="100px;" alt=""/>
+        <br />
+        <sub><b>Chennupalli Laxmi Varshitha</b></sub>
+      </a>
+      <br />
+    </td>
+    <td align="center">
+      <a href="https://github.com/2300030861">
+        <img src="https://avatars.githubusercontent.com/2300030861" width="100px;" alt=""/>
+        <br />
+        <sub><b>Dorbala Sai Sujitha</b></sub>
+      </a>
+      <br />
+    </td>
+    </td>
+      <td align="center">
+      <a href="https://github.com/2300030144">
+        <img src="https://avatars.githubusercontent.com/Ahad720783" width="100px;" alt=""/>
+        <br />
+        <sub><b>Chittelu Nissy</b></sub>
+      </a>
+      <br />
+    </td>
+      <td align="center">
+      <a href="https://github.com/2300030144">
+        <img src="https://avatars.githubusercontent.com/2300030144" width="100px;" alt=""/>
+        <br />
+        <sub><b>Md Abdul Ahad Sharif</b></sub>
+      </a>
+      <br />
+    </td>
+            <br />
+  </tr>
+</table>
 
 ---
 

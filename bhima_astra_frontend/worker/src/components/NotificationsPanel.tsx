@@ -4,7 +4,7 @@ import { getToken } from "../services/api";
 
 /* ── Types ───────────────────────────────────────────── */
 export interface Notification {
-  id: number;
+  id: number | string;
   title: string;
   message: string;
   time: string;
@@ -12,72 +12,36 @@ export interface Notification {
   type?: "ticket" | "payout" | "alert" | "info";
 }
 
-/* ── Fallback data shown while API loads or on error */
-const fallbackNotifications: Notification[] = [
-  {
-    id: 1,
-    title: "Policy Triggered",
-    message: "Your policy was triggered for composite event (L2) in your zone.",
-    time: "2 mins ago",
-    read: false,
-    type: "ticket",
-  },
-  {
-    id: 2,
-    title: "Payout Credited",
-    message: "₹591 credited to your UPI account for aqi trigger (L3).",
-    time: "1 hr ago",
-    read: true,
-    type: "payout",
-  },
-  {
-    id: 3,
-    title: "Coverage Alert",
-    message: "Heavy rainfall detected in your zone. Policy triggered.",
-    time: "3 hrs ago",
-    read: false,
-    type: "alert",
-  },
-  {
-    id: 4,
-    title: "Payout Processing",
-    message: "Your flood claim (L3) payout is being processed.",
-    time: "1 day ago",
-    read: true,
-    type: "info",
-  },
-];
-
-/* ── Live API fetch from backend */
+/* ── API base URL ─────────────────────────────────────── */
 const BASE_URL =
   ((import.meta as unknown as { env: Record<string, string> }).env
     .VITE_API_BASE_URL as string) || "http://localhost:8000";
 
+/* ── Fetch real notifications from backend ─────────────── */
 const fetchNotifications = async (): Promise<Notification[]> => {
   const token = getToken();
-  if (!token) return fallbackNotifications;
+  if (!token) return [];
   try {
-    const res = await fetch(`${BASE_URL}/workers/me/notifications`, {
+    const res = await fetch(`${BASE_URL}/api/v1/workers/me/notifications`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
-    if (!res.ok) return fallbackNotifications;
+    if (!res.ok) return [];
     const data = await res.json();
-    if (Array.isArray(data) && data.length > 0) return data as Notification[];
-    return fallbackNotifications;
+    return Array.isArray(data) ? (data as Notification[]) : [];
   } catch {
-    return fallbackNotifications;
+    return [];
   }
 };
 
-/* ── Disruption alerts for affected workers */
+/* ── Fetch disruption alerts ────────────────────────────── */
 const fetchDisruptionAlerts = async (): Promise<Notification[]> => {
   const token = getToken();
   if (!token) return [];
   try {
-    const res = await fetch(`${BASE_URL}/workers/me/disruption-alerts`, {
+    const res = await fetch(`${BASE_URL}/api/v1/workers/me/disruption-alerts`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -86,19 +50,19 @@ const fetchDisruptionAlerts = async (): Promise<Notification[]> => {
     if (!res.ok) return [];
     const data = await res.json();
     if (!Array.isArray(data)) return [];
-    // Convert string IDs like "flag-42" to numeric (1_000_000 + flag_id) to stay typed as number
     return data.map((a: any) => ({
       ...a,
-      id: typeof a.id === "string"
-        ? 1_000_000 + parseInt(a.id.replace("flag-", "") || "0", 10)
-        : a.id,
+      id:
+        typeof a.id === "string"
+          ? 1_000_000 + parseInt(a.id.replace("flag-", "") || "0", 10)
+          : a.id,
     })) as Notification[];
   } catch {
     return [];
   }
 };
 
-/* ── Type accent helper ─────────────────────────────── */
+/* ── Type accent helper ─────────────────────────────────── */
 const typeAccent = (type?: string) => {
   switch (type) {
     case "ticket":
@@ -118,30 +82,37 @@ const typeAccent = (type?: string) => {
 const NotificationsPanel: React.FC = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  /* Fetch from backend on mount, refresh every 30s ──────────────────── */
-  const load = useCallback(async () => {
-    const [policyData, alertData] = await Promise.allSettled([
-      fetchNotifications(),
-      fetchDisruptionAlerts(),
-    ]);
-    const policy = policyData.status === "fulfilled" ? policyData.value : fallbackNotifications;
-    const alerts = alertData.status === "fulfilled" ? alertData.value : [];
-    // Disruption alerts appear first (most urgent), then policy notifications
-    setNotifications([...alerts, ...policy]);
+  /* ── Fetch & merge both sources ──────────────────────── */
+  const load = useCallback(async (isFirst = false) => {
+    if (isFirst) setLoading(true);
+    try {
+      const [policyData, alertData] = await Promise.allSettled([
+        fetchNotifications(),
+        fetchDisruptionAlerts(),
+      ]);
+      const policy = policyData.status === "fulfilled" ? policyData.value : [];
+      const alerts = alertData.status === "fulfilled" ? alertData.value : [];
+
+      // Disruption alerts first (most urgent), then payout/trigger notifications
+      setNotifications([...alerts, ...policy]);
+      setLastUpdated(new Date());
+    } finally {
+      if (isFirst) setLoading(false);
+    }
   }, []);
 
+  /* Poll every 10 s for near-real-time updates ─────────── */
   useEffect(() => {
-    load();
-    const iv = setInterval(load, 30000);
+    load(true);
+    const iv = setInterval(() => load(false), 10_000);
     return () => clearInterval(iv);
+  }, [load]);
 
-    // Future (WebSocket):
-    // fetchNotifications().then(setNotifications).catch(console.error);
-  }, []);
-
-  /* Close on outside click ───────── */
+  /* Close on outside click ─────────────────────────────── */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
@@ -157,10 +128,15 @@ const NotificationsPanel: React.FC = () => {
   const markAllRead = () =>
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
 
-  const markRead = (id: number) =>
+  const markRead = (id: number | string) =>
     setNotifications((prev) =>
       prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
     );
+
+  /* Format last-updated time ───────────────────────────── */
+  const updatedLabel = lastUpdated
+    ? lastUpdated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })
+    : null;
 
   return (
     <div ref={panelRef} style={{ position: "relative" }}>
@@ -201,7 +177,7 @@ const NotificationsPanel: React.FC = () => {
           }
         }}
       >
-        {/* Bell SVG */}
+        {/* Bell SVG — animate when loading */}
         <svg
           width="16"
           height="16"
@@ -211,6 +187,7 @@ const NotificationsPanel: React.FC = () => {
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
+          style={loading ? { animation: "bellPulse 1.2s ease infinite" } : undefined}
         >
           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
           <path d="M13.73 21a2 2 0 0 1-3.46 0" />
@@ -257,7 +234,7 @@ const NotificationsPanel: React.FC = () => {
               position: "absolute",
               top: "calc(100% + 10px)",
               right: 0,
-              width: "min(360px, 92vw)",
+              width: "min(370px, 92vw)",
               background: "#FFFFFF",
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
@@ -269,12 +246,24 @@ const NotificationsPanel: React.FC = () => {
               overflow: "hidden",
             }}
           >
+            <style>{`
+              @keyframes bellPulse {
+                0%,100% { transform: rotate(0deg); }
+                25%  { transform: rotate(-10deg); }
+                75%  { transform: rotate(10deg); }
+              }
+              @keyframes livePulse {
+                0%,100% { opacity:1; }
+                50%     { opacity:0.4; }
+              }
+            `}</style>
+
             {/* Top accent line */}
             <div
               style={{
-                height: 1,
+                height: 2,
                 background:
-                  "linear-gradient(90deg, transparent, rgba(251,191,36,0.6), transparent)",
+                  "linear-gradient(90deg, transparent, rgba(34,197,94,0.7), rgba(251,191,36,0.7), transparent)",
               }}
             />
 
@@ -300,6 +289,37 @@ const NotificationsPanel: React.FC = () => {
                 >
                   Notifications
                 </span>
+
+                {/* LIVE badge */}
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 4,
+                    background: "rgba(34,197,94,0.1)",
+                    border: "1px solid rgba(34,197,94,0.35)",
+                    color: "#16a34a",
+                    fontFamily: "DM Mono, monospace",
+                    fontSize: 7,
+                    padding: "1px 6px",
+                    borderRadius: 999,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: 5,
+                      height: 5,
+                      borderRadius: "50%",
+                      background: "#22c55e",
+                      display: "inline-block",
+                      animation: "livePulse 1.5s ease infinite",
+                    }}
+                  />
+                  Live
+                </span>
+
                 {unreadCount > 0 && (
                   <span
                     style={{
@@ -318,43 +338,79 @@ const NotificationsPanel: React.FC = () => {
                   </span>
                 )}
               </div>
-              {unreadCount > 0 && (
-                <button
-                  onClick={markAllRead}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    fontFamily: "DM Mono, monospace",
-                    fontSize: 8,
-                    color: "#3B82F6",
-                    cursor: "pointer",
-                    letterSpacing: "0.06em",
-                    textDecoration: "none",
-                    transition: "color 0.2s",
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.color = "#2563EB")}
-                  onMouseOut={(e) => (e.currentTarget.style.color = "#3B82F6")}
-                >
-                  Mark all read
-                </button>
-              )}
+
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                {unreadCount > 0 && (
+                  <button
+                    onClick={markAllRead}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      fontFamily: "DM Mono, monospace",
+                      fontSize: 8,
+                      color: "#3B82F6",
+                      cursor: "pointer",
+                      letterSpacing: "0.06em",
+                      transition: "color 0.2s",
+                    }}
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.color = "#2563EB")
+                    }
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.color = "#3B82F6")
+                    }
+                  >
+                    Mark all read
+                  </button>
+                )}
+              </div>
             </div>
 
             {/* Notifications List */}
             <div
               style={{ maxHeight: 380, overflowY: "auto", padding: "8px 0" }}
             >
-              {notifications.length === 0 ? (
+              {loading ? (
+                /* Skeleton loader */
+                <div style={{ padding: "16px 18px", display: "flex", flexDirection: "column", gap: 14 }}>
+                  {[1, 2, 3].map((k) => (
+                    <div key={k} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                      <div style={{ width: 30, height: 30, borderRadius: 8, background: "#f1f5f9", flexShrink: 0 }} />
+                      <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 6 }}>
+                        <div style={{ height: 10, borderRadius: 4, background: "#f1f5f9", width: "60%" }} />
+                        <div style={{ height: 8, borderRadius: 4, background: "#f8fafc", width: "90%" }} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : notifications.length === 0 ? (
                 <div
                   style={{
-                    padding: "36px 20px",
+                    padding: "40px 20px",
                     textAlign: "center",
-                    fontFamily: "DM Mono, monospace",
-                    fontSize: 10,
-                    color: "#94A3B8",
                   }}
                 >
-                  No notifications yet
+                  <div style={{ fontSize: 28, marginBottom: 10 }}>🔕</div>
+                  <div
+                    style={{
+                      fontFamily: "DM Mono, monospace",
+                      fontSize: 10,
+                      color: "#64748B",
+                      marginBottom: 4,
+                    }}
+                  >
+                    No notifications yet
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: "DM Mono, monospace",
+                      fontSize: 8,
+                      color: "#94A3B8",
+                      letterSpacing: "0.06em",
+                    }}
+                  >
+                    You'll be notified when a claim triggers or a payment is made
+                  </div>
                 </div>
               ) : (
                 notifications.map((n) => {
@@ -473,12 +529,14 @@ const NotificationsPanel: React.FC = () => {
               )}
             </div>
 
-            {/* Footer */}
+            {/* Footer — last updated */}
             <div
               style={{
                 borderTop: "1px solid #E2E8F0",
                 padding: "10px 18px",
-                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
               }}
             >
               <span
@@ -490,8 +548,20 @@ const NotificationsPanel: React.FC = () => {
                   textTransform: "uppercase",
                 }}
               >
-                Backend integration ready · /api/notifications
+                Updates every 10s
               </span>
+              {updatedLabel && (
+                <span
+                  style={{
+                    fontFamily: "DM Mono, monospace",
+                    fontSize: 8,
+                    color: "#94A3B8",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  Last sync: {updatedLabel}
+                </span>
+              )}
             </div>
           </motion.div>
         )}

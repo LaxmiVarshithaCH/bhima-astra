@@ -34,10 +34,10 @@
 
 Unlike traditional insurance that requires claim forms, loss documentation, and manual underwriting, BHIMA ASTRA uses:
 - **Parametric triggers**: Objective environmental thresholds (IMD rainfall, CPCB AQI, temperature)
-- **Instant payouts**: Automatic UPI transfer within 90 seconds of trigger confirmation
+- **Instant payouts**: Automatic UPI transfer upon trigger confirmation (Razorpay sandbox demo)
 - **AI-powered fraud detection**: 4-stage cascade (rules → LSTM → graph network → LLM) with cost-optimized architecture
 - **Weekly premiums**: Aligned with gig workers' income rhythm (₹49-₹119/week)
-- **Zero friction**: No apps to download, no claims to file, no waiting
+- **Zero friction**: No claims to file, no waiting — web-based portals for all roles
 
 ### Core Innovation: Parametric + AI
 
@@ -45,7 +45,7 @@ Unlike traditional insurance:
 - ❌ No claim forms (✅ Automatic trigger)
 - ❌ No loss documentation (✅ Objective environmental data)
 - ❌ No manual underwriting (✅ ML-powered fraud detection)
-- ❌ No payment delays (✅ Payout within minutes)
+- ❌ No payment delays (✅ Payout triggered automatically via UPI sandbox)
 
 ### Scale & Impact
 
@@ -55,7 +55,7 @@ Unlike traditional insurance:
 | **Q-Commerce Coverage** | 7 platforms | Zepto, Blinkit, Swiggy Instamart, BigBasket, Flipkart Minutes, Amazon Now, FreshToHome |
 | **Monthly Income at Risk** | 20-30% | During disruptions (rainfall, heat, pollution, strikes) |
 | **Workers with Zero Savings** | 90% | Extremely vulnerable to income shocks |
-| **Phase 3 Status** | 95% implementation aligned | 5% advancement beyond original plan (adaptive percentile calibration, temporal graph windowing) |
+| **Phase 3 Status** | Production-ready demo | Full pipeline implemented with live deployments on Vercel + Render |
 
 ---
 
@@ -125,11 +125,11 @@ Unlike traditional insurance:
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌──────────────────────────────────────────────────────┐  │
-│  │  Frontend Layer (Web + Mobile)                       │  │
-│  │  ├─ Worker Portal (React + Vite)                     │  │
-│  │  ├─ Admin Dashboard (Next.js)                        │  │
-│  │  ├─ Manager App (React + Vite)                       │  │
-│  │  └─ Landing Page (Next.js)                           │  │
+│  │  Frontend Layer (Web)                                │  │
+│  │  ├─ Worker Portal (React 19 + Vite)                  │  │
+│  │  ├─ Admin Dashboard (React 18 + Vite)                │  │
+│  │  ├─ Manager App (React 19 + Vite)                    │  │
+│  │  └─ Landing Page (React 19 + CRA)                    │  │
 │  └──────────────────────────────────────────────────────┘  │
 │                        │ HTTP/WebSocket                      │
 │  ┌──────────────────────────────────────────────────────┐  │
@@ -168,9 +168,9 @@ Unlike traditional insurance:
 │  │  ├─ IMD Weather API                                  │  │
 │  │  ├─ CPCB Air Quality                                 │  │
 │  │  ├─ Google Maps (Traffic + Routes)                   │  │
-│  │  ├─ Razorpay (UPI Payouts)                           │  │
-│  │  ├─ Firebase (Push Notifications)                    │  │
-│  │  └─ Anthropic Claude (LLM Audit)                     │  │
+│  │  ├─ Razorpay Sandbox (UPI Payouts — demo)            │  │
+│  │  ├─ OpenWeatherMap (AQI data)                        │  │
+│  │  └─ Windy.com (Weather visualization)                │  │
 │  └──────────────────────────────────────────────────────┘  │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -447,16 +447,16 @@ Every technology chosen for specific reasons tied to system constraints: **CPU-f
 
 | Layer | Technology | Version | Purpose |
 |-------|-----------|---------|---------|
-| **Worker Portal** | React 18 + Vite + TypeScript | Latest | Mobile-responsive gig worker interface |
-| **Admin Dashboard** | Next.js 14 | Latest | Server-side rendering, ISR for dashboards |
-| **Manager App** | React 18 + Vite + TypeScript | Latest | Dark store manager real-time interface |
-| **Landing Page** | Next.js 14 | Latest | SEO-optimized public marketing site |
-| **Styling** | Tailwind CSS | 3.3+ | Utility-first, dark mode support, responsive |
-| **State Management** | React Query + Zustand | Latest | Server + client state, offline resilience |
-| **Forms** | React Hook Form + Zod | Latest | Type-safe form validation |
+| **Worker Portal** | React 19 + Vite + TypeScript | Latest | Mobile-responsive gig worker interface |
+| **Admin Dashboard** | React 18 + Vite + TypeScript | Latest | Admin operations center with analytics |
+| **Manager App** | React 19 + Vite + TypeScript | Latest | Dark store manager real-time interface |
+| **Landing Page** | React 19 + CRA + TypeScript | Latest | Public marketing site |
+| **Styling** | Tailwind CSS + Vanilla CSS | 3.4+ | Utility-first with custom design tokens |
+| **State Management** | React Context + useState | Built-in | WorkerContext, LanguageContext |
+| **Animations** | Framer Motion + GSAP | Latest | Page transitions, micro-interactions |
 | **Visualization** | Recharts | Latest | Charts, loss ratio, fraud analytics |
-| **Maps** | Mapbox GL JS | Latest | Live zone maps, geofencing overlays |
-| **Real-Time** | Socket.IO Client | Latest | Live claim updates, fraud alerts |
+| **Maps** | Google Maps + Leaflet + MapLibre | Latest | Zone maps, geofencing, weather overlays |
+| **Real-Time** | HTTP Polling (10s intervals) | Custom | Live notifications, weather updates |
 
 ### ML/AI Stack
 
@@ -531,62 +531,61 @@ class ClaimService:
 
 Four separate frontend applications serve different user personas with independent deployments:
 
-### 1. Worker Portal (React + Vite + TypeScript)
+### 1. Worker Portal (React 19 + Vite + TypeScript)
 
 **Purpose:** Mobile-responsive interface for gig delivery workers
 
 **Key Pages:**
-- Dashboard: Active policies, payout balance, upcoming triggers
+- Dashboard: Active policies, live weather, composite risk score, zone map, payout timeline
 - Onboarding: Phone login → OTP verification → Profile setup
-- Plans: Plan comparison with city-adjusted pricing
-- Policy: Current policy status, renewal, cancellation
-- Events: Last 30 days disruption history
-- Forecast: 7-day income prediction with probability
-- Payouts: Complete payout history with fraud explanations
-- Profile: KYC details, bank account, city/platform settings
+- Plans: Plan comparison with city-adjusted pricing and FAQ
+- Policy: Current policy status, trigger thresholds, policy document PDF generation
+- Forecast: 7-day income prediction with Windy weather visualization
+- Payouts: Complete payout history with trigger reasons
+- Profile: KYC details, UPI management, city/zone selection, language settings
+- Notifications: Real-time claim and payout alerts (polling-based)
 
-**Features:** Offline capability, real-time Socket.IO updates, mobile-responsive design, dark mode
+**Features:** Mobile-responsive design, real-time weather integration, PDF policy document generation, Google Maps zone visualization, multi-language support (partial — UI labels)
 
-**Tech Stack:** React 18, Vite 5, TypeScript, React Query, Zustand, Recharts, Tailwind
+**Tech Stack:** React 19, Vite, TypeScript, Framer Motion, GSAP, Tailwind CSS, Google Maps API, jsPDF, Windy API
 
-### 2. Admin Dashboard (Next.js)
+### 2. Admin Dashboard (React + Vite)
 
 **Purpose:** Insurer operations center for claims, fraud, and analytics
 
 **Key Pages:**
 - Analytics: KPI dashboard (loss ratio, volume, fraud rate)
-- Claims: List with filters, multi-step approval workflow
+- Claims: List with filters, multi-step approval workflow with Razorpay payout
 - Fraud: Case investigation, evidence timeline, ring visualization
 - Policies: Active/renewing/cancelled by city
-- Workers: Directory with KYC/fraud filtering
-- Zones: India heatmap with risk colors, trigger history
-- Settings: Admin users, rate limits, ML model versions
+- Workers: Directory with KYC/fraud filtering, worker detail drilldown
+- Zones: India heatmap with risk colors, MapLibre-powered map
+- Live Simulation: Real-time zone disruption simulation with agent pipeline
 
-**Features:** Server-side rendering for fast loads, real-time metrics, role-based access
+**Features:** Role-based access, real-time metrics, Recharts analytics, 3D globe visualization
 
-**Tech Stack:** Next.js 14, React Query, Recharts, Mapbox, Tailwind
+**Tech Stack:** React 18, Vite, TypeScript, Recharts, MapLibre GL, Framer Motion, Three.js/R3F, Tailwind
 
-### 3. Manager Dashboard (React + Vite)
+### 3. Manager Dashboard (React 19 + Vite)
 
 **Purpose:** Dark store manager interface for real-time zone monitoring
 
 **Features:**
 - Live zone monitoring (worker count, policy status, alerts)
-- Incident reporting form (curfew, protest, outage)
-- Mapbox with worker locations and delivery zones
+- Incident reporting form (curfew, protest, outage, flood)
+- Leaflet map with worker locations and delivery zones
 - Manager flag history with admin verdicts
-- Offline worker payout request system
+- Zone worker directory with risk scores
 
-### 4. Landing Page (Next.js)
+### 4. Landing Page (React + CRA)
 
-**Purpose:** Public-facing marketing and enrollment funnel
+**Purpose:** Public-facing marketing and information site
 
 **Pages:**
-- Hero: Value proposition, live stats
-- Get Protected: Embedded enrollment flow
-- How It Works: Animated 3-step process
-- Trust: Partner badges, testimonials
-- Portal links: Quick navigation
+- Hero: Value proposition with animated statistics
+- How It Works: Step-by-step process with animations
+- Plan Comparison: Tier comparison table
+- Portal Links: Quick navigation to Worker, Admin, and Manager portals
 
 ---
 
@@ -760,7 +759,7 @@ Five specialized Celery agents orchestrate the insurance pipeline:
 
 ## API Specification
 
-Base URL: `https://api.bhima-astra.com/api/v1`
+Base URL: `https://bhima-astra-api.onrender.com`
 
 All endpoints require `Authorization: Bearer <JWT>` except `/auth/*`
 
@@ -925,22 +924,38 @@ Response: {
 }
 ```
 
-### WebSocket Events
+### Real-Time Updates
 
-Real-time notifications via `Socket.IO`:
+**Backend:** FastAPI WebSocket endpoint (`/ws/live`) with `ConnectionManager` for broadcasting events to connected clients:
 
-```javascript
-socket.on('claim_updated', (data) => {
-  // { claim_id, status, amount, processed_at }
-});
+```python
+# WebSocket connection manager — broadcasts events to all connected clients
+@router.websocket("/ws/live")
+async def websocket_endpoint(websocket: WebSocket):
+    await manager.connect(websocket)
+    try:
+        while True:
+            data = await websocket.receive_text()
+    except WebSocketDisconnect:
+        manager.disconnect(websocket)
 
-socket.on('fraud_alert', (data) => {
-  // { worker_id, fraud_score, reason }
-});
+# Used by simulation engine, admin dashboard, and manager portal
+await manager.broadcast({"type": "claim_updated", "data": {...}})
+```
 
-socket.on('payout_confirmed', (data) => {
-  // { claim_id, amount, upi_ref }
-});
+**Worker Portal:** Uses HTTP polling (10-second intervals) for notifications:
+
+```typescript
+// Worker portal polls for notifications
+const fetchNotifications = async () => {
+  const res = await fetch(`${BASE_URL}/workers/me/notifications`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.json(); // [{ type, title, message, timestamp }]
+};
+
+// Polling every 10 seconds
+setInterval(fetchNotifications, 10_000);
 ```
 
 ---
@@ -1154,7 +1169,9 @@ class Claim(Base):
 Internet
   ├─ Worker Portal (Vercel)        → https://bhima-astra-worker.vercel.app
   ├─ Admin Portal (Vercel)          → https://bhima-astra-admin.vercel.app
-  └─ API Gateway (Render)           → https://bhima-astra-api.onrender.com
+  ├─ Manager Portal (Vercel)        → https://bhima-astra-manager.vercel.app
+  ├─ Landing Page (Vercel)          → https://bhima-astra-landing.vercel.app
+  └─ API Backend (Render)           → https://bhima-astra-api.onrender.com
               │
     ┌─────────┼─────────┐
     ├─ Load Balancer (Render)
@@ -1242,39 +1259,41 @@ REFRESH MATERIALIZED VIEW worker_fraud_scores;
 
 ## Implementation Status
 
-### Fully Implemented & Tested ✅
+### Fully Implemented & Deployed ✅
 
-- **Authentication:** OTP-based worker login, JWT tokens with role-based access control
-- **Policy Management:** Policy creation, renewal, cancellation, tier upgrades
-- **Claims Processing:** Automated claim submission, status tracking, audit trails
-- **Fraud Detection:** Complete 4-stage pipeline (rules → LSTM → graph → LLM)
-- **Loss Ratio Analytics:** Premium vs. claims analysis, trending, reporting
-- **Zone Management:** Risk assessment, visualization, dispatch routing
-- **Worker Management:** Search, filtering, profile management, KYC tracking
+- **Authentication:** OTP-based worker login, email+password admin/manager login, JWT tokens with RBAC
+- **Policy Management:** Policy creation, activation, renewal, plan tier selection (Basic/Standard/Premium)
+- **Claims Processing:** Automated parametric claim creation from weather triggers, status tracking
+- **Fraud Detection:** Complete 4-stage pipeline (rules → LSTM → graph → LLM decision engine)
+- **ML Models:** Random Forest (income), XGBoost (disruption risk), Ridge (premium), fraud graph + behavioral models — all trained and served via inference endpoints
+- **Zone Management:** Risk assessment, live zone map, weather-driven risk scoring
+- **Worker Management:** Search, filtering, profile management, KYC status tracking
 - **Fraud Investigation:** Case management, investigation workflows, evidence tracking
-- **Claims Approval:** Multi-stage workflows, audit logs, decision reasoning
-- **Real-Time Updates:** WebSocket notifications for claim status, fraud alerts, payouts
-- **ML Models:** Random Forest (income), XGBoost (risk), Ridge (premium), LSTM (fraud)
-- **Payout Tracking:** Full history with fraud explanations and trigger reasons
-- **Multi-Role Dashboards:** Worker, Admin, Manager, Analyst portals
-- **Event Logging:** 30-day disruption history, zone incident correlation
+- **Claims Approval:** Admin multi-step approval with Razorpay sandbox payout trigger
+- **Loss Ratio Analytics:** Premium vs. claims analysis, trending charts, city-level breakdowns
+- **Payout Tracking:** Full payout history with trigger reasons and claim timestamps
+- **Multi-Role Dashboards:** Worker, Admin, Manager portals — all deployed on Vercel
+- **Live Weather Integration:** OpenWeatherMap AQI, Windy.com forecast maps, Google Maps zones
+- **PDF Policy Documents:** Auto-generated downloadable policy certificates with worker-specific data
+- **Real-Time Notifications:** Polling-based notification system for claim triggers and payouts
+- **WebSocket Live Updates:** Backend WebSocket endpoint (`/ws/live`) with `ConnectionManager` for real-time event broadcasting
+- **Live Simulation Engine:** Admin can simulate zone disruptions and watch the full agent pipeline fire
+- **AI Chatbot:** Worker-facing chatbot for policy questions and claim assistance
 
 ### In Progress / Partial 🟡
 
-- **Payment Gateway:** Razorpay sandbox integration (demo-ready, not live)
-- **Payout Execution:** Framework present, final Razorpay batch integration pending
-- **SMS/OTP Delivery:** Demo mode (not live SMS), framework ready for Twilio/AWS SNS
-- **Production Deployment:** Demo on Render (single instance, not auto-scaling)
+- **Multilingual UI:** Language context infrastructure built (English, Hindi, Telugu, Kannada, Malayalam); currently translates navigation labels — full page text translation is work in progress
+- **Payment Gateway:** Razorpay sandbox integration (demo-ready, not processing live payments)
+- **SMS/OTP Delivery:** Demo mode with fixed OTP (123456), framework ready for Twilio/AWS SNS
 
-### Future Roadmap ❌
+### Future Roadmap 🔮
 
-- **Real-Time Geolocation:** Worker GPS tracking for disruption verification
 - **Live Payment Processing:** Production Razorpay integration with real UPI transfers
-- **SMS Notification System:** Full SMS/WhatsApp integration
+- **Full Multilingual:** Complete auto-translation of all UI text via Google Translate API
+- **SMS/WhatsApp Notifications:** Real delivery via Twilio or AWS SNS
+- **Native Mobile App:** iOS/Android applications
+- **Auto-Scaling Deployment:** Multi-instance Render/AWS deployment with load balancing
 - **Document Verification:** Automated KYC document scanning & validation
-- **Mobile App:** Native iOS/Android applications
-- **Advanced Analytics:** Custom reporting, predictive analytics
-- **GDPR/Regulatory Audit:** Full compliance audit trail
 
 ---
 
@@ -1342,45 +1361,46 @@ REFRESH MATERIALIZED VIEW worker_fraud_scores;
 
 ### Worker Portal
 
-- ✅ OTP Login
-- ✅ Profile Setup (Platform, City, Zone, Vehicle Type)
+- ✅ OTP Login (demo OTP: 123456)
+- ✅ Profile Setup (Name, City, Zone, Platform, UPI)
 - ✅ Plan Selection (Basic/Standard/Premium with city-adjusted pricing)
-- ✅ Policy Management (Active policies, renewal, cancellation)
-- ✅ Real-Time Dashboard (Live weather, composite score gauge, active triggers)
-- ✅ 7-Day Forecast (Disruption probability, income prediction)
-- ✅ Payout History (Detailed receipts with fraud explanations)
-- ✅ Event Log (30 days of zone disruptions)
-- ✅ Profile Settings (City/zone updates, platform switch)
+- ✅ Policy Management (Active policy view, document PDF download)
+- ✅ Real-Time Dashboard (Live weather, composite score gauge, active triggers, zone map)
+- ✅ 7-Day Forecast (Windy weather map, disruption probability)
+- ✅ Payout History (Detailed timeline with trigger reasons)
+- ✅ Real-Time Notifications (Claim triggers, payout alerts — polling-based)
+- ✅ Profile Settings (City/zone updates, UPI management, language selection)
+- ✅ AI Chatbot (Policy questions and assistance)
+- 🟡 Multilingual UI (Navigation labels translated; full text translation WIP)
 
 ### Admin Portal
 
 - ✅ Authentication (Email + Password)
 - ✅ KPI Dashboard (Active policies, payouts today, fraud holds, loss ratio)
-- ✅ Claims Management (Approve/reject, audit trails)
-- ✅ Fraud Investigation (Case management, ring visualization, manual actions)
-- ✅ Worker Registry (Search, filter, KYC management)
-- ✅ Loss Ratio Analytics (Charts, trending, cohort analysis)
+- ✅ Claims Management (Approve/reject with Razorpay sandbox payout)
+- ✅ Fraud Investigation (Case management, ring visualization)
+- ✅ Worker Registry (Search, filter, KYC management, detail drilldown)
+- ✅ Loss Ratio Analytics (Recharts, trending, city breakdowns)
 - ✅ Fraud Analytics (Rate trends, detection stage breakdown)
-- ✅ Zone Risk Heatmap (India map with risk visualization)
-- ✅ City Tier Configuration (Dynamic payout multipliers)
-- ✅ ML Model Management (Retrain triggers, version history, drift monitoring)
+- ✅ Zone Risk Map (MapLibre-powered India map with risk visualization)
+- ✅ Live Simulation (Zone disruption simulation with full agent pipeline)
+- ✅ 3D Globe Visualization (Three.js/R3F)
 
 ### Manager Portal
 
 - ✅ Zone Monitoring (Assigned zones, active workers, current scores)
-- ✅ Live Zone Map (Mapbox with worker locations, incident overlays)
-- ✅ Disruption Flag (Social disruption submission with route feasibility check)
+- ✅ Live Zone Map (Leaflet with worker locations, incident overlays)
+- ✅ Disruption Flag (Social disruption submission — curfew, protest, outage, flood)
 - ✅ Worker Directory (Zone workers with policy status, risk scores)
 - ✅ Flag History (Past flags with admin verdicts)
-- ✅ Offline Worker Payout (Request payout for inactive workers)
+- ✅ Activity Feed (Live zone events and alerts)
 
 ### Landing Page
 
-- ✅ Hero Section (Value proposition, live stats)
-- ✅ How It Works (3-step animated flow)
+- ✅ Hero Section (Value proposition with animated stats)
+- ✅ How It Works (Step-by-step animated flow)
 - ✅ Plan Comparison (Tier comparison table)
-- ✅ City Tier Map (Interactive map showing coverage)
-- ✅ Trust Signals (IMD, CPCB, Razorpay badges)
+- ✅ Portal Navigation (Quick links to Worker, Admin, Manager apps)
 
 ---
 
@@ -1396,15 +1416,12 @@ Docker & Docker Compose
 macOS/Linux/Windows
 ```
 
-### One-Command Local Setup (Recommended)
+### Clone Repository
 
 ```bash
 # Clone repo
-git clone https://github.com/32732Nikitha/Astra-Karma-Phase3-submission.git
-cd Astra-Karma-Phase3-submission
-
-# Run complete setup (backend + frontend)
-./start-dev.sh
+git clone https://github.com/LaxmiVarshithaCH/bhima-astra.git
+cd bhima-astra
 ```
 
 Or follow manual setup below:
@@ -1468,13 +1485,18 @@ npm run dev
 
 ### Demo Credentials
 
-After startup, database auto-seeds with demo users:
+The database is pre-seeded with demo users:
 
-| Role | Email / Phone | Password / OTP | Access |
-|------|---------------|---|---|
-| Admin | admin@bhimaastra.in | admin123 | http://localhost:3000 |
-| Manager | ravi.manager@bhima.com | manager123 | http://localhost:5174 |
-| Worker | 9493029001 | 123456 (OTP) | http://localhost:5173 |
+| Role | Email / Phone | Password / OTP | Local | Live Deployment |
+|------|---------------|----------------|-------|------------------|
+| **Admin** | `admin@bhima.com` | `password123` | http://localhost:3000 | https://bhima-astra-admin.vercel.app |
+| **Manager** | `ravi.manager@bhima.com` | `password123` | http://localhost:5174 | https://bhima-astra-manager.vercel.app |
+| **Manager** | `anjali.manager@bhima.com` | `password123` | http://localhost:5174 | |
+| **Manager** | `kiran.manager@bhima.com` | `password123` | http://localhost:5174 | |
+| **Manager** | `sameer.manager@bhima.com` | `password123` | http://localhost:5174 | |
+| **Worker** | Any phone: `9493029001` to `9493029400` | OTP: `123456` | http://localhost:5173 | https://bhima-astra-worker.vercel.app |
+
+> **Note:** Worker login uses OTP-based authentication. Enter any phone number in the range above, then use OTP `123456` to log in.
 
 ---
 
@@ -1575,37 +1597,37 @@ Your Computer (localhost)
 
 ### Next Steps After Local Setup
 
-1. **Test Worker Flow**: Login as worker (9493029001 / OTP: 123456) → Create policy → Submit claim
-2. **Test Admin Flow**: Login as admin → View claims → Review fraud scores → Approve/reject
-3. **Test Fraud Detection**: Trigger test disruption → Watch auto-creation of claims → See 4-stage fraud cascade
+1. **Test Worker Flow**: Login as worker (9493029001 / OTP: 123456) → View dashboard → Check weather → View policy document
+2. **Test Admin Flow**: Login as admin (admin@bhima.com / password123) → View claims → Review fraud scores → Approve/reject
+3. **Test Manager Flow**: Login as manager (ravi.manager@bhima.com / password123) → View zone map → Flag disruption
 4. **Explore API**: Visit `http://localhost:8000/docs` for interactive API testing
 
 ### Test Flows
 
-#### 1. Worker Claim Submission
+#### 1. Worker Dashboard
 ```
 1. Login with phone: 9493029001, OTP: 123456
-2. Navigate to Dashboard
-3. Select a policy (or create new)
-4. Submit claim with amount & description
-5. Observe fraud score and status changes in real-time
+2. Navigate to Dashboard — see live weather, risk score, zone map
+3. Click "View Documents" → Download policy PDF
+4. Check Notifications for claim/payout alerts
+5. Visit Forecast tab for 7-day weather prediction
 ```
 
 #### 2. Admin Claims Review
 ```
-1. Login as admin: admin@bhimaastra.in / admin123
+1. Login as admin: admin@bhima.com / password123
 2. Go to Claims → Pending
 3. Click claim to review
 4. See fraud detection breakdown (rules, LSTM, graph scores)
-5. Approve or reject with notes
+5. Approve with Razorpay sandbox payout or reject with notes
 ```
 
-#### 3. Fraud Detection Testing
+#### 3. Live Simulation (Admin)
 ```
-1. Admin → Fraud → Create trigger event (rainfall)
-2. Watch system auto-create claims for affected zone workers
-3. View fraud scores across all 4 stages
-4. Investigate fraud rings on graph visualization
+1. Admin → Live Simulation
+2. Select a zone and trigger type (rainfall, heat, AQI)
+3. Watch the full agent pipeline fire: Monitor → Trigger → Fraud → Payout
+4. See claims auto-created for affected workers
 ```
 
 ---
@@ -1683,9 +1705,9 @@ flake8 app/
 
 Confidential - Guidewire DEVTrails 2026
 
-**Submission:** Phase 1 (Oct 2025) | Phase 2 (Jan 2026) | Phase 3 (Apr 2026)
-**Status:** Production Ready - 95% Implementation Alignment with 5% Advancement Beyond Original Specification
-**Last Updated:** April 17, 2026
+**Submission:** Phase 1 (Oct 2025) | Phase 2 (Jan 2026) | Phase 3 (Jun 2026)
+**Status:** Production-ready demo deployed on Vercel + Render
+**Last Updated:** June 15, 2026
 
 ---
 

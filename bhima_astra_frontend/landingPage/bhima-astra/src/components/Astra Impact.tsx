@@ -89,7 +89,7 @@ const ImpactSection = () => {
                   background: '#0A0A0A',
                   boxShadow: '6px 6px 12px #040404, -4px -4px 12px rgba(255,255,255,0.01)'
                 }}
-                onClick={() => window.open('https://bhima-astra-admin.vercel.app', '_blank')}
+                onClick={() => window.open('https://bhima-astra-ruddy.vercel.app/admin/login', '_blank')}
               >
                 View Live Metrics
               </motion.button>
